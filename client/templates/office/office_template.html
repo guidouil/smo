@@ -1,0 +1,80 @@
+<template name='office'>
+  <div class="ui basic segment">
+    {{#with office}}
+    <div class="office">
+      <h4 class="ui sub header">Numéro de bureau</h4>
+      <p>{{number}}</p>
+      <h4 class="ui sub header">Adresse</h4>
+      <p>{{{nl2br address}}}</p>
+      <h4 class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</h4>
+      {{#if furnitures}}
+        <h4 class="ui sub header">Equipements</h4>
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="ui list">
+              {{#if furnitures.printer}}
+                <div class="item">
+                  <i class="print icon"></i>
+                  <div class="content">
+                    Imprimante
+                  </div>
+                </div>
+              {{/if}}
+              {{#if furnitures.whiteboard}}
+                <div class="item">
+                  <i class="sticky note outline icon"></i>
+                  <div class="content">
+                    Tableau blanc
+                  </div>
+                </div>
+              {{/if}}
+              {{#if furnitures.multiphone}}
+                <div class="item">
+                  <i class="call icon"></i>
+                  <div class="content">
+                    Pieuvre
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              {{#if furnitures.plugs}}
+                <div class="item">
+                  <i class="plug icon"></i>
+                  <div class="content">
+                    Multiprise
+                  </div>
+                </div>
+              {{/if}}
+              {{#if furnitures.beamer}}
+                <div class="item">
+                  <i class="record icon"></i>
+                  <div class="content">
+                    Projecteur
+                  </div>
+                </div>
+              {{/if}}
+              {{#if furnitures.coffee}}
+                <div class="item">
+                  <i class="coffee icon"></i>
+                  <div class="content">
+                    Machine à café
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      {{#if comment}}
+      <h4 class="ui sub header">Commentaire</h4>
+      <p>{{{nl2br comment}}}</p>
+      {{/if}}
+    </div>
+    <div class="ui divider"></div>
+    <div class="ui fluid green basic icon labeled button"><i class="check icon"></i>Reserver</div>
+    {{/with}}
+  </div>
+</template>

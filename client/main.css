@@ -1,0 +1,9 @@
+/* CSS declarations go here */
+html.ios, html.ios body {
+  height: 100% !important;
+}
+
+.main-container {
+  padding-top: 3.8rem;
+  overflow-y: auto !important;
+}

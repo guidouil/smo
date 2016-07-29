@@ -1,0 +1,108 @@
+<template name='editMyOffice'>
+  {{#if isOfficeOwner}}
+  {{#with office}}
+    <div class="ui basic segment editMyOffice">
+      <i class="large red trash link icon deleteOffice"></i>
+      <h3 class="ui description">Mon bureau</h3>
+      <div class="ui form">
+        <div class="field">
+          <label>Adresse du bureau</label>
+          <textarea rows="2" id="address">{{address}}</textarea>
+        </div>
+        <div class="field">
+          <label>Numéro de bureau</label>
+          <input type="text" value="{{number}}" id="number">
+        </div>
+        <div class="field">
+          <label>Capacité (nombre de personnes)</label>
+          <input type="number" value="{{capacity}}" id="capacity">
+        </div>
+        <div class="field">
+          <label>Equipements</label>
+          <div class="ui two column grid">
+            <div class="column">
+              <div class="ui middle aligned list">
+                <div class="item">
+                  <i class="print icon"></i>
+                  <div class="content">
+                    <div class="description">
+                      <div class="ui checkbox">
+                        <input type="checkbox" class="hidden furniture" id="printer" {{hasFurniture furnitures.printer}}>
+                        <label for="printer">Imprimante</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <i class="sticky note outline icon"></i>
+                  <div class="content">
+                    <div class="description">
+                      <div class="ui checkbox">
+                        <input type="checkbox" class="hidden furniture" id="whiteboard" {{hasFurniture furnitures.whiteboard}}>
+                        <label for="whiteboard">Tableau blanc</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <i class="call icon"></i>
+                  <div class="content">
+                    <div class="description">
+                      <div class="ui checkbox">
+                        <input type="checkbox" class="hidden furniture" id="multiphone" {{hasFurniture furnitures.multiphone}}>
+                        <label for="multiphone">Pieuvre</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui middle aligned list">
+                <div class="item">
+                  <i class="plug icon"></i>
+                  <div class="content">
+                    <div class="description">
+                      <div class="ui checkbox">
+                        <input type="checkbox" class="hidden furniture" id="plugs" {{hasFurniture furnitures.plugs}}>
+                        <label for="plugs">Multiprise</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <i class="record icon"></i>
+                  <div class="content">
+                    <div class="description">
+                      <div class="ui checkbox">
+                        <input type="checkbox" class="hidden furniture" id="beamer" {{hasFurniture furnitures.beamer}}>
+                        <label for="beamer">Projecteur</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <i class="coffee icon"></i>
+                  <div class="content">
+                    <div class="description">
+                      <div class="ui checkbox">
+                        <input type="checkbox" class="hidden furniture" id="coffee" {{hasFurniture furnitures.coffee}}>
+                        <label for="coffee">Machine à café</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Commentaire (facultatif)</label>
+          <textarea id="comment">{{comment}}</textarea>
+        </div>
+        <button type="submit" class="ui fluid green labeled icon button saveOffice"><i class="check icon"></i>Enregistrer</button>
+      </div>
+    </div>
+  {{/with}}
+  {{/if}}
+</template>

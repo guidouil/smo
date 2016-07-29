@@ -1,0 +1,44 @@
+<template name='search'>
+  <div class="ui basic segment">
+    <div class="ui fluid icon input">
+      <input type="text" placeholder="Recherche par adresse ou numéro de bureau" id="searchOfficesInput">
+      <i class="link search icon searchOfficesButton"></i>
+    </div>
+    <div class="ui divided items">
+      {{#each offices}}
+        <a class="item" href="{{pathFor 'office' officeId=_id}}">
+          <div class="content">
+            <div class="header">
+              <i class="green cube icon"></i>
+              <div class="ui label">{{number}}</div>
+              <small>{{capacity}} personne{{plural capacity}}</small>
+            </div>
+            <div class="description">
+              <p>{{{nl2br address}}}</p>
+              <p>
+                {{#if furnitures.printer}}
+                  <i class="print icon"></i>
+                {{/if}}
+                {{#if furnitures.whiteboard}}
+                  <i class="sticky note outline icon"></i>
+                {{/if}}
+                {{#if furnitures.multiphone}}
+                  <i class="call icon"></i>
+                {{/if}}
+                {{#if furnitures.plugs}}
+                  <i class="plug icon"></i>
+                {{/if}}
+                {{#if furnitures.beamer}}
+                  <i class="record icon"></i>
+                {{/if}}
+                {{#if furnitures.coffee}}
+                  <i class="coffee icon"></i>
+                {{/if}}
+              </p>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+    </div>
+  </div>
+</template>

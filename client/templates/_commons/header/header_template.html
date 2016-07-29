@@ -1,0 +1,41 @@
+<template name='header'>
+  <div class="ui top fixed inverted borderless green icon menu">
+    <div class="left menu">
+      {{#if isHome}}
+      <a class="compact item showMainSidebar">
+        <i class="big content icon"></i>
+      </a>
+      {{else}}
+      <a class="compact item goBack">
+        <i class="big left chevron icon"></i>
+      </a>
+      {{/if}}
+    </div>
+    {{#if isHome}}
+      <div class="center header item">
+        <i class="big cube icon"></i>
+      </div>
+    {{else}}
+      <a class="center header item" href="{{pathFor 'home'}}" data-title="Go home">
+        <i class="big cube icon"></i>
+      </a>
+    {{/if}}
+    <div class="right menu">
+      {{#unless currentUser}}
+        <a class="item" href="/sign-in">
+          <i class="big user icon"></i>
+        </a>
+      {{else}}
+        <div class="ui dropdown link item">
+          <span class="text">
+            <i class="big user icon"></i>
+          </span>
+          <div class="menu">
+            <a class="item disabled">Profile</a>
+            <a class="item signOutBtn">Sign out</a>
+          </div>
+        </div>
+      {{/unless}}
+    </div>
+  </div>
+</template>

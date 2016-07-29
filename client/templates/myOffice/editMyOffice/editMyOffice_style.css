@@ -1,0 +1,8 @@
+.editMyOffice {
+  position: relative;
+}
+.deleteOffice {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+}
