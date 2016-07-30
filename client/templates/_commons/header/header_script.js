@@ -19,7 +19,4 @@ Template.header.events({
 });
 
 Template.header.onRendered(function () {
-  setTimeout(function () {
-    $('.profileDropdown').dropdown();
-  }, 500);
 });

@@ -1,9 +1,10 @@
 /* CSS declarations go here */
-html.ios, html.ios body {
+html.ios, html.ios body, .pusher {
   height: 100% !important;
 }
 
 .main-container {
+  height: 100%;
   padding-top: 3.8rem;
   padding-bottom: 2rem;
   overflow-y: auto !important;

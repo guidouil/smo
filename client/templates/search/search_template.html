@@ -1,8 +1,21 @@
 <template name='search'>
-  <div class="ui basic segment">
+  <div class="ui basic segment searchSegment">
     <div class="ui fluid icon input">
       <input type="text" placeholder="Recherche par adresse ou numéro de bureau" id="searchOfficesInput">
       <i class="link search icon searchOfficesButton"></i>
+    </div>
+    <div class="ui fluid multiple search selection dropdown furnituresFilter">
+      <input type="hidden" name="furnituresFilter" id="furnituresFilterInput">
+      <i class="dropdown icon"></i>
+      <div class="default text">Filtrer par équipements</div>
+      <div class="menu">
+        <div class="item" data-value="printer"><i class="print icon"></i>Imprimante</div>
+        <div class="item" data-value="whiteboard"><i class="sticky note outline icon"></i>Tableau blanc</div>
+        <div class="item" data-value="multiphone"><i class="call icon"></i>Pieuvre</div>
+        <div class="item" data-value="plugs"><i class="plug icon"></i>Multiprise</div>
+        <div class="item" data-value="beamer"><i class="record icon"></i>Projecteur</div>
+        <div class="item" data-value="coffee"><i class="coffee icon"></i>Machine à café</div>
+      </div>
     </div>
     <div class="ui divided items">
       {{#each offices}}
