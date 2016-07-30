@@ -119,9 +119,6 @@ Template.myOfficeCalendar.events({
     // let moment = require('moment');
     startAt = new Date(startAt + ' ' + $('#openAt').val());
     endAt = new Date(endAt + ' ' + $('#closeAt').val());
-    console.log(startAt);
-    console.log(endAt);
-
     let availability = {
       startAt: startAt,
       endAt: endAt,

@@ -32,7 +32,6 @@ Template.createMyOffice.events({
     $('.furniture').each(function(index, el) {
       furnitures[el.id] = el.checked;
     });
-    console.log(furnitures.length);
     let comment = $('#comment').val();
     Offices.insert({
       number: number,

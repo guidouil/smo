@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="ui compact fluid labeled icon button saveOpenHours"><i class="save icon"></i>Enregitrer les horraires</div>
-
     </div>
+    <div class="ui divider"></div>
     <h3 class="ui header">Disponibilités de mon bureau<label class="ui horizontal label">{{office.number}}</label></h3>
     <div class="ui form">
       <div class="field">
@@ -54,16 +54,17 @@
       <div class="ui green compact fluid labeled icon button addAvailability"><i class="plus icon"></i>Ajouter une disponibilité</div>
     </div>
     {{#if office.availabilities}}
-    <table class="ui very basic fluid celled unstackable table">
+    <table class="ui fluid compact striped unstackable table">
       <thead>
-        <tr>
+        <tr class="center aligned">
           <th>Débute</th>
-          <th colspan="2">Fini</th>
+          <th>Fini</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each office.availabilities}}
-          <tr>
+          <tr class="center aligned">
             <td>
               {{toDate startAt}}
             </td>
