@@ -51,3 +51,14 @@ Template.registerHelper('nl2br', function (string) {
   check(string, String);
   return string.replace(/\n/g, '<br>');
 });
+
+Template.registerHelper('isAllFalse', function (object) {
+  check(object, Object);
+  let allFalse = true;
+  _.each( object, function ( available ) {
+    if (available === true) {
+      allFalse = false;
+    }
+  });
+  return allFalse;
+});

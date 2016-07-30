@@ -103,6 +103,26 @@
         <button type="submit" class="ui fluid green labeled icon button saveOffice"><i class="check icon"></i>Enregistrer</button>
       </div>
     </div>
+
+    <div class="ui small basic modal deleteOfficeModal">
+      <div class="ui icon header">
+        <i class="trash icon"></i>
+        Effacer le bureau {{number}} ?
+      </div>
+      <div class="content">
+        <p>Toutes les données liées a ce bureau seront effacées.</p>
+      </div>
+      <div class="actions">
+        <div class="ui red basic cancel inverted button">
+          <i class="remove icon"></i>
+          Annuler
+        </div>
+        <div class="ui green ok inverted button">
+          <i class="checkmark icon"></i>
+          Effacer
+        </div>
+      </div>
+    </div>
   {{/with}}
   {{/if}}
 </template>

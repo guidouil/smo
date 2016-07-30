@@ -45,17 +45,12 @@ Template.editMyOffice.events({
     return true;
   },
   'click .deleteOffice' () {
-    swal({
-      title: 'Effacer ce bureau ?',
-      text: 'Les informations liées a ce bureau seront détruite définitivement.',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Effacer',
-      cancelButtonText: 'Anuller',
-    }).then(function() {
-      Offices.remove({_id: Router.current().params.officeId});
-      Router.go('home');
-    });
+    $('.deleteOfficeModal').modal({
+      onApprove: function() {
+        Offices.remove({_id: Router.current().params.officeId});
+        Router.go('home');
+      },
+    }).modal('show');
   },
 });
 

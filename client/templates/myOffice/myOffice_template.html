@@ -16,7 +16,7 @@
         <h4 class="ui sub header">Adresse</h4>
         <p>{{{nl2br address}}}</p>
         <h4 class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</h4>
-        {{#if furnitures}}
+        {{#unless isAllFalse furnitures}}
           <h4 class="ui sub header">Equipements</h4>
           <div class="ui two column grid">
             <div class="column">
@@ -76,7 +76,7 @@
               </div>
             </div>
           </div>
-        {{/if}}
+        {{/unless}}
         {{#if comment}}
         <h4 class="ui sub header">Commentaire</h4>
         <p>{{{nl2br comment}}}</p>
