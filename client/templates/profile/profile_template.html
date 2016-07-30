@@ -1,0 +1,16 @@
+<template name='profile'>
+  <div class="ui center aligned basic segment">
+    <h2 class="ui icon header">
+      <img class="ui tiny circular image" src="{{profileImageUrl}}" alt="{{userName}}" />
+      <div class="content">
+        {{capitalize userName}}
+        <div class="sub header">{{email}}</div>
+      </div>
+    </h2>
+    <div class="ui indicating progress" data-value="112" data-total="200">
+      <div class="bar"></div>
+      <div class="label">Points</div>
+    </div>
+    <a href="https://fr.gravatar.com/" target="_blank" class="ui button">Modifier avatar</a>
+  </div>
+</template>

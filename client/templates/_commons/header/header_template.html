@@ -26,13 +26,17 @@
           <i class="big user icon"></i>
         </a>
       {{else}}
-        <div class="ui dropdown link item">
-          <span class="text">
-            <i class="big user icon"></i>
-          </span>
+        <div class="ui dropdown icon item profileDropdown">
+          <img class="ui avatar image" src="{{profileImageUrl}}" alt="{{userName}}">
           <div class="menu">
-            <a class="item disabled">Profile</a>
-            <a class="item signOutBtn">Sign out</a>
+            <a class="item" href="{{pathFor 'profile'}}">
+              <i class="user icon"></i>
+              Profile
+            </a>
+            <a class="item signOutBtn">
+              <i class="sign out icon"></i>
+              Sign out
+            </a>
           </div>
         </div>
       {{/unless}}

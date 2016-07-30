@@ -2,7 +2,7 @@ Template.mainSidebar.helpers({
 });
 
 Template.mainSidebar.events({
-  'click .item' () {
+  'click .mainSidebar > .item' () {
     $('.mainSidebar').sidebar('hide');
   },
 });

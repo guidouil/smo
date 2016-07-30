@@ -24,6 +24,7 @@ Template.header.events({
 });
 
 Template.header.onRendered(function () {
-  $('.dropdown').dropdown();
-  $('.item').popup();
+  setTimeout(function () {
+    $('.profileDropdown').dropdown();
+  }, 500);
 });

@@ -62,3 +62,32 @@ Template.registerHelper('isAllFalse', function (object) {
   });
   return allFalse;
 });
+
+Template.registerHelper('profileImageUrl', function () {
+  let profileImage = '/default-profile-image.png';
+  if (Meteor.user()) {
+    let email = contactEmail(Meteor.user());
+    if (email) {
+      profileImage = Gravatar.imageUrl(email);
+    }
+  }
+  return profileImage;
+});
+
+Template.registerHelper('userName', function () {
+  if (Meteor.user()) {
+    let email = contactEmail(Meteor.user());
+    if (email) {
+      let piece = email.split('@');
+      return piece[0];
+    }
+  }
+  return '';
+});
+
+Template.registerHelper('email', function () {
+  if (Meteor.user()) {
+    return contactEmail(Meteor.user());
+  }
+  return '';
+});
