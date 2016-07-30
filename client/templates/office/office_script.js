@@ -3,6 +3,22 @@ Template.office.onCreated(function () {
 });
 
 Template.office.onRendered(function () {
+  $('#startAt').pickadate({
+    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    today: 'Aujourd\'hui',
+    clear: 'Effacer',
+    close: 'Fermer',
+    formatSubmit: 'yyyy-mm-dd',
+  });
+  $('#endAt').pickadate({
+    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    today: 'Aujourd\'hui',
+    clear: 'Effacer',
+    close: 'Fermer',
+    formatSubmit: 'yyyy-mm-dd',
+  });
 });
 
 Template.office.helpers({

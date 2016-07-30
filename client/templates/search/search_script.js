@@ -7,18 +7,34 @@ Template.search.onRendered(function () {
   setTimeout(function () {
     $('.furnituresFilter').dropdown();
   }, 500);
+  $('#dateFilter').pickadate({
+    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    today: 'Aujourd\'hui',
+    clear: 'Effacer',
+    close: 'Fermer',
+    formatSubmit: 'yyyy-mm-dd',
+  });
 });
 
 Template.search.helpers({
   offices () {
     return Template.instance().offices.get();
   },
+  now () {
+    let moment = require('moment');
+    moment.locale('fr');
+    return moment(new Date()).format('YYYY-MM-DD');
+  },
 });
 
 Template.search.events({
   'click .searchOfficesButton' (e, tmpl) {
     let query = $('#searchOfficesInput').val();
-    Meteor.call('searchOffices', query, function (error, result) {
+    let moment = require('moment');
+    let time = moment().format('HH:mm');
+    let date = new Date($('#dateFilter_hidden').val() + ' ' + time);
+    Meteor.call('searchOffices', query, date, function (error, result) {
       if (error) {
         console.error(error);
       }

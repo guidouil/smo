@@ -2,13 +2,12 @@
   <div class="ui basic segment">
     {{#with office}}
     <div class="office">
-      <h4 class="ui sub header">Numéro de bureau</h4>
-      <p>{{number}}</p>
-      <h4 class="ui sub header">Adresse</h4>
+      <h3 class="ui header">Bureau numéro<label class="ui large horizontal label">{{number}}</label></h3>
+      <div class="ui sub header">Adresse</div>
       <p>{{{nl2br address}}}</p>
-      <h4 class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</h4>
+      <div class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</div>
       {{#unless isAllFalse furnitures}}
-        <h4 class="ui sub header">Equipements</h4>
+        <div class="ui sub header">Equipements</div>
         <div class="ui two column grid">
           <div class="column">
             <div class="ui list">
@@ -69,12 +68,38 @@
         </div>
       {{/unless}}
       {{#if comment}}
-      <h4 class="ui sub header">Commentaire</h4>
+      <div class="ui sub header">Commentaire</div>
       <p>{{{nl2br comment}}}</p>
+      {{/if}}
+      {{#if availabilities}}
+        <h3 class="ui header">Disponnibilités</h3>
+        <div class="ui bulleted list">
+          {{#each availabilities}}
+          <div class="item">Du {{toDate startAt}} au {{toDate endAt}}</div>
+          {{/each}}
+        </div>
       {{/if}}
     </div>
     <div class="ui divider"></div>
-    <div class="ui fluid green icon labeled button disabled"><i class="check icon"></i>Reserver</div>
+    <div class="ui form">
+      <div class="field">
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="field">
+              <label for="startAt">Date de début</label>
+              <input type="text" placeholder="Début réservation" id="startAt" name="startAt">
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="endAt">Date de fin</label>
+              <input type="text" placeholder="Fin réservation" id="endAt" name="endAt">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui fluid compact green icon labeled button disabled bookOffice"><i class="check icon"></i>Reserver le bureau {{number}}</div>
+    </div>
     {{/with}}
   </div>
 </template>

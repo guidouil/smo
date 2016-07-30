@@ -82,9 +82,13 @@
         <p>{{{nl2br comment}}}</p>
         {{/if}}
       </div>
-      <a class="ui fluid green icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
-        <i class="calendar icon"></i>
+      <a class="ui fluid green compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+        <i class="clock icon"></i>
         Horraires & Disponibilités
+      </a>
+      <a class="ui fluid compact icon labeled button calendarBtn disabled" href="">
+        <i class="calendar icon"></i>
+        Calendrier des réservations
       </a>
       {{#unless onlyOneOffice}}
       <div class="ui divider"></div>

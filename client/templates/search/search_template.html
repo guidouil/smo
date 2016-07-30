@@ -1,5 +1,6 @@
 <template name='search'>
   <div class="ui basic segment searchSegment">
+    <h3 class="ui center aligned sub header">Chercher un bureau disponnible</h3>
     <div class="ui fluid icon input">
       <input type="text" placeholder="Recherche par adresse ou numéro de bureau" id="searchOfficesInput">
       <i class="link search icon searchOfficesButton"></i>
@@ -16,6 +17,9 @@
         <div class="item" data-value="beamer"><i class="record icon"></i>Projecteur</div>
         <div class="item" data-value="coffee"><i class="coffee icon"></i>Machine à café</div>
       </div>
+    </div>
+    <div class="ui fluid input">
+      <input type="text" name="dateFilter" id="dateFilter" data-value="{{now}}">
     </div>
     <div class="ui divided items">
       {{#each offices}}

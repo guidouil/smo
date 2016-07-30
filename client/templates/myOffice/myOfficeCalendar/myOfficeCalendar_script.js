@@ -17,7 +17,6 @@ Template.myOfficeCalendar.onRendered(function () {
     clear: 'Effacer',
     close: 'Fermer',
     formatSubmit: 'yyyy-mm-dd',
-    hiddenSuffix: '_submit',
   });
   $('#endAt').pickadate({
     monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
@@ -25,7 +24,7 @@ Template.myOfficeCalendar.onRendered(function () {
     today: 'Aujourd\'hui',
     clear: 'Effacer',
     close: 'Fermer',
-    formatSubmit: 'yyyy-mm-dd'
+    formatSubmit: 'yyyy-mm-dd',
   });
 });
 

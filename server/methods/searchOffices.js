@@ -1,13 +1,14 @@
 Meteor.methods({
-  'searchOffices': function (query, limit) {
+  'searchOffices': function (query, date) {
     check(query, String);
-    if (! limit) {
-      limit = 10;
-    }
-    check(limit, Number);
-    return Offices.find({ $or: [
-      {number: { $regex: query, $options: 'i' }},
-      {address: { $regex: query, $options: 'i' }},
-    ] }, { reactive: true, limit: limit }).fetch();
+    check(date, Date);
+    return Offices.find({
+      $or: [
+        {number: { $regex: query, $options: 'i' }},
+        {address: { $regex: query, $options: 'i' }},
+      ],
+      'availabilities.startAt': {$lte: date},
+      'availabilities.endAt': {$gte: date},
+    }).fetch();
   },
 });
