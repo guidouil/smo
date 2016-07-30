@@ -1,0 +1,83 @@
+<template name='myOfficeCalendar'>
+  <div class="ui basic segment">
+    <h3 class="ui header">Horraires de mon bureau<label class="ui horizontal label">{{office.number}}</label></h3>
+    <div class="ui form">
+
+      <div class="inline fields">
+        {{#each days}}
+          <div class="inline field">
+            <div class="ui checkbox">
+              <input type="checkbox" name="{{value}}" class="hidden day" id="{{value}}" {{isOpen value}}>
+              <label for="{{value}}">{{capitalize label}}</label>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+
+      <div class="field">
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="field">
+              <label for="openAt">Ouverture</label>
+              <input type="text" placeholder="Heure d'ouveture" id="openAt" value="{{office.openAt}}">
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="closeAt">Fermeture</label>
+              <input type="text" placeholder="Heure de fermeture" id="closeAt" value="{{office.closeAt}}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui compact fluid labeled icon button saveOpenHours"><i class="save icon"></i>Enregitrer les horraires</div>
+
+    </div>
+    <h3 class="ui header">Disponibilités de mon bureau<label class="ui horizontal label">{{office.number}}</label></h3>
+    <div class="ui form">
+      <div class="field">
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="field">
+              <label for="startAt">Date de début</label>
+              <input type="text" placeholder="Début disponnibilité" id="startAt" name="startAt">
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="endAt">Date de fin</label>
+              <input type="text" placeholder="Fin disponnibilité" id="endAt" name="endAt">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui green compact fluid labeled icon button addAvailability"><i class="plus icon"></i>Ajouter une disponibilité</div>
+    </div>
+    {{#if office.availabilities}}
+    <table class="ui very basic fluid celled unstackable table">
+      <thead>
+        <tr>
+          <th>Débute</th>
+          <th colspan="2">Fini</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each office.availabilities}}
+          <tr>
+            <td>
+              {{toDate startAt}}
+            </td>
+            <td>
+              {{toDate endAt}}
+            </td>
+            <td>
+              <i class="red delete link icon deleteAvailability"></i>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+  </div>
+
+</template>

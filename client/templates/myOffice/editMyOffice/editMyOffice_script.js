@@ -25,7 +25,6 @@ Template.editMyOffice.events({
     }
     let capacity = $('#capacity').val();
     if (!capacity || capacity < 1) {
-      $('.ui.accordion').accordion('open', 1);
       $('#capacity').parent('.field').addClass('error');
       return false;
     }

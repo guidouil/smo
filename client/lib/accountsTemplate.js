@@ -17,13 +17,25 @@ AccountsTemplates.configure({
   showPlaceholders: true,
 
   negativeValidation: true,
-  positiveValidation:true,
+  positiveValidation: true,
   negativeFeedback: false,
-  positiveFeedback:true,
+  positiveFeedback: true,
 
   // Privacy Policy and Terms of Use
   // privacyUrl: 'privacy',
-  // termsUrl: 'terms-of-use'
+  // termsUrl: 'terms-of-use',
+
+  texts: {
+    title: {
+      changePwd: 'Password Share My Office',
+      enrollAccount: 'Enroll Share My Office',
+      forgotPwd: 'Forgot Password Share My Office',
+      resetPwd: 'Reset Password Share My Office',
+      signIn: 'Sign In Share My Office',
+      signUp: 'Sign Up Share My Office',
+      verifyEmail: 'Verify Email Share My Office',
+    },
+  },
 });
 
 //Routes

@@ -82,7 +82,13 @@
         <p>{{{nl2br comment}}}</p>
         {{/if}}
       </div>
+      <a class="ui fluid green icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+        <i class="calendar icon"></i>
+        Calendrier
+      </a>
+      {{#unless onlyOneOffice}}
       <div class="ui divider"></div>
+      {{/unless}}
     {{else}}
       <div class="ui center aligned basic segment">
         <a href="{{pathFor 'createMyOffice'}}" class="ui positive fluid icon labeled button"><i class="add icon"></i>SHARE MY OFFICE</a>

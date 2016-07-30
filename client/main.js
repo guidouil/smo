@@ -91,3 +91,10 @@ Template.registerHelper('email', function () {
   }
   return '';
 });
+
+Template.registerHelper('toDate', function (date) {
+  check(date, Date);
+  let moment = require('moment');
+  moment.locale('fr');
+  return moment(date).format('DD/MM/YYYY');
+});

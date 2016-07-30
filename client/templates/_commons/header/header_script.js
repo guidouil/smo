@@ -1,17 +1,15 @@
 Template.header.helpers({
   isHome () {
-    return Router.current().route.getName() === 'home';
+    if (Router.current().route) {
+      return Router.current().route.getName() === 'home';
+    }
+    return false;
   },
 });
 
 Template.header.events({
   'click .showMainSidebar' () {
     $('.mainSidebar').sidebar('show');
-  },
-  'click .signOutBtn' () {
-    Meteor.logout(function () {
-      Router.go('home');
-    });
   },
   'click .goBack' () {
     window.history.back();
