@@ -1,8 +1,8 @@
 <template name='mainSidebar'>
-  <div class="ui left demo vertical inverted sidebar labeled icon menu mainSidebar">
-    <a class="item" href="{{pathFor 'home'}}">
-      <i class="home icon"></i>
-      Home
+  <div class="ui left demo vertical green inverted sidebar labeled icon menu mainSidebar">
+    <a class="item" href="{{pathFor 'profile'}}">
+      <i class="user icon"></i>
+      Profile
     </a>
     <a class="item" href="{{pathFor 'myOffice'}}">
       <i class="cube icon"></i>
@@ -11,6 +11,10 @@
     <a class="item" href="{{pathFor 'search'}}">
       <i class="search icon"></i>
       Search
+    </a>
+    <a class="item signOutBtn">
+      <i class="sign out icon"></i>
+      Sign out
     </a>
   </div>
 </template>

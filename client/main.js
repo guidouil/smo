@@ -64,7 +64,7 @@ Template.registerHelper('isAllFalse', function (object) {
 });
 
 Template.registerHelper('profileImageUrl', function () {
-  let profileImage = '/default-profile-image.png';
+  let profileImage = '';
   if (Meteor.user()) {
     let email = contactEmail(Meteor.user());
     if (email) {

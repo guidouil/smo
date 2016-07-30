@@ -10,10 +10,11 @@
 </head>
 <template name="main">
   {{> mainSidebar}}
+  {{> header}}
   <div class="pusher">
-    {{> header}}
     <div class="ui container fluid main-container">
       {{> yield}}
     </div>
   </div>
+  {{> footer}}
 </template>

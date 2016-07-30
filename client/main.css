@@ -5,5 +5,6 @@ html.ios, html.ios body {
 
 .main-container {
   padding-top: 3.8rem;
+  padding-bottom: 2rem;
   overflow-y: auto !important;
 }

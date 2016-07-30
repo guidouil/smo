@@ -6,12 +6,7 @@ Template.header.helpers({
 
 Template.header.events({
   'click .showMainSidebar' () {
-    $('.mainSidebar')
-    .sidebar({
-      transition: 'push',
-      onVisible: function () {
-      },
-    }).sidebar('show');
+    $('.mainSidebar').sidebar('show');
   },
   'click .signOutBtn' () {
     Meteor.logout(function () {
