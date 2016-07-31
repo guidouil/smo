@@ -65,7 +65,6 @@ Template.office.events({
           let reservation = {
             officeId: office._id,
             officeNumber: office.number,
-            officeAddress: office.address,
             date: availabilityDate,
             creator: Meteor.userId(),
             createdAt: new Date(),
