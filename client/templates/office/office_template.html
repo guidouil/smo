@@ -2,7 +2,7 @@
   <div class="ui basic segment">
     {{#with office}}
     <div class="office">
-      <h3 class="ui header">Bureau numéro<label class="ui large horizontal label">{{number}}</label></h3>
+      <h3 class="ui header">BUREAU NUMÉRO<label class="ui large horizontal label">{{number}}</label></h3>
       <div class="ui sub header">Adresse</div>
       <p>{{{nl2br address}}}</p>
       <div class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</div>
@@ -71,14 +71,6 @@
       <div class="ui sub header">Commentaire</div>
       <p>{{{nl2br comment}}}</p>
       {{/if}}
-      {{#if availabilities}}
-        <h3 class="ui header">Disponnibilités</h3>
-        <div class="ui bulleted list">
-          {{#each availabilities}}
-          <div class="item">Du {{toDate startAt}} au {{toDate endAt}}</div>
-          {{/each}}
-        </div>
-      {{/if}}
     </div>
     <div class="ui divider"></div>
     <div class="ui form">
@@ -86,19 +78,19 @@
         <div class="ui two column grid">
           <div class="column">
             <div class="field">
-              <label for="startAt">Date de début</label>
-              <input type="text" placeholder="Début réservation" id="startAt" name="startAt">
+              <label for="startAt">Date de début à {{openAt}}</label>
+              <input type="text" placeholder="Début réservation" id="startAt" name="startAt" data-value="{{availabilityDate}}">
             </div>
           </div>
           <div class="column">
             <div class="field">
-              <label for="endAt">Date de fin</label>
-              <input type="text" placeholder="Fin réservation" id="endAt" name="endAt">
+              <label for="endAt">Date de fin à {{closeAt}}</label>
+              <input type="text" placeholder="Fin réservation" id="endAt" name="endAt" data-value="{{availabilityDate}}">
             </div>
           </div>
         </div>
       </div>
-      <div class="ui fluid compact green icon labeled button disabled bookOffice"><i class="check icon"></i>Reserver le bureau {{number}}</div>
+      <div class="ui fluid compact green icon labeled button bookOffice"><i class="check icon"></i>Reserver le bureau {{number}}</div>
     </div>
     {{/with}}
   </div>

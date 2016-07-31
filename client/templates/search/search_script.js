@@ -7,14 +7,7 @@ Template.search.onRendered(function () {
   setTimeout(function () {
     $('.furnituresFilter').dropdown();
   }, 500);
-  $('#dateFilter').pickadate({
-    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-    today: 'Aujourd\'hui',
-    clear: 'Effacer',
-    close: 'Fermer',
-    formatSubmit: 'yyyy-mm-dd',
-  });
+  $('#dateFilter').pickadate();
 });
 
 Template.search.helpers({
@@ -32,8 +25,7 @@ Template.search.events({
   'click .searchOfficesButton' (e, tmpl) {
     let query = $('#searchOfficesInput').val();
     let moment = require('moment');
-    let time = moment().format('HH:mm');
-    let date = new Date($('#dateFilter_hidden').val() + ' ' + time);
+    let date = new Date($('#dateFilter_hidden').val() + ' 00:00');
     Meteor.call('searchOffices', query, date, function (error, result) {
       if (error) {
         console.error(error);
@@ -70,5 +62,8 @@ Template.search.events({
     } else {
       $('.searchOfficesButton').click();
     }
+  },
+  'change #dateFilter' () {
+    $('.searchOfficesButton').click();
   },
 });

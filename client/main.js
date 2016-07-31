@@ -1,4 +1,5 @@
 Meteor.subscribe('MyOffices');
+Meteor.subscribe('MyReservations');
 
 Template.registerHelper('toLowerCase', function (string) {
   check(string, String);
@@ -79,6 +80,9 @@ Template.registerHelper('userName', function () {
     let email = contactEmail(Meteor.user());
     if (email) {
       let piece = email.split('@');
+      if (piece[0].search('.') !== -1) {
+        return piece[0].split('.')[0];
+      }
       return piece[0];
     }
   }
@@ -96,5 +100,10 @@ Template.registerHelper('toDate', function (date) {
   check(date, Date);
   let moment = require('moment');
   moment.locale('fr');
-  return moment(date).format('DD/MM/YYYY - H:mm');
+  return moment(date).format('DD/MM/YYYY');
+});
+
+Template.registerHelper('sortDate', function (availabilities) {
+  check(availabilities, Array);
+  return _.sortBy(availabilities, 'date').reverse();
 });

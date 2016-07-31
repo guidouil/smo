@@ -51,25 +51,29 @@
           </div>
         </div>
       </div>
-      <div class="ui green compact fluid labeled icon button addAvailability"><i class="plus icon"></i>Ajouter une disponibilité</div>
+      <div class="ui green compact fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Ajouter une disponibilité</div>
     </div>
     {{#if office.availabilities}}
     <table class="ui fluid compact striped unstackable table">
       <thead>
         <tr class="center aligned">
-          <th>Débute</th>
-          <th>Fini</th>
+          <th>Date</th>
+          <th>Disponible</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        {{#each office.availabilities}}
+        {{#each sortDate office.availabilities}}
           <tr class="center aligned">
             <td>
-              {{toDate startAt}}
+              {{toDate date}}
             </td>
             <td>
-              {{toDate endAt}}
+              {{#if available}}
+                <i class="green checked calendar icon"></i>
+              {{else}}
+                <i class="orange delete calendar icon"></i>
+              {{/if}}
             </td>
             <td>
               <i class="red delete link icon deleteAvailability"></i>

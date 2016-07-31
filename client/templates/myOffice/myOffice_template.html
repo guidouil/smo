@@ -2,22 +2,21 @@
   {{#if myOffices}}
   <div class="ui basic segment">
     {{#if onlyOneOffice}}
-    <h3 class="ui header">Mon bureau</h3>
+    <h2 class="ui header">Mon bureau</h2>
     {{else}}
-    <h3 class="ui header">Mes bureaux</h3>
+    <h2 class="ui header">Mes bureaux</h2>
     {{/if}}
     {{#each myOffices}}
       <div class="myOffice">
         <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
           <i class="large write icon"></i>
         </a>
-        <h4 class="ui sub header">Numéro de bureau</h4>
-        <p>{{number}}</p>
-        <h4 class="ui sub header">Adresse</h4>
+        <h4 class="ui header">BUREAU NUMÉRO<label class="ui horizontal label">{{number}}</label></h4>
+        <div class="ui sub header">Adresse</div>
         <p>{{{nl2br address}}}</p>
-        <h4 class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</h4>
+        <div class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</div>
         {{#unless isAllFalse furnitures}}
-          <h4 class="ui sub header">Equipements</h4>
+          <div class="ui sub header">Equipements</div>
           <div class="ui two column grid">
             <div class="column">
               <div class="ui list">
@@ -78,7 +77,7 @@
           </div>
         {{/unless}}
         {{#if comment}}
-        <h4 class="ui sub header">Commentaire</h4>
+        <div class="ui sub header">Commentaire</div>
         <p>{{{nl2br comment}}}</p>
         {{/if}}
       </div>
@@ -86,7 +85,7 @@
         <i class="clock icon"></i>
         Horraires & Disponibilités
       </a>
-      <a class="ui fluid compact icon labeled button calendarBtn disabled" href="">
+      <a class="ui fluid compact icon labeled button calendarBtn" href="{{pathFor 'agenda' officeId=_id}}">
         <i class="calendar icon"></i>
         Calendrier des réservations
       </a>

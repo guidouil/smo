@@ -7,8 +7,7 @@ Meteor.methods({
         {number: { $regex: query, $options: 'i' }},
         {address: { $regex: query, $options: 'i' }},
       ],
-      'availabilities.startAt': {$lte: date},
-      'availabilities.endAt': {$gte: date},
+      availabilities: { $elemMatch: {date: date, available: true}},
     }).fetch();
   },
 });

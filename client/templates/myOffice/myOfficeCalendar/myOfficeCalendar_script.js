@@ -1,31 +1,29 @@
 Template.myOfficeCalendar.onRendered(function () {
   $('.checkbox').checkbox();
   $('#openAt').pickatime({
-    format: 'HH:i',
     formatLabel: 'Ouvert à H:i',
-    formatSubmit: 'HH:i',
   });
   $('#closeAt').pickatime({
-    format: 'HH:i',
     formatLabel: 'Fermé à H:i',
-    formatSubmit: 'HH:i',
   });
-  $('#startAt').pickadate({
-    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-    today: 'Aujourd\'hui',
-    clear: 'Effacer',
-    close: 'Fermer',
-    formatSubmit: 'yyyy-mm-dd',
-  });
-  $('#endAt').pickadate({
-    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-    today: 'Aujourd\'hui',
-    clear: 'Effacer',
-    close: 'Fermer',
-    formatSubmit: 'yyyy-mm-dd',
-  });
+  let office = Offices.findOne({_id: Router.current().params.officeId});
+  if (office) {
+    let closedDays = openDaysToClosedNumbers(office.openDays);
+    _.each( office.availabilities, function( availability ) {
+      closedDays.push(availability.date);
+    });
+    if (closedDays) {
+      $('#startAt').pickadate({
+        disable: closedDays,
+      });
+      $('#endAt').pickadate({
+        disable: closedDays,
+      });
+    } else {
+      $('#startAt').pickadate();
+      $('#endAt').pickadate();
+    }
+  }
 });
 
 Template.myOfficeCalendar.helpers({
@@ -115,18 +113,36 @@ Template.myOfficeCalendar.events({
       $('#endAt').parent('.field').addClass('error');
       return false;
     }
-    // let moment = require('moment');
     startAt = new Date(startAt + ' ' + $('#openAt').val());
     endAt = new Date(endAt + ' ' + $('#closeAt').val());
-    let availability = {
-      startAt: startAt,
-      endAt: endAt,
-      who: Meteor.userId(),
-      when: new Date(),
-    };
-    Offices.update({_id: Router.current().params.officeId}, {$push: {
-      availabilities: availability,
-    }});
+    if (startAt > endAt) {
+      $('#startAt').parent('.field').addClass('error');
+      $('#endAt').parent('.field').addClass('error');
+      return false;
+    }
+    let itr = moment.twix(startAt, endAt).iterate('days');
+    let range = [];
+    while (itr.hasNext()) {
+      range.push(itr.next().toDate());
+    }
+    let office = Offices.findOne({_id: Router.current().params.officeId});
+    let disabledDays = openDaysToClosedNumbers(office.openDays);
+    _.each( range, function(availabilityDate) {
+      if (! _.contains( disabledDays, Number(moment(availabilityDate).format('d')))) {
+        let availability = {
+          date: availabilityDate,
+          available: true,
+          creator: Meteor.userId(),
+          createdAt: new Date(),
+        };
+        Offices.update({_id: Router.current().params.officeId}, {$push: {
+          availabilities: availability,
+        }});
+      }
+    });
+    $('#startAt').val('');
+    $('#endAt').val('');
+    return true;
   },
   'click .deleteAvailability' () {
     Offices.update({_id: Router.current().params.officeId}, {$pull: {
