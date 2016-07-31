@@ -31,19 +31,19 @@ Template.agenda.onRendered(function () {
           color: '#21BA45',
         });
       });
-      if (office && office.availabilities) {
-        _.each( office.availabilities, function( availability ) {
-          if (availability.available === true) {
-            calendarEvents.push({
-              title: 'DISPO',
-              allDay: true,
-              start: availability.date,
-              url: '/my-office-calendar/' + office._id,
-              color: '#B5CC18',
-            });
-          }
-        });
-      }
+    }
+    if (office && office.availabilities) {
+      _.each( office.availabilities, function( availability ) {
+        if (availability.available === true) {
+          calendarEvents.push({
+            title: 'DISPO',
+            allDay: true,
+            start: availability.date,
+            url: '/my-office-calendar/' + office._id,
+            color: '#B5CC18',
+          });
+        }
+      });
     }
     $('#agenda').fullCalendar({
       header: {

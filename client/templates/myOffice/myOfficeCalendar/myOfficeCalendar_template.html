@@ -76,7 +76,11 @@
               {{/if}}
             </td>
             <td>
+              {{#if available}}
               <i class="red delete link icon deleteAvailability"></i>
+              {{else}}
+              <i class="user icon"></i>
+              {{/if}}
             </td>
           </tr>
         {{/each}}

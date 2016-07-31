@@ -76,6 +76,7 @@ Template.office.events({
       });
       $('#startAt').val('');
       $('#endAt').val('');
+      Router.go('agenda');
       return true;
     }
     return false;
