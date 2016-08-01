@@ -1,4 +1,9 @@
+Template.myOfficeCalendar.onCreated(function(){
+  this.closedDays = new ReactiveVar([]);
+});
+
 Template.myOfficeCalendar.onRendered(function () {
+  let template = this;
   $('.checkbox').checkbox();
   $('#openAt').pickatime({
     formatLabel: 'Ouvert à H:i',
@@ -13,16 +18,14 @@ Template.myOfficeCalendar.onRendered(function () {
       closedDays.push(availability.date);
     });
     if (closedDays) {
+      template.closedDays.set(closedDays);
       $('#startAt').pickadate({
-        disable: closedDays,
-      });
-      $('#endAt').pickadate({
         disable: closedDays,
       });
     } else {
       $('#startAt').pickadate();
-      $('#endAt').pickadate();
     }
+    $('.userIcon').popup({hoverable: true});
   }
 });
 
@@ -135,18 +138,28 @@ Template.myOfficeCalendar.events({
           creator: Meteor.userId(),
           createdAt: new Date(),
         };
-        Offices.update({_id: Router.current().params.officeId}, {$push: {
+        Offices.update({_id: office._id}, {$push: {
           availabilities: availability,
         }});
       }
     });
     $('#startAt').val('');
     $('#endAt').val('');
+    Router.go('agenda', {officeId: office._id});
     return true;
   },
   'click .deleteAvailability' () {
     Offices.update({_id: Router.current().params.officeId}, {$pull: {
       availabilities: this,
     }});
-  }
+  },
+  'change #startAt' () {
+    let closedDays = Template.instance().closedDays.get();
+    $('#endAt').data('value', $('#startAt_hidden').val());
+    $('#endAt').removeAttr('disabled');
+    $('#endAt').pickadate({
+      min: new Date($('#startAt_hidden').val()),
+      disable: closedDays,
+    });
+  },
 });

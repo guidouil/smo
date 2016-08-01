@@ -33,6 +33,7 @@ Template.agenda.onRendered(function () {
       });
     }
     if (office && office.availabilities) {
+      calendarEvents = [];
       _.each( office.availabilities, function( availability ) {
         if (availability.available === true) {
           calendarEvents.push({
@@ -40,7 +41,15 @@ Template.agenda.onRendered(function () {
             allDay: true,
             start: availability.date,
             url: '/my-office-calendar/' + office._id,
-            color: '#B5CC18',
+            color: '#21BA45',
+          });
+        } else {
+          calendarEvents.push({
+            title: availability.user,
+            allDay: true,
+            start: availability.date,
+            url: '/my-office-calendar/' + office._id,
+            color: '#DB2828',
           });
         }
       });

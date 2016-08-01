@@ -1,9 +1,14 @@
-.myOffice {
+.myOffices, .myOffice  {
   position: relative;
+}
+.addOffice {
+  position: absolute;
+  top: 1rem;
+  right: 0;
 }
 .editMyOfficeIcon {
   position: absolute;
-  top: 20;
+  top: 0;
   right: 0;
 }
 .calendarBtn {

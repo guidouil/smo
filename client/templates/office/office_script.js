@@ -1,15 +1,15 @@
 Template.office.onCreated(function () {
   this.subscribe('Office', Router.current().params.officeId);
   this.subscribe('Reservations', Router.current().params.officeId);
+  this.closedDays = new ReactiveVar([]);
 });
 
 Template.office.onRendered(function () {
+  let template = this;
   Meteor.call('getDisabilities', Router.current().params.officeId, function (error, result) {
     if (result) {
+      template.closedDays.set(result);
       $('#startAt').pickadate({
-        disable: result,
-      });
-      $('#endAt').pickadate({
         disable: result,
       });
     }
@@ -70,7 +70,7 @@ Template.office.events({
             createdAt: new Date(),
           };
           let reservationId = Reservations.insert(reservation);
-          Meteor.call('applyReservation', reservationId);
+          Meteor.call('applyReservation', reservationId, contactEmail(Meteor.user()));
         }
       });
       $('#startAt').val('');
@@ -79,5 +79,14 @@ Template.office.events({
       return true;
     }
     return false;
+  },
+  'change #startAt' () {
+    let closedDays = Template.instance().closedDays.get();
+    $('#endAt').data('value', $('#startAt_hidden').val());
+    $('#endAt').removeAttr('disabled');
+    $('#endAt').pickadate({
+      min: new Date($('#startAt_hidden').val()),
+      disable: closedDays,
+    });
   },
 });

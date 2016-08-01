@@ -75,9 +75,9 @@ Template.registerHelper('profileImageUrl', function () {
   return profileImage;
 });
 
-Template.registerHelper('userName', function () {
+Template.registerHelper('userName', function (email) {
   if (Meteor.user()) {
-    let email = contactEmail(Meteor.user());
+    email = email || contactEmail(Meteor.user());
     if (email) {
       let piece = email.split('@');
       if (piece[0].search('.') !== -1) {

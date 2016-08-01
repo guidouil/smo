@@ -1,0 +1,10 @@
+<template name='myOfficeUsers'>
+  <div class="ui basic segment">
+    {{#if isOfficeOwner}}
+      {{#with office}}
+        <h3 class="ui header">Partage des droits du bureau<label class="ui horizontal label">{{number}}</label></h3>
+        
+      {{/with}}
+    {{/if}}
+  </div>
+</template>

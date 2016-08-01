@@ -1,5 +1,5 @@
 Meteor.methods({
-  'applyReservation': function (reservationId) {
+  'applyReservation': function (reservationId, userEmail) {
     check(reservationId, String);
     if (this.userId) {
       let moment = require('moment');
@@ -16,7 +16,7 @@ Meteor.methods({
               }
               Offices.update({_id: office._id, 'availabilities.date': reservation.date}, {$set:{
                 'availabilities.$.available': false,
-                'availabilities.$.user': this.userId,
+                'availabilities.$.user': userEmail,
                 'availabilities.$.reservedAt': new Date(),
               }});
             }

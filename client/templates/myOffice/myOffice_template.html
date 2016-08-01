@@ -1,15 +1,18 @@
 <template name='myOffice'>
   {{#if myOffices}}
-  <div class="ui basic segment">
+  <div class="ui basic segment myOffices">
     {{#if onlyOneOffice}}
     <h2 class="ui header">Mon bureau</h2>
     {{else}}
     <h2 class="ui header">Mes bureaux</h2>
     {{/if}}
+    <a href="{{pathFor 'createMyOffice'}}" class="addOffice">
+      <i class="large olive plus icon"></i>
+    </a>
     {{#each myOffices}}
       <div class="myOffice">
         <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
-          <i class="large write icon"></i>
+          <i class="large blue write icon"></i>
         </a>
         <h4 class="ui header">BUREAU NUMÉRO<label class="ui horizontal label">{{number}}</label></h4>
         <div class="ui sub header">Adresse</div>
@@ -81,13 +84,17 @@
         <p>{{{nl2br comment}}}</p>
         {{/if}}
       </div>
-      <a class="ui fluid green compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+      <a class="ui fluid green compact icon labeled button calendarBtn" href="{{pathFor 'agenda' officeId=_id}}">
+        <i class="calendar icon"></i>
+        Calendrier des réservations
+      </a>
+      <a class="ui fluid orange compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
         <i class="clock icon"></i>
         Horraires & Disponibilités
       </a>
-      <a class="ui fluid compact icon labeled button calendarBtn" href="{{pathFor 'agenda' officeId=_id}}">
-        <i class="calendar icon"></i>
-        Calendrier des réservations
+      <a class="ui fluid red compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
+        <i class="users icon"></i>
+        Partage des droits
       </a>
       {{#unless onlyOneOffice}}
       <div class="ui divider"></div>
