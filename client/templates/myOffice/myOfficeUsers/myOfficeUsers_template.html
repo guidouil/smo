@@ -1,10 +1,66 @@
 <template name='myOfficeUsers'>
   <div class="ui basic segment">
     {{#if isOfficeOwner}}
-      {{#with office}}
-        <h3 class="ui header">Partage des droits du bureau<label class="ui horizontal label">{{number}}</label></h3>
-        
-      {{/with}}
+
+        <h3 class="ui header">Partage des droits du bureau<label class="ui horizontal label">{{office.number}}</label></h3>
+        <h4 class="ui  header">
+          <div class="content">
+            Propriétaires
+          </div>
+          <div class="sub header">
+            Droits d'édition du bureau et de ses disponnibilités.
+          </div>
+        </h4>
+        <div class="ui list">
+        {{#each owners}}
+        <div class="item" id="{{userId}}">{{email}}&nbsp;&nbsp;<i class="red remove link icon removeOwner"></i></div>
+        {{/each}}
+        </div>
+        <div class="ui sub header">Ajouter un propriétaire</div>
+        <div class="ui fluid icon input">
+          <input type="email" id="ownerMail" placeholder="Adresse email du nouveau propriétaire">
+          <i class="add user link icon addOwner"></i>
+        </div>
+        <div class="ui section divider"></div>
+        <h4 class="ui  header">
+          <div class="content">
+            Utilisateurs
+          </div>
+          <div class="sub header">
+            Droits d'édition des disponnibilités uniquement.
+          </div>
+        </h4>
+        <div class="ui list">
+        {{#each users}}
+        <div class="item" id="{{userId}}">{{email}}&nbsp;&nbsp;<i class="red remove link icon removeUser"></i></div>
+        {{/each}}
+        </div>
+        <div class="ui sub header">Ajouter un utilisateur</div>
+        <div class="ui fluid icon input">
+          <input type="email" id="userMail" placeholder="Adresse email du nouvel utilisateur">
+          <i class="add user link icon addUser"></i>
+        </div>
+
+
+
+      <div class="ui basic modal whoModal">
+        <i class="close icon"></i>
+        <div class="ui icon header">
+          <i class="user icon"></i>
+          Qui ?
+        </div>
+        <div class="ui content">
+          <div class="ui center aligned inverted header">Cette utilisateur ne semble pas être inscrit au service, ou l'adresse fournie est innexacte. Merci de vérifier avec lui.</div>
+        </div>
+        <div class="actions">
+          <div class="one fluid ui inverted buttons">
+            <div class="ui ok green inverted icon labeled button">
+              <i class="checkmark icon"></i>
+              OK
+            </div>
+          </div>
+        </div>
+      </div>
     {{/if}}
   </div>
 </template>

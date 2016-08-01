@@ -11,9 +11,11 @@
     </a>
     {{#each myOffices}}
       <div class="myOffice">
-        <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
-          <i class="large blue write icon"></i>
-        </a>
+        {{#if isOfficeOwner _id}}
+          <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
+            <i class="large blue write icon"></i>
+          </a>
+        {{/if}}
         <h4 class="ui header">BUREAU NUMÉRO<label class="ui horizontal label">{{number}}</label></h4>
         <div class="ui sub header">Adresse</div>
         <p>{{{nl2br address}}}</p>
@@ -92,10 +94,12 @@
         <i class="clock icon"></i>
         Horraires & Disponibilités
       </a>
-      <a class="ui fluid red compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
-        <i class="users icon"></i>
-        Partage des droits
-      </a>
+      {{#if isOfficeOwner _id}}
+        <a class="ui fluid red compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
+          <i class="users icon"></i>
+          Partage des droits
+        </a>
+      {{/if}}
       {{#unless onlyOneOffice}}
       <div class="ui divider"></div>
       {{/unless}}

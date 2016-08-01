@@ -72,6 +72,17 @@ Template.myOfficeCalendar.helpers({
       },
     ];
   },
+  sortDate (availabilities) {
+    check(availabilities, Array);
+    let yesterday = new Date(); // today
+    yesterday.setDate(yesterday.getDate() - 1); // yesterday
+    availabilities = _.filter( availabilities, function (availability) {
+      if (availability.date > yesterday) {
+        return true;
+      }
+    });
+    return _.sortBy(availabilities, 'date').reverse();
+  },
 });
 
 Template.myOfficeCalendar.events({

@@ -20,6 +20,12 @@ Template.office.helpers({
   office () {
     return Offices.findOne({ _id: Router.current().params.officeId });
   },
+  reservations () {
+    if (Meteor.userId()) {
+      return Reservations.find({ officeId: Router.current().params.officeId, creator: Meteor.userId() }, {sort: {date: -1}});
+    }
+    return false;
+  },
   availabilityDate () {
     let office = Offices.findOne({ _id: Router.current().params.officeId });
     if (office) {
@@ -88,5 +94,9 @@ Template.office.events({
       min: new Date($('#startAt_hidden').val()),
       disable: closedDays,
     });
+  },
+  'click .deleteReservation' () {
+    Reservations.remove({_id: this._id});
+    Meteor.call('unApplyReservation', this.officeId, this.date);
   },
 });

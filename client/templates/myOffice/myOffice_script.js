@@ -1,9 +1,9 @@
 Template.myOffice.helpers({
   myOffices () {
-    return Offices.find({owners: Meteor.userId()});
+    return Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]});
   },
   onlyOneOffice () {
-    if (Offices.find({owners: Meteor.userId()}).count() === 1) {
+    if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() === 1) {
       return true;
     }
     return false;

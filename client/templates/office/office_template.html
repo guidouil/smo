@@ -93,5 +93,28 @@
       <div class="ui fluid compact green icon labeled button bookOffice"><i class="check icon"></i>Reserver le bureau {{number}}</div>
     </div>
     {{/with}}
+    {{#if reservations}}
+    <h4 class="ui header">Mes réservations</h4>
+    <table class="ui fluid compact striped unstackable table">
+      <thead>
+        <tr class="center aligned">
+          <th>Date de réservation</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each reservations}}
+        <tr  class="center aligned">
+          <td>
+            {{toDate date}}
+          </td>
+          <td>
+            <i class="red delete link icon deleteReservation"></i>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
   </div>
 </template>
