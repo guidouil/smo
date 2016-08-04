@@ -8,6 +8,7 @@ $.extend($.fn.pickadate.defaults, {
   clear: 'Effacer',
   close: 'Fermer',
   formatSubmit: 'yyyy-mm-dd',
+  format: 'dd/mm/yyyy',
 });
 
 $.extend($.fn.pickatime.defaults, {

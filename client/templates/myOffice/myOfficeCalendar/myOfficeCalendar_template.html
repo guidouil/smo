@@ -1,6 +1,6 @@
 <template name='myOfficeCalendar'>
   <div class="ui basic segment">
-    <h3 class="ui header">Horraires de mon bureau<label class="ui horizontal label">{{office.number}}</label></h3>
+    <h3 class="ui header">Horraires du bureau<label class="ui horizontal label">{{office.number}}</label></h3>
     <div class="ui form">
 
       <div class="inline fields">
@@ -33,7 +33,12 @@
       <div class="ui compact fluid labeled icon button saveOpenHours"><i class="save icon"></i>Enregitrer les horraires</div>
     </div>
     <div class="ui divider"></div>
-    <h3 class="ui header">Disponibilités de mon bureau<label class="ui horizontal label">{{office.number}}</label></h3>
+    <h3 class="ui header">
+      <div class="content">
+        Disponibilités du bureau<label class="ui horizontal label">{{office.number}}</label>
+      </div>
+      <div class="sub header">par tranches de 4h minimum</div>
+    </h3>
     <div class="ui form">
       <div class="field">
         <div class="ui two column grid">
@@ -46,20 +51,32 @@
           <div class="column">
             <div class="field">
               <label for="endAt">Date de fin</label>
-              <input type="text" placeholder="Fin disponnibilité" id="endAt" name="endAt" data-value="" readonly disabled>
+              <input type="text" placeholder="Fin disponnibilité" id="endAt" name="endAt" data-value="" readonly>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="startTime">Heure de début</label>
+              <input type="text" placeholder="Début disponnibilité" id="startTime" name="startTime" data-value="{{openAt}}">
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="endTime">Heure de fin</label>
+              <input type="text" placeholder="Fin disponnibilité" id="endTime" name="endTime" data-value="{{closeAt}}">
             </div>
           </div>
         </div>
       </div>
-      <div class="ui green compact fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Ajouter une disponibilité</div>
+      <div class="ui green compact fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Ajouter cette disponibilité</div>
     </div>
     {{#if office.availabilities}}
     <table class="ui fluid compact striped unstackable table">
       <thead>
         <tr class="center aligned">
           <th>Date</th>
+          <th>Période</th>
           <th>Disponible</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -67,6 +84,9 @@
           <tr class="center aligned">
             <td>
               {{toDate date}}
+            </td>
+            <td>
+              {{startTime}} - {{endTime}}
             </td>
             <td>
               {{#if available}}

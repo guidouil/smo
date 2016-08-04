@@ -16,9 +16,15 @@
       <i class="calendar icon"></i>
       Agenda
     </a>
+    <a class="item" href="{{pathFor 'help'}}">
+      <i class="help icon"></i>
+      Help
+    </a>
+    {{#if currentUser}}
     <a class="item signOutBtn">
       <i class="sign out icon"></i>
       Sign out
     </a>
+    {{/if}}
   </div>
 </template>

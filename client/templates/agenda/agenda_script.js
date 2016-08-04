@@ -13,6 +13,7 @@ Template.agenda.events({
 
 Template.agenda.onRendered(function () {
   if (Meteor.userId()) {
+    let moment = require('moment');
     let reservations = Reservations.find({ creator: Meteor.userId() }).fetch();
     let office = false;
     if (Router.current().params.officeId) {
@@ -22,32 +23,39 @@ Template.agenda.onRendered(function () {
     let calendarEvents = [];
     if (reservations && reservations.length > 0) {
       _.each( reservations, function( reservation ) {
+        let startTimes = reservation.startTime.split(':');
+        let start = moment(reservation.day).add(startTimes[0], 'hours').add(startTimes[1], 'minutes').toDate();
+        let endTimes = reservation.endTime.split(':');
+        let end = moment(reservation.day).add(endTimes[0], 'hours').add(endTimes[1], 'minutes').toDate();
         calendarEvents.push({
           id: reservation._id,
           title: reservation.officeNumber,
-          allDay: true,
-          start: reservation.date,
-          url: '/office/' + reservation.officeId,
-          color: '#21BA45',
+          start: start,
+          end: end,
+          url: '/reservation/' + reservation._id,
+          color: '#f2711c',
         });
       });
     }
     if (office && office.availabilities) {
-      calendarEvents = [];
       _.each( office.availabilities, function( availability ) {
+        let opens = availability.startTime.split(':');
+        let start = moment(availability.date).add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+        let closes = availability.endTime.split(':');
+        let end = moment(availability.date).add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
         if (availability.available === true) {
           calendarEvents.push({
             title: 'DISPO',
-            allDay: true,
-            start: availability.date,
+            start: start,
+            end: end,
             url: '/my-office-calendar/' + office._id,
             color: '#21BA45',
           });
         } else {
           calendarEvents.push({
             title: availability.user,
-            allDay: true,
-            start: availability.date,
+            start: start,
+            end: end,
             url: '/my-office-calendar/' + office._id,
             color: '#DB2828',
           });
@@ -56,16 +64,18 @@ Template.agenda.onRendered(function () {
     }
     $('#agenda').fullCalendar({
       header: {
-        left: 'title',
-        center: '',
-        right: 'prev,next today',
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay',
       },
       monthNames: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
-      aspectRatio: 1,
+      aspectRatio: 0.7,
       defaultDate: new Date(),
+      allDaySlot: false,
+      businessHours: true,
       buttonIcons: true, // show the prev/next text
       weekNumbers: false,
-      editable: true,
+      editable: false,
       eventLimit: true, // allow "more" link when too many events
       events: calendarEvents,
     });

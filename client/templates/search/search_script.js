@@ -26,6 +26,7 @@ Template.search.events({
     let query = $('#searchOfficesInput').val();
     let moment = require('moment');
     let date = new Date($('#dateFilter_hidden').val() + ' 00:00');
+    Session.set('searchedDate', date);
     Meteor.call('searchOffices', query, date, function (error, result) {
       if (error) {
         console.error(error);

@@ -30,5 +30,6 @@ jparker:crypto-md5
 jparker:gravatar
 idorecall:email-normalize
 fermuch:pickadate
-momentjs:twix
 fullcalendar:fullcalendar
+session
+random

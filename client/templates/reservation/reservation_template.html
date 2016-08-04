@@ -1,0 +1,45 @@
+<template name='reservation'>
+  <div class="ui basic segment">
+    {{#with reservation}}
+      <h3 class="ui header">
+        <div class="content">
+          Reservation du bureau<label class="ui horizontal label">{{officeNumber}}</label>
+        </div>
+        <div class="sub header">
+           Le {{toDate day}} de {{startTime}} à {{endTime}}
+        </div>
+      </h3>
+      <div class="ui sub header">Adresse</div>
+      <p>{{{nl2br office.address}}}</p>
+      <p>
+        {{#if office.furnitures.printer}}
+          <i class="print icon"></i>
+        {{/if}}
+        {{#if office.furnitures.whiteboard}}
+          <i class="sticky note outline icon"></i>
+        {{/if}}
+        {{#if office.furnitures.multiphone}}
+          <i class="call icon"></i>
+        {{/if}}
+        {{#if office.furnitures.plugs}}
+          <i class="plug icon"></i>
+        {{/if}}
+        {{#if office.furnitures.beamer}}
+          <i class="record icon"></i>
+        {{/if}}
+        {{#if office.furnitures.coffee}}
+          <i class="coffee icon"></i>
+        {{/if}}
+      </p>
+      <a class="ui green fluid icon labeled button" href="{{pathFor 'office' officeId=officeId}}">
+        <i class="eye icon"></i>
+        Voir le bureau
+      </a>
+      <br>
+      <div class="ui red fluid icon labeled button disabled">
+        <i class="trash icon"></i>
+        Supprimer la reservation
+      </div>
+    {{/with}}
+  </div>
+</template>

@@ -1,3 +1,6 @@
+let moment = require('moment');
+require('twix');
+
 Template.office.onCreated(function () {
   this.subscribe('Office', Router.current().params.officeId);
   this.subscribe('Reservations', Router.current().params.officeId);
@@ -9,11 +12,37 @@ Template.office.onRendered(function () {
   Meteor.call('getDisabilities', Router.current().params.officeId, function (error, result) {
     if (result) {
       template.closedDays.set(result);
-      $('#startAt').pickadate({
+      $('#reservationDay').pickadate({
         disable: result,
       });
     }
   });
+  let office = Offices.findOne({ _id: Router.current().params.officeId });
+  if (office) {
+    let availability = _.find( office.availabilities, function (availability) {
+      if (Session.get('searchedDate')) {
+        return availability.available === true && moment(Session.get('searchedDate')).isSame(availability.date, 'day');
+      }
+      return availability.available === true;
+    });
+    let opens = availability.startTime.split(':');
+    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+    let closes = availability.endTime.split(':');
+    let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
+    let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+    let startTimeInput = $('#startTime').pickatime({
+      formatLabel: 'Commence à H:i',
+      min: min,
+      max: startMax,
+    });
+    startTimePicker = startTimeInput.pickatime('picker');
+    let endTimeInput = $('#endTime').pickatime({
+      formatLabel: 'F!in!i à H:i',
+      min: min,
+      max: endMax,
+    });
+    endTimePicker = endTimeInput.pickatime('picker');
+  }
 });
 
 Template.office.helpers({
@@ -22,17 +51,21 @@ Template.office.helpers({
   },
   reservations () {
     if (Meteor.userId()) {
-      return Reservations.find({ officeId: Router.current().params.officeId, creator: Meteor.userId() }, {sort: {date: -1}});
+      return Reservations.find({ officeId: Router.current().params.officeId, creator: Meteor.userId() }, {sort: {day: -1}}).fetch();
     }
     return false;
   },
-  availabilityDate () {
+  availability () {
     let office = Offices.findOne({ _id: Router.current().params.officeId });
     if (office) {
       let availability = _.find( office.availabilities, function (availability) {
+        if (Session.get('searchedDate')) {
+          return availability.available === true && moment(Session.get('searchedDate')).isSame(availability.date, 'day');
+        }
         return availability.available === true;
       });
-      return moment(availability.date).format('YYYY-MM-DD');
+      availability.date = moment(availability.date).format('YYYY-MM-DD');
+      return availability;
     }
     return '';
   },
@@ -41,62 +74,79 @@ Template.office.helpers({
 Template.office.events({
   'click .bookOffice' () {
     $('.field').removeClass('error');
-    let startAt = $('#startAt_hidden').val();
-    let endAt = $('#endAt_hidden').val();
-    if (!startAt) {
-      $('#startAt').parent('.field').addClass('error');
+    let reservationDay = $('#reservationDay_hidden').val();
+    if (!reservationDay) {
+      $('#reservationDay').parent('.field').addClass('error');
       return false;
     }
-    if (!endAt) {
-      $('#endAt').parent('.field').addClass('error');
+    let startTime = $('#startTime_hidden').val();
+    let endTime = $('#endTime_hidden').val();
+    if (!startTime) {
+      $('#startTime').parent('.field').addClass('error');
+      return false;
+    }
+    if (!endTime) {
+      $('#endTime').parent('.field').addClass('error');
       return false;
     }
     let office = Offices.findOne({ _id: Router.current().params.officeId });
     if (office && office.availabilities && office.availabilities.length > 0) {
-      startAt = new Date(startAt + ' ' + office.openAt);
-      endAt = new Date(endAt + ' ' + office.closeAt);
-      if (startAt > endAt) {
-        $('#startAt').parent('.field').addClass('error');
-        $('#endAt').parent('.field').addClass('error');
+
+      if (Number(startTime.replace(':', '')) >= Number(endTime.replace(':', ''))) {
+        $('#startTime').parent('.field').addClass('error');
+        $('#endTime').parent('.field').addClass('error');
         return false;
       }
-      let itr = moment.twix(startAt, endAt).iterate('days');
-      let range = [];
-      while (itr.hasNext()) {
-        range.push(itr.next().toDate());
-      }
-      let disabledDays = openDaysToClosedNumbers(office.openDays);
-      _.each( range, function(availabilityDate) {
-        if (! _.contains( disabledDays, Number(moment(availabilityDate).format('d')))) {
-          let reservation = {
-            officeId: office._id,
-            officeNumber: office.number,
-            date: availabilityDate,
-            creator: Meteor.userId(),
-            createdAt: new Date(),
-          };
-          let reservationId = Reservations.insert(reservation);
-          Meteor.call('applyReservation', reservationId, contactEmail(Meteor.user()));
-        }
-      });
-      $('#startAt').val('');
-      $('#endAt').val('');
+
+      let reservation = {
+        officeId: office._id,
+        officeNumber: office.number,
+        day: reservationDay,
+        startTime: startTime,
+        endTime: endTime,
+        creator: Meteor.userId(),
+        creatorEmail: contactEmail(Meteor.user()),
+        createdAt: new Date(),
+      };
+      let reservationId = Reservations.insert(reservation);
+      Meteor.call('applyReservation', reservationId);
+
       Router.go('agenda');
       return true;
     }
     return false;
   },
-  'change #startAt' () {
-    let closedDays = Template.instance().closedDays.get();
-    $('#endAt').data('value', $('#startAt_hidden').val());
-    $('#endAt').removeAttr('disabled');
-    $('#endAt').pickadate({
-      min: new Date($('#startAt_hidden').val()),
-      disable: closedDays,
+  'change #reservationDay' () {
+    let reservationDayDate = new Date($('#reservationDay_hidden').val());
+    let office = Offices.findOne({ _id: Router.current().params.officeId });
+    let availability = _.find( office.availabilities, function (availability) {
+      return availability.available === true && moment(reservationDayDate).isSame(availability.date, 'day');
+    });
+    let opens = availability.startTime.split(':');
+    let min = moment(reservationDayDate).startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+    let closes = availability.endTime.split(':');
+    let startMax = moment(reservationDayDate).startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
+    let endMax = moment(reservationDayDate).startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+    startTimePicker.set({
+      'min': min,
+      'max': startMax,
+      'select': min,
+    });
+    endTimePicker.set({
+      'min': min,
+      'max': endMax,
+      'select': endMax,
     });
   },
-  'click .deleteReservation' () {
-    Reservations.remove({_id: this._id});
-    Meteor.call('unApplyReservation', this.officeId, this.date);
+  'click .detailReservation' () {
+    Router.go('reservation', {reservationId: this._id});
+  },
+  'change #startTime' () {
+    let opens =  $('#startTime_hidden').val().split(':');
+    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(30, 'minutes').toDate();
+    endTimePicker.set({
+      'min': min,
+      'select': min,
+    });
   },
 });

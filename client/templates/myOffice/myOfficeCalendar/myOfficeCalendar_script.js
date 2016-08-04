@@ -1,3 +1,6 @@
+let moment = require('moment');
+require('twix');
+
 Template.myOfficeCalendar.onCreated(function(){
   this.closedDays = new ReactiveVar([]);
 });
@@ -19,13 +22,32 @@ Template.myOfficeCalendar.onRendered(function () {
     });
     if (closedDays) {
       template.closedDays.set(closedDays);
-      $('#startAt').pickadate({
+      let startAtInput = $('#startAt').pickadate({
         disable: closedDays,
       });
-    } else {
-      $('#startAt').pickadate();
+      startAtPicker = startAtInput.pickadate('picker');
+      let endAtInput = $('#endAt').pickadate({
+        disable: closedDays,
+      });
+      endAtPicker = endAtInput.pickadate('picker');
     }
-    $('.userIcon').popup({hoverable: true});
+    let opens = office.openAt.split(':');
+    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+    let closes = office.closeAt.split(':');
+    let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(4, 'hours').toDate();
+    let max = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+    let startTimeInput = $('#startTime').pickatime({
+      formatLabel: 'Commence à H:i',
+      min: min,
+      max: startMax,
+    });
+    startTimePicker = startTimeInput.pickatime('picker');
+    let endTimeInput = $('#endTime').pickatime({
+      formatLabel: 'F!in!i à H:i',
+      min: min,
+      max: max,
+    });
+    endTimePicker = endTimeInput.pickatime('picker');
   }
 });
 
@@ -83,6 +105,18 @@ Template.myOfficeCalendar.helpers({
     });
     return _.sortBy(availabilities, 'date').reverse();
   },
+  toPeriod (duration) {
+    check(duration, String);
+    switch (duration) {
+    default:
+    case 'allDay':
+      return 'Journée';
+    case 'morning':
+      return 'Matin';
+    case 'afternoon':
+      return 'Après-midi';
+    }
+  },
 });
 
 Template.myOfficeCalendar.events({
@@ -116,8 +150,11 @@ Template.myOfficeCalendar.events({
   },
   'click .addAvailability' () {
     $('.field').removeClass('error');
+    $('.fields').removeClass('error');
     let startAt = $('#startAt_hidden').val();
     let endAt = $('#endAt_hidden').val();
+    let startTime = $('#startTime_hidden').val();
+    let endTime = $('#endTime_hidden').val();
 
     if (!startAt) {
       $('#startAt').parent('.field').addClass('error');
@@ -127,36 +164,54 @@ Template.myOfficeCalendar.events({
       $('#endAt').parent('.field').addClass('error');
       return false;
     }
-    startAt = new Date(startAt + ' ' + $('#openAt').val());
-    endAt = new Date(endAt + ' ' + $('#closeAt').val());
+    if (!startTime) {
+      $('#startTime').parent('.field').addClass('error');
+      return false;
+    }
+    if (!endTime) {
+      $('#endTime').parent('.field').addClass('error');
+      return false;
+    }
+    startAt = new Date(startAt + ' ' + $('#startTime').val());
+    endAt = new Date(endAt + ' ' + $('#endTime').val());
     if (startAt > endAt) {
       $('#startAt').parent('.field').addClass('error');
       $('#endAt').parent('.field').addClass('error');
       return false;
     }
     let itr = moment.twix(startAt, endAt).iterate('days');
+    let office = Offices.findOne({_id: Router.current().params.officeId});
     let range = [];
     while (itr.hasNext()) {
       range.push(itr.next().toDate());
     }
-    let office = Offices.findOne({_id: Router.current().params.officeId});
     let disabledDays = openDaysToClosedNumbers(office.openDays);
-    _.each( range, function(availabilityDate) {
+    let groupId = Random.id();
+    let lastAvailabilityDate = false;
+    _.each(range, function(availabilityDate) {
       if (! _.contains( disabledDays, Number(moment(availabilityDate).format('d')))) {
         let availability = {
+          groupId: groupId,
           date: availabilityDate,
           available: true,
+          startTime: startTime,
+          endTime: endTime,
           creator: Meteor.userId(),
           createdAt: new Date(),
         };
         Offices.update({_id: office._id}, {$push: {
           availabilities: availability,
         }});
+        lastAvailabilityDate = availabilityDate;
       }
     });
-    $('#startAt').val('');
-    $('#endAt').val('');
-    Router.go('agenda', {officeId: office._id});
+    let nextAvailableDate = moment(lastAvailabilityDate).add(1, 'day').toDate();
+    startAtPicker.set('min', nextAvailableDate).clear();
+    endAtPicker.set('min', nextAvailableDate).clear();
+    startTimePicker.clear();
+    let opens = office.openAt.split(':');
+    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+    endTimePicker.set('min', min).clear();
     return true;
   },
   'click .deleteAvailability' () {
@@ -165,12 +220,18 @@ Template.myOfficeCalendar.events({
     }});
   },
   'change #startAt' () {
-    let closedDays = Template.instance().closedDays.get();
-    $('#endAt').data('value', $('#startAt_hidden').val());
-    $('#endAt').removeAttr('disabled');
-    $('#endAt').pickadate({
-      min: new Date($('#startAt_hidden').val()),
-      disable: closedDays,
+    let startAtDate = new Date($('#startAt_hidden').val());
+    endAtPicker.set({
+      'min': startAtDate,
+      'select': startAtDate,
+    });
+  },
+  'change #startTime' () {
+    let opens =  $('#startTime_hidden').val().split(':');
+    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(4, 'hours').toDate();
+    endTimePicker.set({
+      'min': min,
+      'select': min,
     });
   },
 });

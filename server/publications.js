@@ -19,16 +19,16 @@ Meteor.publish('Office', function (officeId) {
 
 Meteor.publish('Reservations', function (officeId) {
   check(officeId, String);
-  let date = new Date();
-  date.setDate(date.getDate() - 1); // yesterday
-  return Reservations.find({ officeId: officeId, date: {$gt: date} });
+  let yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1); // yesterday
+  return Reservations.find({ officeId: officeId, date: {$gt: yesterday} });
 });
 
 Meteor.publish('MyReservations', function () {
   if (this.userId) {
-    let date = new Date();
-    date.setDate(date.getDate() - 1); // yesterday
-    return Reservations.find({ creator: this.userId, date: {$gt: date}});
+    let yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1); // yesterday
+    return Reservations.find({ creator: this.userId, day: {$gte: yesterday}});
   }
   return false;
 });
