@@ -3,20 +3,39 @@ Template.createMyOffice.helpers({
 
 Template.createMyOffice.events({
   'click .goStepTwo' () {
+    $('.field').removeClass('error');
+    let address = $('#address').val();
+    if (!address) {
+      $('#address').parent('.field').addClass('error');
+      return false;
+    }
+    let number = $('#number').val();
+    if (!number || number < 1) {
+      $('#number').parent('.field').addClass('error');
+      return false;
+    }
     $('.ui.accordion').accordion('open', 1);
+    return true;
   },
   'click .goStepThree' () {
+    $('.field').removeClass('error');
+    let capacity = $('#capacity').val();
+    if (!capacity || capacity < 1) {
+      $('#capacity').parent('.field').addClass('error');
+      return false;
+    }
     $('.ui.accordion').accordion('open', 2);
+    return true;
   },
   'click .shareOffice' () {
     $('.field').removeClass('error');
-    let address = $('#address').val();
+    let address = escapeHtml($('#address').val());
     if (!address) {
       $('.ui.accordion').accordion('open', 0);
       $('#address').parent('.field').addClass('error');
       return false;
     }
-    let number = $('#number').val();
+    let number = escapeHtml($('#number').val());
     if (!number || number < 1) {
       $('.ui.accordion').accordion('open', 0);
       $('#number').parent('.field').addClass('error');
@@ -32,7 +51,7 @@ Template.createMyOffice.events({
     $('.furniture').each(function(index, el) {
       furnitures[el.id] = el.checked;
     });
-    let comment = $('#comment').val();
+    let comment = escapeHtml($('#comment').val());
     Offices.insert({
       number: number,
       address: address,
@@ -41,6 +60,7 @@ Template.createMyOffice.events({
       comment: comment,
     });
     Router.go('myOffice');
+    return true;
   },
 });
 

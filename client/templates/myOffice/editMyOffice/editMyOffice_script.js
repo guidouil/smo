@@ -13,12 +13,12 @@ Template.editMyOffice.helpers({
 Template.editMyOffice.events({
   'click .saveOffice' () {
     $('.field').removeClass('error');
-    let address = $('#address').val();
+    let address = escapeHtml($('#address').val());
     if (!address) {
       $('#address').parent('.field').addClass('error');
       return false;
     }
-    let number = $('#number').val();
+    let number = escapeHtml($('#number').val());
     if (!number || number < 1) {
       $('#number').parent('.field').addClass('error');
       return false;
@@ -32,7 +32,7 @@ Template.editMyOffice.events({
     $('.furniture').each(function(index, el) {
       furnitures[el.id] = el.checked;
     });
-    let comment = $('#comment').val();
+    let comment = escapeHtml($('#comment').val());
     Offices.update({_id: Router.current().params.officeId}, { $set: {
       number: number,
       address: address,

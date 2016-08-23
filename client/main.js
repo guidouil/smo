@@ -2,6 +2,12 @@ Meteor.subscribe('MyOwnedOffices');
 Meteor.subscribe('MyUsageOffices');
 Meteor.subscribe('MyReservations');
 
+escapeHtml = function (str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 Template.registerHelper('toLowerCase', function (string) {
   check(string, String);
   return string.toLowerCase();

@@ -5,4 +5,4 @@ Template.footer.events({
 });
 
 Template.footer.onRendered(function () {
-})
+});

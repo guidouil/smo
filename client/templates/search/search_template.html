@@ -21,39 +21,51 @@
     <div class="ui fluid input">
       <input type="text" name="dateFilter" id="dateFilter" data-value="{{now}}">
     </div>
-    <div class="ui divided items">
+    <div class="ui celled items">
       {{#each offices}}
-        <a class="item" href="{{pathFor 'office' officeId=_id}}">
+        <div class="item">
           <div class="content">
-            <div class="header">
-              <div class="ui large horizontal label">{{number}}</div>
-              <small>{{capacity}} personne{{plural capacity}}</small>
-            </div>
+            <a class="header" href="{{pathFor 'office' officeId=_id}}">
+              Bureau <div class="ui large horizontal label">{{number}}</div>
+              <small>Capacité : {{capacity}} personne{{plural capacity}}</small>
+            </a>
             <div class="description">
               <p>{{{nl2br address}}}</p>
               <p>
                 {{#if furnitures.printer}}
-                  <i class="print icon"></i>
+                  <span data-tooltip="Imprimante" data-position="right center">
+                    <i class="print icon"></i>
+                  </span>
                 {{/if}}
                 {{#if furnitures.whiteboard}}
-                  <i class="sticky note outline icon"></i>
+                  <span data-tooltip="Tableau blanc" data-position="right center">
+                    <i class="sticky note outline icon"></i>
+                  </span>
                 {{/if}}
                 {{#if furnitures.multiphone}}
-                  <i class="call icon"></i>
+                  <span data-tooltip="Pieuvre" data-position="right center">
+                    <i class="call icon"></i>
+                  </span>
                 {{/if}}
                 {{#if furnitures.plugs}}
-                  <i class="plug icon"></i>
+                  <span data-tooltip="Multiprise" data-position="right center">
+                    <i class="plug icon"></i>
+                  </span>
                 {{/if}}
                 {{#if furnitures.beamer}}
-                  <i class="record icon"></i>
+                  <span data-tooltip="Projecteur" data-position="right center">
+                    <i class="record icon"></i>
+                  </span>
                 {{/if}}
                 {{#if furnitures.coffee}}
-                  <i class="coffee icon"></i>
+                  <span data-tooltip="Machine à café" data-position="right center">
+                    <i class="coffee icon"></i>
+                  </span>
                 {{/if}}
               </p>
             </div>
           </div>
-        </a>
+        </div>
       {{/each}}
     </div>
   </div>

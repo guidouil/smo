@@ -1,3 +1,6 @@
+let moment = require('moment');
+moment.locale('fr');
+
 Template.search.onCreated(function () {
   this.offices = new ReactiveVar();
 });
@@ -15,8 +18,6 @@ Template.search.helpers({
     return Template.instance().offices.get();
   },
   now () {
-    let moment = require('moment');
-    moment.locale('fr');
     return moment(new Date()).format('YYYY-MM-DD');
   },
 });
@@ -24,7 +25,6 @@ Template.search.helpers({
 Template.search.events({
   'click .searchOfficesButton' (e, tmpl) {
     let query = $('#searchOfficesInput').val();
-    let moment = require('moment');
     let date = new Date($('#dateFilter_hidden').val() + ' 00:00');
     Session.set('searchedDate', date);
     Meteor.call('searchOffices', query, date, function (error, result) {
