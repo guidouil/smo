@@ -13,12 +13,10 @@ Meteor.methods({
             && Number(availability.startTime.replace(':', '')) <= Number(reservation.startTime.replace(':', ''))
             && Number(availability.endTime.replace(':', '')) >= Number(reservation.endTime.replace(':', ''));
           });
-          console.log(availability);
 
           if (!availability) {
             // Invalid resevation must be destroyed
-            // Reservations.remove({_id: reservationId});
-
+            Reservations.remove({_id: reservationId});
             return false;
           }
           if (Number(availability.startTime.replace(':', '')) === Number(reservation.startTime.replace(':', '')) && Number(availability.endTime.replace(':', '')) === Number(reservation.endTime.replace(':', ''))) {

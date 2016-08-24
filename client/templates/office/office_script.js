@@ -74,7 +74,7 @@ Template.office.helpers({
 Template.office.events({
   'click .bookOffice' () {
     $('.field').removeClass('error');
-    let reservationDay = $('#reservationDay_hidden').val();
+    let reservationDay = new Date($('#reservationDay_hidden').val() + ' 00:00');
     if (!reservationDay) {
       $('#reservationDay').parent('.field').addClass('error');
       return false;
@@ -91,13 +91,11 @@ Template.office.events({
     }
     let office = Offices.findOne({ _id: Router.current().params.officeId });
     if (office && office.availabilities && office.availabilities.length > 0) {
-
       if (Number(startTime.replace(':', '')) >= Number(endTime.replace(':', ''))) {
         $('#startTime').parent('.field').addClass('error');
         $('#endTime').parent('.field').addClass('error');
         return false;
       }
-
       let reservation = {
         officeId: office._id,
         officeNumber: office.number,
@@ -110,7 +108,6 @@ Template.office.events({
       };
       let reservationId = Reservations.insert(reservation);
       Meteor.call('applyReservation', reservationId);
-
       Router.go('agenda');
       return true;
     }

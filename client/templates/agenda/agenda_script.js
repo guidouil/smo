@@ -16,7 +16,7 @@ Template.agenda.onRendered(function () {
     let moment = require('moment');
     let reservations = Reservations.find({ creator: Meteor.userId() }).fetch();
     let office = false;
-    if (Router.current().params.officeId) {
+    if (Router.current().params && Router.current().params.officeId) {
       reservations = Reservations.find({ officeId: Router.current().params.officeId }).fetch();
       office = Offices.findOne({ _id: Router.current().params.officeId });
     }

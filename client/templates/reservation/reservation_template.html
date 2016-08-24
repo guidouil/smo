@@ -14,22 +14,34 @@
       <p>{{{nl2br office.address}}}</p>
       <p>
         {{#if office.furnitures.printer}}
-          <i class="print icon"></i>
+          <span data-tooltip="Imprimante" data-position="right center">
+            <i class="print icon"></i>
+          </span>
         {{/if}}
         {{#if office.furnitures.whiteboard}}
-          <i class="sticky note outline icon"></i>
+          <span data-tooltip="Tableau blanc" data-position="right center">
+            <i class="sticky note outline icon"></i>
+          </span>
         {{/if}}
         {{#if office.furnitures.multiphone}}
-          <i class="call icon"></i>
+          <span data-tooltip="Pieuvre" data-position="right center">
+            <i class="call icon"></i>
+          </span>
         {{/if}}
         {{#if office.furnitures.plugs}}
-          <i class="plug icon"></i>
+          <span data-tooltip="Multiprise" data-position="right center">
+            <i class="plug icon"></i>
+          </span>
         {{/if}}
         {{#if office.furnitures.beamer}}
-          <i class="record icon"></i>
+          <span data-tooltip="Projecteur" data-position="right center">
+            <i class="record icon"></i>
+          </span>
         {{/if}}
         {{#if office.furnitures.coffee}}
-          <i class="coffee icon"></i>
+          <span data-tooltip="Machine à café" data-position="right center">
+            <i class="coffee icon"></i>
+          </span>
         {{/if}}
       </p>
       <a class="ui green fluid icon labeled button" href="{{pathFor 'office' officeId=officeId}}">
@@ -37,10 +49,19 @@
         Voir le bureau
       </a>
       <br>
-      <div class="ui red fluid icon labeled button disabled">
+      {{#if isOfficeOwnerOrUser officeId}}
+      <div class="ui red fluid icon labeled button cancelReservation">
         <i class="trash icon"></i>
-        Supprimer la reservation
+        Annuler la reservation
       </div>
+      {{else}}
+        {{#if equals creator currentUser._id}}
+        <div class="ui red fluid icon labeled button cancelReservation">
+          <i class="trash icon"></i>
+          Annuler la reservation
+        </div>
+        {{/if}}
+      {{/if}}
     {{/with}}
   </div>
 </template>

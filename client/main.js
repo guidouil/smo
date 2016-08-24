@@ -55,6 +55,18 @@ Template.registerHelper('isOfficeOwner', function (officeId) {
   return false;
 });
 
+Template.registerHelper('isOfficeOwnerOrUser', function (officeId) {
+  if (Meteor.userId()) {
+    if (! officeId) {
+      officeId = Router.current().params.officeId;
+    }
+    if (officeId) {
+      return isOfficeOwnerOrUser(officeId, Meteor.userId());
+    }
+  }
+  return false;
+});
+
 Template.registerHelper('nl2br', function (string) {
   check(string, String);
   return string.replace(/\n/g, '<br>');
@@ -108,4 +120,8 @@ Template.registerHelper('toDate', function (date) {
   let moment = require('moment');
   moment.locale('fr');
   return moment(date).format('DD/MM/YYYY');
+});
+
+Template.registerHelper('equals', function (a, b) {
+  return a === b;
 });
