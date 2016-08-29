@@ -20,7 +20,7 @@ Template.header.onRendered(function () {
   let swipe = require('jquery-touchswipe');
   $('.main-container, .topHeader, .bottomFooter').swipe({
     //Generic swipe handler for all directions
-    swipe: function(event, direction) {
+    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
       if (direction === 'right') {
         $('.mainSidebar').sidebar('show');
       }
