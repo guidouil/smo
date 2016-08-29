@@ -17,4 +17,16 @@ Template.header.events({
 });
 
 Template.header.onRendered(function () {
+  let swipe = require('jquery-touchswipe');
+  $('.main-container, .topHeader, .bottomFooter').swipe({
+    //Generic swipe handler for all directions
+    swipe: function(event, direction) {
+      if (direction === 'right') {
+        $('.mainSidebar').sidebar('show');
+      }
+      if (direction === 'left') {
+        $('.mainSidebar').sidebar('hide');
+      }
+    },
+  });
 });
