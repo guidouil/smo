@@ -5,7 +5,7 @@ rm -rf smo-source
 rm -rf builds
 git clone https://github.com/guidouil/smo.git smo-source
 cd smo-source
-meteor npm install --save moment bcrypt twix jquery
+meteor npm install --save moment bcrypt twix jquery jquery-touchswipe
 meteor build ../builds/. --server-only
 cd ../builds/
 tar xzf smo-source.tar.gz
