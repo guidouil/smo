@@ -2,11 +2,11 @@
   <div class="ui center aligned basic segment homeSegment">
     <img class="ui centered large image" src="/sharemyoffice4-nobg.png">
     {{#unless currentUser}}
-    <br>
+    <h1 class="ui header">Bienvenue sur l'app de partage de bureaux</h1>
     <div class="ui buttons">
-      <a href="/sign-in" class="ui green button">Sign in</a>
-      <div class="or"></div>
-      <a href="/sign-up" class="ui button">Sign up</a>
+      <a href="/sign-in" class="ui green button">Se connecter</a>
+      <div class="or" data-text="ou"></div>
+      <a href="/sign-up" class="ui button">S'inscrire</a>
     </div>
     {{else}}
     <h2 class="ui header">Hello, {{capitalize userName}}.</h2>

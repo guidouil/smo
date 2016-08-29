@@ -3,8 +3,14 @@
     {{#with office}}
     <div class="office">
       <h3 class="ui header">BUREAU NUMÉRO<label class="ui large horizontal label">{{number}}</label></h3>
+      {{#if isOfficeOwner _id}}
+        <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
+          <i class="large blue write icon"></i>
+        </a>
+      {{/if}}
       <div class="ui sub header">Adresse</div>
       <p>{{{nl2br address}}}</p>
+
       <div class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</div>
       {{#unless isAllFalse furnitures}}
         <div class="ui sub header">Equipements</div>

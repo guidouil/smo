@@ -25,23 +25,25 @@ Template.office.onRendered(function () {
       }
       return availability.available === true;
     });
-    let opens = availability.startTime.split(':');
-    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
-    let closes = availability.endTime.split(':');
-    let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
-    let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
-    let startTimeInput = $('#startTime').pickatime({
-      formatLabel: 'Commence à H:i',
-      min: min,
-      max: startMax,
-    });
-    startTimePicker = startTimeInput.pickatime('picker');
-    let endTimeInput = $('#endTime').pickatime({
-      formatLabel: 'F!in!i à H:i',
-      min: min,
-      max: endMax,
-    });
-    endTimePicker = endTimeInput.pickatime('picker');
+    if (availability) {
+      let opens = availability.startTime.split(':');
+      let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+      let closes = availability.endTime.split(':');
+      let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
+      let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+      let startTimeInput = $('#startTime').pickatime({
+        formatLabel: 'Commence à H:i',
+        min: min,
+        max: startMax,
+      });
+      startTimePicker = startTimeInput.pickatime('picker');
+      let endTimeInput = $('#endTime').pickatime({
+        formatLabel: 'F!in!i à H:i',
+        min: min,
+        max: endMax,
+      });
+      endTimePicker = endTimeInput.pickatime('picker');
+    }
   }
 });
 
@@ -64,8 +66,10 @@ Template.office.helpers({
         }
         return availability.available === true;
       });
-      availability.date = moment(availability.date).format('YYYY-MM-DD');
-      return availability;
+      if (availability) {
+        availability.date = moment(availability.date).format('YYYY-MM-DD');
+        return availability;
+      }
     }
     return '';
   },

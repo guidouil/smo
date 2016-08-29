@@ -9,3 +9,9 @@ html.ios, html.ios body {
   padding-bottom: 3rem;
   overflow-y: auto !important;
 }
+.inverted.green {
+  background-color: #00965E !important;
+}
+.basic.green {
+  color: #00965E !important;
+}
