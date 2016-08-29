@@ -2,19 +2,20 @@
   <div class="ui center aligned basic segment homeSegment">
     <img class="ui centered large image" src="/sharemyoffice4-nobg.png">
     {{#unless currentUser}}
-    <h1 class="ui header">Bienvenue sur l'app de partage de bureaux</h1>
+    <h1 class="ui header">Bienvenue sur l'app de partage des bureaux chez<br>BNP PARIBAS</h1>
     <div class="ui buttons">
       <a href="/sign-in" class="ui green button">Se connecter</a>
       <div class="or" data-text="ou"></div>
-      <a href="/sign-up" class="ui button">S'inscrire</a>
+      <a href="/sign-up" class="ui button">S'enregistrer</a>
     </div>
     {{else}}
-    <h2 class="ui header">Hello, {{capitalize userName}}.</h2>
+    <h2 class="ui header">Bonjour, {{capitalize userName}}.</h2>
     {{#if hasOffice}}
-    <a href="{{pathFor 'search'}}" class="ui green basic icon labeled button"><i class="search icon"></i>SEARCH AN OFFICE</a>
+    <a href="{{pathFor 'search'}}" class="ui green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
     {{else}}
-    <a href="{{pathFor 'createMyOffice'}}" class="ui green basic icon labeled button"><i class="refresh icon"></i>SHARE YOUR OFFICE</a>
+    <a href="{{pathFor 'createMyOffice'}}" class="ui green basic icon labeled button"><i class="save icon"></i>ENREGISTREZ VOTRE BUREAU</a>
     {{/if}}
     {{/unless}}
   </div>
+  {{> footer}}
 </template>

@@ -2,16 +2,22 @@
 html.ios, html.ios body {
   height: 100% !important;
 }
-
 .main-container {
   height: 100%;
   padding-top: 4rem;
   padding-bottom: 3rem;
   overflow-y: auto !important;
 }
-.inverted.green {
+.green {
   background-color: #00965E !important;
 }
 .basic.green {
   color: #00965E !important;
+}
+i.green.icon {
+    color: #00965E !important;
+    background-color: transparent !important;
+}
+.at-grid {
+  margin-top: 3rem !important;
 }
