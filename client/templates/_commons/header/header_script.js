@@ -44,7 +44,7 @@ Template.header.helpers({
         routeName = 'à propos';
         break;
       case 'myOffice':
-        if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() === 1) {
+        if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() <= 1) {
           routeName = 'mon bureau';
         } else {
           routeName = 'mes bureaux';
