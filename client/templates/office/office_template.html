@@ -2,7 +2,7 @@
   <div class="ui basic segment">
     {{#with office}}
     <div class="office">
-      <h3 class="ui header">BUREAU NUMÉRO<label class="ui large horizontal label">{{number}}</label></h3>
+      <h3 class="ui header">BUREAU <label class="ui large horizontal label">{{number}}</label></h3>
       {{#if isOfficeOwner _id}}
         <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
           <i class="large blue write icon"></i>

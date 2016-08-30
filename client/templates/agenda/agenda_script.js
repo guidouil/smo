@@ -29,11 +29,11 @@ Template.agenda.onRendered(function () {
         let end = moment(reservation.day).add(endTimes[0], 'hours').add(endTimes[1], 'minutes').toDate();
         calendarEvents.push({
           id: reservation._id,
-          title: reservation.officeNumber,
+          title: 'Réservé' + '\n' + reservation.startTime + '-' + reservation.endTime,
           start: start,
           end: end,
           url: '/reservation/' + reservation._id,
-          color: '#f2711c',
+          color: '#ab3883',
         });
       });
     }
@@ -45,11 +45,12 @@ Template.agenda.onRendered(function () {
         let end = moment(availability.date).add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
         if (availability.available === true) {
           calendarEvents.push({
-            title: 'DISPO',
+            title: 'Diponible\n' + availability.startTime + '-' + availability.endTime,
             start: start,
             end: end,
             url: '/my-office-calendar/' + office._id,
-            color: '#21BA45',
+            color: '#00965E',
+            description: 'blabla',
           });
         } else {
           calendarEvents.push({
@@ -66,15 +67,18 @@ Template.agenda.onRendered(function () {
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay',
+        right: 'agendaDay,agendaWeek,month',
       },
+      theme: true,
       monthNames: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
       aspectRatio: 0.7,
       defaultDate: new Date(),
+      weekends: false,
+      scrollTime: '08:00:00',
       allDaySlot: false,
       businessHours: true,
       buttonIcons: true, // show the prev/next text
-      weekNumbers: false,
+      weekNumbers: true,
       editable: false,
       eventLimit: true, // allow "more" link when too many events
       events: calendarEvents,

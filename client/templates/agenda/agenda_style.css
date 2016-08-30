@@ -1,0 +1,6 @@
+.fc-content > .fc-time {
+  display: none;
+}
+.fc-toolbar > .fc-center {
+  margin-top: 1rem;
+}
