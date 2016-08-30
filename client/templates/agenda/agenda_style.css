@@ -4,3 +4,7 @@
 .fc-toolbar > .fc-center {
   margin-top: 1rem;
 }
+.fc-week-number {
+  vertical-align: middle !important;
+  color: #00965E !important;
+}

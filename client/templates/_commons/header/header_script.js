@@ -49,7 +49,6 @@ Template.header.helpers({
         } else {
           routeName = 'mes bureaux';
         }
-
         break;
       case 'createMyOffice':
         routeName = 'enregistrer un bureau';
@@ -58,13 +57,13 @@ Template.header.helpers({
         routeName = 'éditer mon bureau';
         break;
       case 'myOfficeCalendar':
-        routeName = 'calendrier de mon bureau';
+        routeName = 'disponibilités de mon bureau';
         break;
       case 'myOfficeUsers':
         routeName = 'droits de mon bureau';
         break;
       case 'agenda':
-        routeName = 'agenda des bureau';
+        routeName = 'calendrier';
         break;
       }
     }

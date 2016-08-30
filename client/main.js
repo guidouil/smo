@@ -13,7 +13,6 @@ Template.main.onRendered(function () {
   $('body').swipe({
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-      console.log('Swiped ' + direction);
       if (direction === 'right') {
         $('.mainSidebar').sidebar('show');
       }

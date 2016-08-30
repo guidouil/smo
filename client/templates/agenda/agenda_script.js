@@ -65,8 +65,8 @@ Template.agenda.onRendered(function () {
     }
     $('#agenda').fullCalendar({
       header: {
-        left: 'prev,next today',
-        center: 'title',
+        left: 'today',
+        center: 'prev title next',
         right: 'agendaDay,agendaWeek,month',
       },
       theme: true,
