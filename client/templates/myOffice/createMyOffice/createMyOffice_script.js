@@ -2,6 +2,12 @@ Template.createMyOffice.helpers({
 });
 
 Template.createMyOffice.events({
+  'click .title' (evt) {
+    if ($(evt.currentTarget).hasClass('active')) {
+      $('.shareOffice').toggle();
+      $('.goStepTwo').toggle();
+    }
+  },
   'click .goStepTwo' () {
     $('.field').removeClass('error');
     let address = $('#address').val();
@@ -15,6 +21,8 @@ Template.createMyOffice.events({
       return false;
     }
     $('.ui.accordion').accordion('open', 1);
+    $('.shareOffice').show();
+    $('.goStepTwo').hide();
     return true;
   },
   'click .goStepThree' () {
@@ -65,6 +73,7 @@ Template.createMyOffice.events({
 });
 
 Template.createMyOffice.onRendered(function () {
+  $('.shareOffice').hide();
   $('.ui.accordion').accordion();
   $('.ui.checkbox').checkbox();
 });

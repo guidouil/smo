@@ -1,29 +1,40 @@
 <template name='mainSidebar'>
   <div class="ui left demo vertical green inverted sidebar labeled icon menu mainSidebar">
-    <a class="item" href="{{pathFor 'profile'}}">
-      <i class="user icon"></i>
-      Profile
-    </a>
-    <a class="item" href="{{pathFor 'myOffice'}}">
-      <i class="cube icon"></i>
-      My Offices
+    <a class="item" href="{{pathFor 'home'}}">
+      <i class="home icon"></i>
+      Accueil
     </a>
     <a class="item" href="{{pathFor 'search'}}">
       <i class="search icon"></i>
-      Search
+      Recherche<br>Bureau
     </a>
     <a class="item" href="{{pathFor 'agenda'}}">
       <i class="calendar icon"></i>
       Agenda
     </a>
+    <a class="item" href="{{pathFor 'profile'}}">
+      <i class="user icon"></i>
+      Profil
+    </a>
+    {{#if onlyOneOffice}}
+      <a class="item" href="{{pathFor 'myOffice'}}">
+        <i class="cube icon"></i>
+        Mon<br>Bureau
+      </a>
+    {{else}}
+      <a class="item" href="{{pathFor 'myOffice'}}">
+        <i class="cubes icon"></i>
+        Mes<br>Bureaux
+      </a>
+    {{/if}}
     <a class="item" href="{{pathFor 'help'}}">
       <i class="help icon"></i>
-      Help
+      A propos
     </a>
     {{#if currentUser}}
     <a class="item signOutBtn">
       <i class="sign out icon"></i>
-      Sign out
+      Quitter
     </a>
     {{/if}}
   </div>

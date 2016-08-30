@@ -1,14 +1,6 @@
 <template name='myOffice'>
   {{#if myOffices}}
   <div class="ui basic segment myOffices">
-    {{#if onlyOneOffice}}
-    <h2 class="ui dividing header">Mon bureau</h2>
-    {{else}}
-    <h2 class="ui dividing header">Mes bureaux</h2>
-    {{/if}}
-    <a href="{{pathFor 'createMyOffice'}}" class="addOffice">
-      <i class="big green plus icon"></i>
-    </a>
     {{#each myOffices}}
       <div class="myOffice">
         {{#if isOfficeOwner _id}}

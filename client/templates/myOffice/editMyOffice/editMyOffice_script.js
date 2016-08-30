@@ -43,16 +43,6 @@ Template.editMyOffice.events({
     Router.go('myOffice');
     return true;
   },
-  'click .deleteOffice' () {
-    $('.deleteOfficeModal').modal({
-      onApprove: function() {
-        Meteor.call('removeReservations', Router.current().params.officeId, function () {
-          Offices.remove({_id: Router.current().params.officeId});
-          Router.go('home');
-        });
-      },
-    }).modal('show');
-  },
 });
 
 Template.editMyOffice.onRendered(function () {

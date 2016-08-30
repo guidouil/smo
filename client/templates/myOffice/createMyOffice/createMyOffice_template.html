@@ -1,137 +1,78 @@
 <template name='createMyOffice'>
   <div class="ui basic segment">
-    <h2 class="ui center aligned header">
-      <div class="content">
-        Share My Office
-      </div>
-      <div class="sub header">ENREGISTREZ VOTRE BUREAU</div>
-    </h2>
+
     <div class="ui styled fluid accordion">
       <div class="title active">
         <i class="dropdown icon"></i>
-        Etape 1/3
+        Etape 1/2
       </div>
       <div class="content active">
         <p class="ui header">Corrigez si besoin l'adresse et le numéro de votre bureau</p>
         <div class="ui form">
           <div class="field">
-            <label>Adresse du bureau *</label>
+            <label>* Adresse du bureau</label>
             <textarea rows="2" id="address" required >59 rue de la République
 93048 Montreuil sous Bois</textarea>
           </div>
           <div class="field">
-            <label>Numéro de bureau *</label>
+            <label>* Numéro de bureau</label>
             <input type="text" value="0D059" id="number" required>
           </div>
-          <div class="ui fluid green basic labeled icon button goStepTwo"><i class="chevron right icon"></i>Passer à l'étape 2</div>
         </div>
       </div>
       <div class="title">
         <i class="dropdown icon"></i>
-        Etape 2/3
+        Etape 2/2
       </div>
       <div class="content">
         <p class="ui header">Caractéristiques de votre bureau</p>
         <div class="ui form">
           <div class="field">
-            <label>Capacité (nombre de places) *</label>
+            <label>* Capacité (nombre de places)</label>
             <input type="number" value="4" id="capacity" required>
           </div>
           <div class="field">
             <label>Equipements</label>
             <div class="ui two column grid">
               <div class="column">
-                <div class="ui middle aligned list">
-                  <div class="item">
-                    <i class="print icon"></i>
-                    <div class="content">
-                      <div class="description">
-                        <div class="ui checkbox">
-                          <input type="checkbox" class="hidden furniture" id="printer">
-                          <label for="printer">Imprimante</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="sticky note outline icon"></i>
-                    <div class="content">
-                      <div class="description">
-                        <div class="ui checkbox">
-                          <input type="checkbox" class="hidden furniture" id="whiteboard">
-                          <label for="whiteboard">Tableau blanc</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="call icon"></i>
-                    <div class="content">
-                      <div class="description">
-                        <div class="ui checkbox">
-                          <input type="checkbox" class="hidden furniture" id="multiphone">
-                          <label for="multiphone">Pieuvre</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" class="hidden furniture" id="printer">
+                  <label for="printer"><i class="print icon"></i>Imprimante</label>
+                </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" class="hidden furniture" id="whiteboard">
+                  <label for="whiteboard"><i class="sticky note outline icon"></i>Tableau blanc</label>
+                </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" class="hidden furniture" id="multiphone">
+                  <label for="multiphone"><i class="call icon"></i>Pieuvre</label>
                 </div>
               </div>
               <div class="column">
-                <div class="ui middle aligned list">
-                  <div class="item">
-                    <i class="plug icon"></i>
-                    <div class="content">
-                      <div class="description">
-                        <div class="ui checkbox">
-                          <input type="checkbox" class="hidden furniture" id="plugs">
-                          <label for="plugs">Multiprise</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="record icon"></i>
-                    <div class="content">
-                      <div class="description">
-                        <div class="ui checkbox">
-                          <input type="checkbox" class="hidden furniture" id="beamer">
-                          <label for="beamer">Projecteur</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <i class="coffee icon"></i>
-                    <div class="content">
-                      <div class="description">
-                        <div class="ui checkbox">
-                          <input type="checkbox" class="hidden furniture" id="coffee">
-                          <label for="coffee">Machine à café</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" class="hidden furniture" id="plugs">
+                  <label for="plugs"><i class="plug icon"></i>Multiprise</label>
+                </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" class="hidden furniture" id="beamer">
+                  <label for="beamer"><i class="record icon"></i>Projecteur</label>
+                </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" class="hidden furniture" id="coffee">
+                  <label for="coffee"><i class="coffee icon"></i>Machine à café</label>
                 </div>
               </div>
             </div>
           </div>
-          <div class="ui fluid green basic labeled icon button goStepThree"><i class="chevron right icon"></i>Passer à l'étape 3</div>
-        </div>
-      </div>
-      <div class="title">
-        <i class="dropdown icon"></i>
-        Etape 3/3
-      </div>
-      <div class="content">
-        <div class="ui form">
           <div class="field">
-            <label>Commentaires (facultatifs)</label>
-            <textarea id="comment"></textarea>
+            <label>Commentaires</label>
+            <textarea rows="4" id="comment"></textarea>
           </div>
-          <button type="submit" class="ui fluid green labeled icon button shareOffice"><i class="save icon"></i>ENREGISTREZ VOTRE BUREAU</button>
         </div>
       </div>
     </div>
+    <br>
+    <div class="ui fluid green basic labeled icon button goStepTwo"><i class="chevron right icon"></i>PASSEZ À L'ÉTAPE 2</div>
+    <button type="submit" class="ui fluid green labeled icon button shareOffice"><i class="save icon"></i>ENREGISTREZ VOTRE BUREAU</button>
   </div>
 </template>

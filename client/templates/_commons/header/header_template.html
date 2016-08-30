@@ -1,36 +1,33 @@
 <template name='header'>
   <div class="ui top fixed inverted borderless green icon menu topHeader">
     <div class="left menu">
-      {{#if isHome}}
+      {{#if isLevelOnePage}}
       <a class="item showMainSidebar">
         <i class="big content icon"></i>
       </a>
       {{else}}
       <a class="ui middle aligned item">
         <i class="big left chevron icon goBack"></i>
-        <!-- <i class="big content icon showMainSidebar"></i> -->
       </a>
       {{/if}}
     </div>
-    {{#if isHome}}
-      <div class="center header item">
-        <img class="ui mini centered image" src="/sharemyoffice4-nobg-white.png">
-      </div>
-    {{else}}
-      <a class="center header item" href="{{pathFor 'home'}}" data-title="Go home">
-        <img class="ui mini centered image" src="/sharemyoffice4-nobg-white.png">
-      </a>
-    {{/if}}
+    <div class="center middle aligned header item">
+      <span class="ui inverted header">{{toUpperCase routeName}}</span>
+    </div>
     <div class="right menu">
-      {{#unless currentUser}}
-        <a class="item" href="/sign-in">
-          <i class="big user icon"></i>
-        </a>
+      {{#if isMyOfice}}
+      <a class="middle aligned item" href="{{pathFor 'createMyOffice'}}">
+        <i class="big plus icon"></i>
+      </a>
       {{else}}
-        <a class="item" href="{{pathFor 'profile'}}">
-          <img class="ui avatar image" src="{{profileImageUrl}}" alt="{{userName}}">
-        </a>
-      {{/unless}}
+        {{#if isEditMyOfice}}
+        <div class="middle aligned item">
+          <i class="big trash icon deleteOffice"></i>
+        </div>
+        {{else}}
+          <span class="item">&nbsp;</span>
+        {{/if}}
+      {{/if}}
     </div>
   </div>
 </template>
