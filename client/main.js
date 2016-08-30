@@ -8,6 +8,22 @@ escapeHtml = function (str) {
   return div.innerHTML;
 };
 
+Template.main.onRendered(function () {
+  let swipe = require('jquery-touchswipe');
+  $('body').swipe({
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+      console.log('Swiped ' + direction);
+      if (direction === 'right') {
+        $('.mainSidebar').sidebar('show');
+      }
+      if (direction === 'left') {
+        $('.mainSidebar').sidebar('hide');
+      }
+    },
+  });
+});
+
 Template.registerHelper('toLowerCase', function (string) {
   check(string, String);
   return string.toLowerCase();

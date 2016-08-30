@@ -9,25 +9,13 @@ Template.header.helpers({
 
 Template.header.events({
   'click .showMainSidebar' () {
-    $('.mainSidebar').sidebar('show');
+    $('.mainSidebar').sidebar('toggle');
   },
   'click .goBack' () {
+    $('.mainSidebar').sidebar('hide');
     window.history.back();
   },
 });
 
 Template.header.onRendered(function () {
-  let swipe = require('jquery-touchswipe');
-  $('.main-container, .topHeader, .bottomFooter').swipe({
-    //Generic swipe handler for all directions
-    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-      console.log('Swiped ' + direction);
-      if (direction === 'right') {
-        $('.mainSidebar').sidebar('show');
-      }
-      if (direction === 'left') {
-        $('.mainSidebar').sidebar('hide');
-      }
-    },
-  });
 });
