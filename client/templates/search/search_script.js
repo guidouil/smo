@@ -1,10 +1,6 @@
 let moment = require('moment');
 moment.locale('fr');
 
-Template.search.onCreated(function () {
-  this.offices = new ReactiveVar();
-});
-
 Template.search.onRendered(function () {
   $('#searchOfficesInput').focus();
   setTimeout(function () {
@@ -15,7 +11,7 @@ Template.search.onRendered(function () {
 
 Template.search.helpers({
   offices () {
-    return Template.instance().offices.get();
+    return Session.get('offices');
   },
   now () {
     return moment(new Date()).format('YYYY-MM-DD');
@@ -23,7 +19,7 @@ Template.search.helpers({
 });
 
 Template.search.events({
-  'click .searchOfficesButton' (e, tmpl) {
+  'click .searchOfficesButton' () {
     let query = $('#searchOfficesInput').val();
     let date = new Date($('#dateFilter_hidden').val() + ' 00:00');
     Session.set('searchedDate', date);
@@ -40,7 +36,7 @@ Template.search.events({
             });
           });
         }
-        tmpl.offices.set(result);
+        Session.set('offices', result);
       }
     });
   },
@@ -50,16 +46,16 @@ Template.search.events({
       $('.searchOfficesButton').click();
     }
   },
-  'change #furnituresFilterInput' (evt, tmpl) {
+  'change #furnituresFilterInput' (evt) {
     if (evt.currentTarget.value != '') {
       let wantedFurnitures = evt.currentTarget.value.split(',');
-      let offices = tmpl.offices.get();
+      let offices = Session.get('offices');
       _.each( wantedFurnitures, function(wantedFurniture) {
         offices = _.filter(offices, function (office) {
           return office.furnitures[wantedFurniture] === true;
         });
       });
-      tmpl.offices.set(offices);
+      Session.set('offices', offices);
     } else {
       $('.searchOfficesButton').click();
     }
