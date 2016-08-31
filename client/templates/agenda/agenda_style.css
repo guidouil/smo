@@ -9,3 +9,6 @@
   color: #00965E !important;
   display: table-cell !important;
 }
+.ui-state-highlight {
+  font-weight: bolder !important;
+}
