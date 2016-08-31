@@ -1,11 +1,6 @@
 .myOffices, .myOffice  {
   position: relative;
 }
-.addOffice {
-  position: absolute;
-  top: 1rem;
-  right: 0;
-}
 .editMyOfficeIcon {
   position: absolute;
   top: 0;
@@ -15,6 +10,6 @@
   margin-top: 1rem !important;
 }
 .bnpp-olive {
-  background-color: #93bd0e;
-  color: #fff;
+  background-color: #93bd0e !important;
+  color: #fff !important;
 }

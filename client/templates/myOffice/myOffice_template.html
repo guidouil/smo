@@ -8,7 +8,7 @@
             <i class="large blue write icon"></i>
           </a>
         {{/if}}
-        <a class="ui header" href="{{pathFor 'office' officeId=_id}}">BUREAU<label class="ui horizontal label">{{number}}</label></a>
+        <a class="ui header" href="{{pathFor 'office' officeId=_id}}">BUREAU<label class="ui horizontal big label">{{number}}</label></a>
         <div class="ui sub header">Adresse</div>
         <p>{{{nl2br address}}}</p>
         <div class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</div>
@@ -82,9 +82,9 @@
         <i class="calendar icon"></i>
         Calendrier des réservations
       </a>
-      <a class="ui fluid olive compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+      <a class="ui fluid bnpp-olive compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
         <i class="clock icon"></i>
-        Horraires & Disponibilités
+        Disponibilités
       </a>
       {{#if isOfficeOwner _id}}
         <a class="ui fluid compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
