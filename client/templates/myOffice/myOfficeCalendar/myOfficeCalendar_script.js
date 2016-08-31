@@ -8,12 +8,12 @@ Template.myOfficeCalendar.onCreated(function(){
 Template.myOfficeCalendar.onRendered(function () {
   let template = this;
   $('.checkbox').checkbox();
-  $('#openAt').pickatime({
-    formatLabel: 'Ouvert à H:i',
-  });
-  $('#closeAt').pickatime({
-    formatLabel: 'Fermé à H:i',
-  });
+  // $('#openAt').pickatime({
+  //   formatLabel: 'Ouvert à H:i',
+  // });
+  // $('#closeAt').pickatime({
+  //   formatLabel: 'Fermé à H:i',
+  // });
   let office = Offices.findOne({_id: Router.current().params.officeId});
   if (office) {
     let closedDays = openDaysToClosedNumbers(office.openDays);
@@ -31,23 +31,23 @@ Template.myOfficeCalendar.onRendered(function () {
       });
       endAtPicker = endAtInput.pickadate('picker');
     }
-    let opens = office.openAt.split(':');
-    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
-    let closes = office.closeAt.split(':');
-    let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(4, 'hours').toDate();
-    let max = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
-    let startTimeInput = $('#startTime').pickatime({
-      formatLabel: 'Commence à H:i',
-      min: min,
-      max: startMax,
-    });
-    startTimePicker = startTimeInput.pickatime('picker');
-    let endTimeInput = $('#endTime').pickatime({
-      formatLabel: 'F!in!i à H:i',
-      min: min,
-      max: max,
-    });
-    endTimePicker = endTimeInput.pickatime('picker');
+    // let opens = office.openAt.split(':');
+    // let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+    // let closes = office.closeAt.split(':');
+    // let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(4, 'hours').toDate();
+    // let max = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+    // let startTimeInput = $('#startTime').pickatime({
+    //   formatLabel: 'Commence à H:i',
+    //   min: min,
+    //   max: startMax,
+    // });
+    // startTimePicker = startTimeInput.pickatime('picker');
+    // let endTimeInput = $('#endTime').pickatime({
+    //   formatLabel: 'F!in!i à H:i',
+    //   min: min,
+    //   max: max,
+    // });
+    // endTimePicker = endTimeInput.pickatime('picker');
   }
 });
 
@@ -120,42 +120,52 @@ Template.myOfficeCalendar.helpers({
 });
 
 Template.myOfficeCalendar.events({
-  'click .saveOpenHours' () {
-    $('.field').removeClass('error');
-    let openDays = {};
-    $('.day').each(function(index, el) {
-      openDays[el.id] = el.checked;
-    });
-    let openAt = $('#openAt').val();
-    let closeAt = $('#closeAt').val();
-    if (!openAt) {
-      $('#openAt').parent('.field').addClass('error');
-      return false;
-    }
-    if (!closeAt) {
-      $('#closeAt').parent('.field').addClass('error');
-      return false;
-    }
-    if (Number(openAt.replace(':', '')) > Number(closeAt.replace(':', ''))) {
-      $('#openAt').parent('.field').addClass('error');
-      $('#closeAt').parent('.field').addClass('error');
-      return false;
-    }
-    Offices.update({_id: Router.current().params.officeId}, {$set: {
-      openDays: openDays,
-      openAt: openAt,
-      closeAt: closeAt,
-    }});
-    return true;
-  },
+  // 'click .saveOpenHours' () {
+  //   $('.field').removeClass('error');
+  //   let openDays = {};
+  //   $('.day').each(function(index, el) {
+  //     openDays[el.id] = el.checked;
+  //   });
+  //   let openAt = $('#openAt').val();
+  //   let closeAt = $('#closeAt').val();
+  //   if (!openAt) {
+  //     $('#openAt').parent('.field').addClass('error');
+  //     return false;
+  //   }
+  //   if (!closeAt) {
+  //     $('#closeAt').parent('.field').addClass('error');
+  //     return false;
+  //   }
+  //   if (Number(openAt.replace(':', '')) > Number(closeAt.replace(':', ''))) {
+  //     $('#openAt').parent('.field').addClass('error');
+  //     $('#closeAt').parent('.field').addClass('error');
+  //     return false;
+  //   }
+  //   Offices.update({_id: Router.current().params.officeId}, {$set: {
+  //     openDays: openDays,
+  //     openAt: openAt,
+  //     closeAt: closeAt,
+  //   }});
+  //   return true;
+  // },
   'click .addAvailability' () {
     $('.field').removeClass('error');
     $('.fields').removeClass('error');
     let startAt = $('#startAt_hidden').val();
     let endAt = $('#endAt_hidden').val();
-    let startTime = $('#startTime_hidden').val();
-    let endTime = $('#endTime_hidden').val();
-
+    let duration = 'day';
+    $('.duration').each(function(index, el) {
+      if (el.checked === true) {
+        duration = el.value;
+      }
+    });
+    let startTime = '8:00';
+    let endTime = '18:00';
+    if (duration === 'am') {
+      endTime = '12:00';
+    } else if (duration === 'pm') {
+      startTime = '13:00';
+    }
     if (!startAt) {
       $('#startAt').parent('.field').addClass('error');
       return false;
@@ -164,16 +174,8 @@ Template.myOfficeCalendar.events({
       $('#endAt').parent('.field').addClass('error');
       return false;
     }
-    if (!startTime) {
-      $('#startTime').parent('.field').addClass('error');
-      return false;
-    }
-    if (!endTime) {
-      $('#endTime').parent('.field').addClass('error');
-      return false;
-    }
-    startAt = new Date(startAt + ' ' + $('#startTime').val());
-    endAt = new Date(endAt + ' ' + $('#endTime').val());
+    startAt = new Date(startAt + ' ' + startTime);
+    endAt = new Date(endAt + ' ' + endTime);
     if (startAt > endAt) {
       $('#startAt').parent('.field').addClass('error');
       $('#endAt').parent('.field').addClass('error');
@@ -208,10 +210,6 @@ Template.myOfficeCalendar.events({
     let nextAvailableDate = moment(lastAvailabilityDate).add(1, 'day').toDate();
     startAtPicker.set('min', nextAvailableDate).clear();
     endAtPicker.set('min', nextAvailableDate).clear();
-    startTimePicker.clear();
-    let opens = office.openAt.split(':');
-    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
-    endTimePicker.set('min', min).clear();
     return true;
   },
   'click .deleteAvailability' () {
@@ -226,12 +224,12 @@ Template.myOfficeCalendar.events({
       'select': startAtDate,
     });
   },
-  'change #startTime' () {
-    let opens =  $('#startTime_hidden').val().split(':');
-    let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(4, 'hours').toDate();
-    endTimePicker.set({
-      'min': min,
-      'select': min,
-    });
-  },
+  // 'change #startTime' () {
+  //   let opens =  $('#startTime_hidden').val().split(':');
+  //   let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(4, 'hours').toDate();
+  //   endTimePicker.set({
+  //     'min': min,
+  //     'select': min,
+  //   });
+  // },
 });

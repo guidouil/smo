@@ -5,6 +5,7 @@
   margin-top: 1rem;
 }
 .fc-week-number {
-  vertical-align: bottom !important;
+  vertical-align: middle !important;
   color: #00965E !important;
+  display: table-cell !important;
 }
