@@ -3,7 +3,7 @@
     {{#if isOfficeOwner}}
 
         <h3 class="ui header">Partage des droits du bureau<label class="ui large horizontal label">{{office.number}}</label></h3>
-        <h4 class="ui  header">
+        <h4 class="ui dividing header">
           <div class="content">
             Propriétaires
           </div>
@@ -22,7 +22,7 @@
           <i class="add user link icon addOwner"></i>
         </div>
         <div class="ui section divider"></div>
-        <h4 class="ui  header">
+        <h4 class="ui dividing header">
           <div class="content">
             Utilisateurs
           </div>
@@ -33,6 +33,10 @@
         <div class="ui list">
         {{#each users}}
         <div class="item" id="{{userId}}">{{email}}&nbsp;&nbsp;<i class="red remove link icon removeUser"></i></div>
+        {{else}}
+        <div class="item disabled">
+          Aucun utilisateurs
+        </div>
         {{/each}}
         </div>
         <div class="ui sub header">Ajouter un utilisateur</div>

@@ -57,7 +57,7 @@ Template.header.helpers({
         routeName = 'éditer mon bureau';
         break;
       case 'myOfficeCalendar':
-        routeName = 'disponibilités de mon bureau';
+        routeName = 'disponibilités';
         break;
       case 'myOfficeUsers':
         routeName = 'droits de mon bureau';

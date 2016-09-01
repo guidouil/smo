@@ -11,27 +11,40 @@
       <div class="ui two column grid">
         <div class="column">
           <div class="field">
-            <label>Equipements</label>
-            <div class="ui small multiple search selection dropdown furnituresFilter">
-              <input type="hidden" name="furnituresFilter" id="furnituresFilterInput">
-              <i class="dropdown icon"></i>
-              <div class="default text">Filtrer par équipements</div>
-              <div class="menu">
-                <div class="item" data-value="printer"><i class="print icon"></i>Imprimante</div>
-                <div class="item" data-value="whiteboard"><i class="sticky note outline icon"></i>Tableau blanc</div>
-                <div class="item" data-value="multiphone"><i class="call icon"></i>Pieuvre</div>
-                <div class="item" data-value="plugs"><i class="plug icon"></i>Multiprise</div>
-                <div class="item" data-value="beamer"><i class="record icon"></i>Projecteur</div>
-                <div class="item" data-value="coffee"><i class="coffee icon"></i>Machine à café</div>
-              </div>
+            <label>Date</label>
+            <div class="ui small input">
+              <input type="text" name="dateFilter" id="dateFilter" data-value="{{now}}">
             </div>
           </div>
         </div>
         <div class="column">
           <div class="field">
-            <label>Date</label>
-            <div class="ui small input">
-              <input type="text" name="dateFilter" id="dateFilter" data-value="{{now}}">
+            <label class="furnituresLabel">Equipements <i class="right floated filter icon"></i></label>
+            <div class="furnituresFilter">
+              <div class="ui checkbox">
+                <input type="checkbox" class="hidden furniture" id="printer">
+                <label for="printer"><i class="print icon"></i>Imprimante</label>
+              </div>
+              <div class="ui checkbox">
+                <input type="checkbox" class="hidden furniture" id="whiteboard">
+                <label for="whiteboard"><i class="sticky note outline icon"></i>Tableau blanc</label>
+              </div>
+              <div class="ui checkbox">
+                <input type="checkbox" class="hidden furniture" id="multiphone">
+                <label for="multiphone"><i class="call icon"></i>Pieuvre</label>
+              </div>
+              <div class="ui checkbox">
+                <input type="checkbox" class="hidden furniture" id="plugs">
+                <label for="plugs"><i class="plug icon"></i>Multiprise</label>
+              </div>
+              <div class="ui checkbox">
+                <input type="checkbox" class="hidden furniture" id="beamer">
+                <label for="beamer"><i class="record icon"></i>Projecteur</label>
+              </div>
+              <div class="ui checkbox">
+                <input type="checkbox" class="hidden furniture" id="coffee">
+                <label for="coffee"><i class="coffee icon"></i>Machine à café</label>
+              </div>
             </div>
           </div>
         </div>

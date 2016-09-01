@@ -82,12 +82,12 @@
         <i class="calendar icon"></i>
         Calendrier des réservations
       </a>
-      <a class="ui fluid bnpp-olive compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+      <a class="ui fluid olive compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
         <i class="clock icon"></i>
         Disponibilités
       </a>
       {{#if isOfficeOwner _id}}
-        <a class="ui fluid compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
+        <a class="ui fluid purple compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
           <i class="users icon"></i>
           Partage des droits
         </a>

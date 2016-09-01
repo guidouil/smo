@@ -7,6 +7,12 @@ Template.home.helpers({
     }
     return false;
   },
+  onlyOneOffice () {
+    if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() <= 1) {
+      return true;
+    }
+    return false;
+  },
 });
 
 Template.home.events({
