@@ -1,33 +1,30 @@
 <template name='home'>
-  <div class="ui center aligned basic segment homeSegment">
+  <div class="ui basic segment homeSegment">
     <img class="ui small centered image" src="/sharemyoffice4-nobg.png">
     {{#unless currentUser}}
-    <h1 class="ui header">Bienvenue sur l'app de partage des bureaux chez<br>BNP PARIBAS</h1>
-    <div class="ui buttons">
-      <a href="/sign-in" class="ui green button">Se connecter</a>
-      <div class="or" data-text="ou"></div>
-      <a href="/sign-up" class="ui button">S'enregistrer</a>
-    </div>
+      <br>
+      {{> atForm state='signIn'}}
     {{else}}
-    <h2 class="ui header">Bonjour, {{capitalize userName}}.</h2>
-    {{#if hasOffice}}
-    <a href="{{pathFor 'search'}}" class="ui green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
-    <br>
-    <br>
-    <a href="{{pathFor 'myOffice'}}" class="ui green basic icon labeled button">
-      {{#if onlyOneOffice}}
+    <div class="ui center aligned basic segment">
+      <h2 class="ui header">Bonjour, {{capitalize userName}}.</h2>
+      {{#if hasOffice}}
+      <a href="{{pathFor 'search'}}" class="ui green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
+      <br>
+      <br>
+      <a href="{{pathFor 'myOffice'}}" class="ui green basic icon labeled button">
+        {{#if onlyOneOffice}}
         <i class="cube icon"></i>GÉRER MON BUREAU
-      {{else}}
+        {{else}}
         <i class="cubes icon"></i>GÉRER MES BUREAUX
+        {{/if}}
+      </a>
+      {{else}}
+      <a href="{{pathFor 'createMyOffice'}}" class="ui green basic icon labeled button"><i class="save icon"></i>ENREGISTREZ VOTRE BUREAU</a>
+      <br>
+      <br>
+      <a href="{{pathFor 'search'}}" class="ui green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
       {{/if}}
-    </a>
-    {{else}}
-    <a href="{{pathFor 'createMyOffice'}}" class="ui green basic icon labeled button"><i class="save icon"></i>ENREGISTREZ VOTRE BUREAU</a>
-    <br>
-    <br>
-    <a href="{{pathFor 'search'}}" class="ui green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
-    {{/if}}
+    </div>
     {{/unless}}
   </div>
-  {{> footer}}
 </template>

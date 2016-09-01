@@ -15,12 +15,12 @@
       <span class="ui inverted header">{{toUpperCase routeName}}</span>
     </div>
     <div class="right menu">
-      {{#if isMyOfice}}
+      {{#if isMyOffice}}
       <a class="middle aligned item" href="{{pathFor 'createMyOffice'}}">
         <i class="big plus icon"></i>
       </a>
       {{else}}
-        {{#if isEditMyOfice}}
+        {{#if isEditMyOffice}}
         <a class="middle aligned item deleteOffice">
           <i class="big trash icon"></i>
         </a>

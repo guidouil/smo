@@ -7,9 +7,9 @@
           <i class="green user icon"></i>
           Propriétaires
         </h4>
-        <div class="ui center aligned sub header">
+        <p class="ui center aligned tiny header">
           Droits d'édition du bureau et de ses disponibilités.
-        </div>
+        </p>
         <div class="ui list">
         {{#each owners}}
         <div class="item" id="{{userId}}">
@@ -23,15 +23,16 @@
         <div class="ui sub header">Ajouter un propriétaire</div>
         <div class="ui fluid icon input">
           <input type="email" id="ownerMail" placeholder="Adresse email du nouveau propriétaire">
-          <i class="add user link icon addOwner"></i>
+          <i class="green add user link icon addOwner"></i>
         </div>
+        <br>
         <h4 class="ui horizontal divider header">
           <i class="purple users icon"></i>
           Utilisateurs
         </h4>
-        <div class="ui center aligned sub header">
+        <p class="ui center aligned tiny header">
           Droits d'édition des disponibilités uniquement.
-        </div>
+        </p>
         <div class="ui list">
         {{#each users}}
         <div class="item" id="{{userId}}">{{email}}&nbsp;&nbsp;<i class="red remove link icon removeUser"></i></div>
@@ -44,7 +45,7 @@
         <div class="ui sub header">Ajouter un utilisateur</div>
         <div class="ui fluid icon input">
           <input type="email" id="userMail" placeholder="Adresse email du nouvel utilisateur">
-          <i class="add user link icon addUser"></i>
+          <i class="purple add user link icon addUser"></i>
         </div>
 
 

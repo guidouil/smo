@@ -9,18 +9,33 @@ escapeHtml = function (str) {
 };
 
 Template.main.onRendered(function () {
-  let swipe = require('jquery-touchswipe');
-  $('body').swipe({
-    //Generic swipe handler for all directions
-    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-      if (direction === 'right') {
-        $('.mainSidebar').sidebar('show');
-      }
-      if (direction === 'left') {
-        $('.mainSidebar').sidebar('hide');
-      }
-    },
-  });
+  // let swipe = require('jquery-touchswipe');
+  // $('body').swipe({
+  //   //Generic swipe handler for all directions
+  //   swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+  //     if (direction === 'right') {
+  //       $('.mainSidebar').sidebar('show');
+  //     }
+  //     if (direction === 'left') {
+  //       $('.mainSidebar').sidebar('hide');
+  //     }
+  //     if (direction === 'up') {
+  //       window.scrollBy(0, distance);
+  //     }
+  //     if (direction === 'down') {
+  //       window.scrollBy(0, distance * -1);
+  //     }
+  //   },
+  // });
+});
+
+Template.main.helpers({
+  isHomeOrHelp () {
+    if (Router.current().route) {
+      return Router.current().route.getName() === 'home' || Router.current().route.getName() === 'help';
+    }
+    return false;
+  },
 });
 
 Template.registerHelper('toLowerCase', function (string) {

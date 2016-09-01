@@ -11,13 +11,13 @@ Template.header.helpers({
     }
     return false;
   },
-  isMyOfice () {
+  isMyOffice () {
     if (Router.current().route) {
       return Router.current().route.getName() === 'myOffice';
     }
     return false;
   },
-  isEditMyOfice () {
+  isEditMyOffice () {
     if (Router.current().route) {
       return Router.current().route.getName() === 'editMyOffice';
     }
@@ -28,6 +28,8 @@ Template.header.helpers({
     if (routeName) {
       switch (routeName) {
       default:
+        routeName = 'share my office';
+        break;
       case 'home':
         routeName = 'accueil';
         break;
@@ -82,10 +84,9 @@ Template.header.events({
   'click .deleteOffice' () {
     $('.deleteOfficeModal').modal({
       onApprove: function() {
-        Meteor.call('removeReservations', Router.current().params.officeId, function () {
-          Offices.remove({_id: Router.current().params.officeId});
-          Router.go('home');
-        });
+        Meteor.call('removeOfficeAndReservations', Router.current().params.officeId);
+        Router.go('myOffice');
+        return true;
       },
     }).modal('show');
   },
