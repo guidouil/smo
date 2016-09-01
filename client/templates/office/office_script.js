@@ -78,7 +78,7 @@ Template.office.helpers({
 Template.office.events({
   'click .bookOffice' () {
     $('.field').removeClass('error');
-    let reservationDay = new Date($('#reservationDay_hidden').val() + ' 00:00');
+    let reservationDay = moment($('#reservationDay_hidden').val() + ' 00:00').toDate();
     if (!reservationDay) {
       $('#reservationDay').parent('.field').addClass('error');
       return false;
@@ -118,7 +118,7 @@ Template.office.events({
     return false;
   },
   'change #reservationDay' () {
-    let reservationDayDate = new Date($('#reservationDay_hidden').val());
+    let reservationDayDate = moment($('#reservationDay_hidden').val()).toDate();
     let office = Offices.findOne({ _id: Router.current().params.officeId });
     let availability = _.find( office.availabilities, function (availability) {
       return availability.available === true && moment(reservationDayDate).isSame(availability.date, 'day');

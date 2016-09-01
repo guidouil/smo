@@ -49,7 +49,7 @@ Template.search.helpers({
 Template.search.events({
   'click .searchOfficesButton' () {
     let query = $('#searchOfficesInput').val();
-    let date = new Date($('#dateFilter_hidden').val() + ' 00:00');
+    let date = moment($('#dateFilter_hidden').val() + ' 00:00').toDate();
     Session.set('searchedDate', date);
     Meteor.call('searchOffices', query, date, function (error, result) {
       if (error) {

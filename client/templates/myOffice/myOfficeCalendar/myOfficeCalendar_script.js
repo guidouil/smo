@@ -174,8 +174,8 @@ Template.myOfficeCalendar.events({
       $('#endAt').parent('.field').addClass('error');
       return false;
     }
-    startAt = new Date(startAt + ' ' + startTime);
-    endAt = new Date(endAt + ' ' + endTime);
+    startAt = new moment(startAt + ' ' + startTime).toDate();
+    endAt = new moment(endAt + ' ' + endTime).toDate();
     if (startAt > endAt) {
       $('#startAt').parent('.field').addClass('error');
       $('#endAt').parent('.field').addClass('error');
@@ -218,7 +218,7 @@ Template.myOfficeCalendar.events({
     }});
   },
   'change #startAt' () {
-    let startAtDate = new Date($('#startAt_hidden').val());
+    let startAtDate = moment($('#startAt_hidden').val()).toDate();
     endAtPicker.set({
       'min': startAtDate,
       'select': startAtDate,
