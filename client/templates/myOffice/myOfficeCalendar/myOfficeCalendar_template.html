@@ -1,38 +1,5 @@
 <template name='myOfficeCalendar'>
   <div class="ui basic segment">
-    <!-- <h3 class="ui header">Horraires du bureau<label class="ui horizontal label">{{office.number}}</label></h3>
-    <div class="ui form">
-
-      <div class="inline fields">
-        {{#each days}}
-          <div class="inline field">
-            <div class="ui checkbox">
-              <input type="checkbox" name="{{value}}" class="hidden day" id="{{value}}" {{isOpen value}}>
-              <label for="{{value}}">{{capitalize label}}</label>
-            </div>
-          </div>
-        {{/each}}
-      </div>
-
-      <div class="field">
-        <div class="ui two column grid">
-          <div class="column">
-            <div class="field">
-              <label for="openAt">Ouverture</label>
-              <input type="text" placeholder="Heure d'ouveture" id="openAt" value="{{office.openAt}}">
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label for="closeAt">Fermeture</label>
-              <input type="text" placeholder="Heure de fermeture" id="closeAt" value="{{office.closeAt}}">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ui compact fluid labeled icon button saveOpenHours"><i class="save icon"></i>Enregitrer les horraires</div>
-    </div>
-    <div class="ui divider"></div> -->
     <h3 class="ui header">
       <div class="content">
         Disponibilités du bureau<label class="ui large horizontal label">{{office.number}}</label>
@@ -53,18 +20,6 @@
               <input type="text" placeholder="Fin disponnibilité" id="endAt" name="endAt" data-value="" readonly>
             </div>
           </div>
-          <!-- <div class="column">
-            <div class="field">
-              <label for="startTime">Heure de début</label>
-              <input type="text" placeholder="Début disponnibilité" id="startTime" name="startTime" data-value="{{openAt}}">
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label for="endTime">Heure de fin</label>
-              <input type="text" placeholder="Fin disponnibilité" id="endTime" name="endTime" data-value="{{closeAt}}">
-            </div>
-          </div> -->
         </div>
       </div>
       <div class="inline fields">
@@ -118,5 +73,4 @@
     </table>
     {{/if}}
   </div>
-
 </template>

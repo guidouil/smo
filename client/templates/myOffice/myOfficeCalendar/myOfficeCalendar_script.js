@@ -8,12 +8,6 @@ Template.myOfficeCalendar.onCreated(function(){
 Template.myOfficeCalendar.onRendered(function () {
   let template = this;
   $('.checkbox').checkbox();
-  // $('#openAt').pickatime({
-  //   formatLabel: 'Ouvert à H:i',
-  // });
-  // $('#closeAt').pickatime({
-  //   formatLabel: 'Fermé à H:i',
-  // });
   let office = Offices.findOne({_id: Router.current().params.officeId});
   if (office) {
     let closedDays = openDaysToClosedNumbers(office.openDays);
@@ -31,23 +25,6 @@ Template.myOfficeCalendar.onRendered(function () {
       });
       endAtPicker = endAtInput.pickadate('picker');
     }
-    // let opens = office.openAt.split(':');
-    // let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
-    // let closes = office.closeAt.split(':');
-    // let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(4, 'hours').toDate();
-    // let max = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
-    // let startTimeInput = $('#startTime').pickatime({
-    //   formatLabel: 'Commence à H:i',
-    //   min: min,
-    //   max: startMax,
-    // });
-    // startTimePicker = startTimeInput.pickatime('picker');
-    // let endTimeInput = $('#endTime').pickatime({
-    //   formatLabel: 'F!in!i à H:i',
-    //   min: min,
-    //   max: max,
-    // });
-    // endTimePicker = endTimeInput.pickatime('picker');
   }
 });
 
@@ -120,39 +97,19 @@ Template.myOfficeCalendar.helpers({
 });
 
 Template.myOfficeCalendar.events({
-  // 'click .saveOpenHours' () {
-  //   $('.field').removeClass('error');
-  //   let openDays = {};
-  //   $('.day').each(function(index, el) {
-  //     openDays[el.id] = el.checked;
-  //   });
-  //   let openAt = $('#openAt').val();
-  //   let closeAt = $('#closeAt').val();
-  //   if (!openAt) {
-  //     $('#openAt').parent('.field').addClass('error');
-  //     return false;
-  //   }
-  //   if (!closeAt) {
-  //     $('#closeAt').parent('.field').addClass('error');
-  //     return false;
-  //   }
-  //   if (Number(openAt.replace(':', '')) > Number(closeAt.replace(':', ''))) {
-  //     $('#openAt').parent('.field').addClass('error');
-  //     $('#closeAt').parent('.field').addClass('error');
-  //     return false;
-  //   }
-  //   Offices.update({_id: Router.current().params.officeId}, {$set: {
-  //     openDays: openDays,
-  //     openAt: openAt,
-  //     closeAt: closeAt,
-  //   }});
-  //   return true;
-  // },
   'click .addAvailability' () {
     $('.field').removeClass('error');
     $('.fields').removeClass('error');
     let startAt = $('#startAt_hidden').val();
     let endAt = $('#endAt_hidden').val();
+    if (!startAt) {
+      $('#startAt').parent('.field').addClass('error');
+      return false;
+    }
+    if (!endAt) {
+      $('#endAt').parent('.field').addClass('error');
+      return false;
+    }
     let duration = 'day';
     $('.duration').each(function(index, el) {
       if (el.checked === true) {
@@ -166,16 +123,8 @@ Template.myOfficeCalendar.events({
     } else if (duration === 'pm') {
       startTime = '13:00';
     }
-    if (!startAt) {
-      $('#startAt').parent('.field').addClass('error');
-      return false;
-    }
-    if (!endAt) {
-      $('#endAt').parent('.field').addClass('error');
-      return false;
-    }
-    startAt = new moment(startAt + ' ' + startTime).toDate();
-    endAt = new moment(endAt + ' ' + endTime).toDate();
+    startAt = moment(startAt + ' ' + startTime).toDate();
+    endAt = moment(endAt + ' ' + endTime).toDate();
     if (startAt > endAt) {
       $('#startAt').parent('.field').addClass('error');
       $('#endAt').parent('.field').addClass('error');

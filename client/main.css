@@ -6,7 +6,7 @@ html.ios, html.ios body {
   min-height: 100% !important;
 }
 .main-container {
-  min-height: 100% !important;
+  min-height: 54rem !important;
   padding-top: 4rem;
   padding-bottom: 3rem;
   overflow-y: auto !important;
@@ -28,6 +28,14 @@ i.green.icon {
 .olive {
   background-color: #93bd0e !important;
 }
+i.olive.icon {
+  color: #93bd0e !important;
+  background-color: transparent !important;
+}
 .purple {
   background-color: #96275a !important;
+}
+i.purple.icon {
+  color: #96275a !important;
+  background-color: transparent !important;
 }

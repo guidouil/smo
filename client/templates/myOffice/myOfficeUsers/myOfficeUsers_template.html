@@ -2,18 +2,22 @@
   <div class="ui basic segment">
     {{#if isOfficeOwner}}
 
-        <h3 class="ui header">Partage des droits du bureau<label class="ui large horizontal label">{{office.number}}</label></h3>
-        <h4 class="ui dividing header">
-          <div class="content">
-            Propriétaires
-          </div>
-          <div class="sub header">
-            Droits d'édition du bureau et de ses disponnibilités.
-          </div>
+        <h3 class="ui header">Accès au bureau<label class="ui large horizontal label">{{office.number}}</label></h3>
+        <h4 class="ui horizontal divider header">
+          <i class="green user icon"></i>
+          Propriétaires
         </h4>
+        <div class="ui center aligned sub header">
+          Droits d'édition du bureau et de ses disponibilités.
+        </div>
         <div class="ui list">
         {{#each owners}}
-        <div class="item" id="{{userId}}">{{email}}&nbsp;&nbsp;<i class="red remove link icon removeOwner"></i></div>
+        <div class="item" id="{{userId}}">
+          {{email}}
+          {{#unless equals userId currentUser._id}}
+            &nbsp;&nbsp;<i class="red remove link icon removeOwner"></i>
+          {{/unless}}
+        </div>
         {{/each}}
         </div>
         <div class="ui sub header">Ajouter un propriétaire</div>
@@ -21,21 +25,19 @@
           <input type="email" id="ownerMail" placeholder="Adresse email du nouveau propriétaire">
           <i class="add user link icon addOwner"></i>
         </div>
-        <div class="ui section divider"></div>
-        <h4 class="ui dividing header">
-          <div class="content">
-            Utilisateurs
-          </div>
-          <div class="sub header">
-            Droits d'édition des disponnibilités uniquement.
-          </div>
+        <h4 class="ui horizontal divider header">
+          <i class="purple users icon"></i>
+          Utilisateurs
         </h4>
+        <div class="ui center aligned sub header">
+          Droits d'édition des disponibilités uniquement.
+        </div>
         <div class="ui list">
         {{#each users}}
         <div class="item" id="{{userId}}">{{email}}&nbsp;&nbsp;<i class="red remove link icon removeUser"></i></div>
         {{else}}
         <div class="item disabled">
-          Aucun utilisateurs
+          Aucun utilisateur.
         </div>
         {{/each}}
         </div>
