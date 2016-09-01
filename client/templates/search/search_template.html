@@ -19,7 +19,14 @@
         </div>
         <div class="column">
           <div class="field">
-            <label class="furnituresLabel">Equipements <i class="right floated filter icon"></i></label>
+            <label class="furnituresLabel">Filtre équipements <i class="right floated filter icon"></i></label>
+            <div class="furnituresFilterSelected">
+              {{#each wantedFurnitures}}
+                {{{this}}}
+              {{else}}
+                Aucun équipement filtré
+              {{/each}}
+            </div>
             <div class="furnituresFilter">
               <div class="ui checkbox">
                 <input type="checkbox" class="hidden furniture" id="printer">
