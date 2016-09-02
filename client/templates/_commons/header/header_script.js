@@ -28,10 +28,8 @@ Template.header.helpers({
     if (routeName) {
       switch (routeName) {
       default:
-        routeName = 'share my office';
-        break;
       case 'home':
-        routeName = 'accueil';
+        routeName = 'share my office';
         break;
       case 'profile':
         routeName = 'profil';
@@ -101,7 +99,12 @@ Template.header.events({
   },
   'click .headerTitle' () {
     $('body').animate({scrollTop: 0}, 'fast');
-  }
+  },
+  'click .signOutBtn' () {
+    Meteor.logout(function () {
+      Router.go('home');
+    });
+  },
 });
 
 Template.header.onRendered(function () {

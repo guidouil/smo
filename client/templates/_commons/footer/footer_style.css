@@ -1,3 +1,6 @@
 .bottomFooter {
   border-top: 4px solid #00965E !important;
 }
+.right.aligned.header.item {
+  text-align: right;
+}
