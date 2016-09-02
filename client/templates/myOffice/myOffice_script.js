@@ -11,6 +11,10 @@ Template.myOffice.helpers({
 });
 
 Template.myOffice.events({
+  'click .myOfficeBtn' (evt) {
+    $(evt.currentTarget).addClass('loading');
+    Router.go(evt.currentTarget.dataset.href);
+  },
 });
 
 Template.myOffice.onRendered(function () {

@@ -78,16 +78,16 @@
         <p>{{{nl2br comment}}}</p>
         {{/if}}
       </div>
-      <a class="ui fluid green compact icon labeled button calendarBtn" href="{{pathFor 'agenda' officeId=_id}}">
+      <a class="ui fluid green compact icon labeled button myOfficeBtn" data-href="{{pathFor 'agenda' officeId=_id}}">
         <i class="calendar icon"></i>
         Calendrier des réservations
       </a>
-      <a class="ui fluid olive compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+      <a class="ui fluid olive compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
         <i class="clock icon"></i>
         Disponibilités
       </a>
       {{#if isOfficeOwner _id}}
-        <a class="ui fluid purple compact icon labeled button calendarBtn" href="{{pathFor 'myOfficeUsers' officeId=_id}}">
+        <a class="ui fluid purple compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeUsers' officeId=_id}}">
           <i class="users icon"></i>
           Partage des droits
         </a>

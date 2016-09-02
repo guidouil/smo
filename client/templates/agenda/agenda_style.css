@@ -12,3 +12,6 @@
 .ui-state-highlight {
   font-weight: bolder !important;
 }
+.fc-bgevent {
+  opacity: 0.7 !important;
+}

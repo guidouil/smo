@@ -76,7 +76,11 @@ Template.agenda.onRendered(function () {
       weekends: false,
       scrollTime: '08:00:00',
       allDaySlot: false,
-      businessHours: true,
+      businessHours: {
+        dow: [1, 2, 3, 4, 5],
+        start: '08:00',
+        end: '18:00',
+      },
       buttonIcons: true, // show the prev/next text
       weekNumbers: true,
       editable: false,
