@@ -22,4 +22,5 @@ Template.home.events({
 });
 
 Template.home.onRendered(function () {
+  $('body').animate({scrollTop: 0}, 'fast');
 });

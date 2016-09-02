@@ -12,4 +12,5 @@ Template.profile.onRendered(function () {
       active: '{value}/{total}',
     },
   });
+  $('body').animate({scrollTop: 0}, 'fast');
 });

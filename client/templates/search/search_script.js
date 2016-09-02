@@ -5,6 +5,7 @@ Template.search.onRendered(function () {
   $('#searchOfficesInput').focus();
   $('.furnituresFilter').hide();
   $('#dateFilter').pickadate();
+  $('body').animate({scrollTop: 0}, 'fast');
 });
 
 Template.search.helpers({

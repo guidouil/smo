@@ -4,7 +4,7 @@ Template.createMyOffice.helpers({
 Template.createMyOffice.events({
   'click .title' (evt) {
     if ($(evt.currentTarget).hasClass('active')) {
-      $('.shareOffice').toggle();
+      $('.goStepOne').toggle();
       $('.goStepTwo').toggle();
     }
   },
@@ -21,18 +21,20 @@ Template.createMyOffice.events({
       return false;
     }
     $('.ui.accordion').accordion('open', 1);
-    $('.shareOffice').show();
+    $('.goStepOne').show();
     $('.goStepTwo').hide();
     return true;
   },
-  'click .goStepThree' () {
+  'click .goStepOne' () {
     $('.field').removeClass('error');
     let capacity = $('#capacity').val();
     if (!capacity || capacity < 1) {
       $('#capacity').parent('.field').addClass('error');
       return false;
     }
-    $('.ui.accordion').accordion('open', 2);
+    $('.ui.accordion').accordion('open', 0);
+    $('.goStepOne').hide();
+    $('.goStepTwo').show();
     return true;
   },
   'click .shareOffice' () {
@@ -73,7 +75,8 @@ Template.createMyOffice.events({
 });
 
 Template.createMyOffice.onRendered(function () {
-  $('.shareOffice').hide();
+  $('.goStepOne').hide();
   $('.ui.accordion').accordion();
   $('.ui.checkbox').checkbox();
+  $('body').animate({scrollTop: 0}, 'fast');
 });

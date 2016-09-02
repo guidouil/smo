@@ -14,4 +14,5 @@ Template.myOffice.events({
 });
 
 Template.myOffice.onRendered(function () {
+  $('body').animate({scrollTop: 0}, 'fast');
 });

@@ -40,3 +40,6 @@ i.purple.icon {
   color: #96275a !important;
   background-color: transparent !important;
 }
+.required.field>label:after {
+  color: #B8002E !important;
+}

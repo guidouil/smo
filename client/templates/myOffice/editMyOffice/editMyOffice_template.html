@@ -3,16 +3,16 @@
   {{#with office}}
     <div class="ui basic segment editMyOffice">
       <div class="ui form">
-        <div class="field">
-          <label>* Adresse du bureau</label>
+        <div class="required field">
+          <label>Adresse du bureau</label>
           <textarea rows="2" id="address" required>{{address}}</textarea>
         </div>
-        <div class="field">
-          <label>* Numéro de bureau</label>
+        <div class="seven wide required field">
+          <label>Numéro de bureau</label>
           <input type="text" value="{{number}}" id="number" required>
         </div>
-        <div class="field">
-          <label>* Capacité (nombre de personnes)</label>
+        <div class="six wide required field">
+          <label>Capacité (places)</label>
           <input type="number" value="{{capacity}}" id="capacity" required>
         </div>
         <div class="field">
@@ -51,7 +51,9 @@
         <div class="field">
           <label>Commentaires</label>
           <textarea rows="4" id="comment">{{comment}}</textarea>
+          {{> requiredHelp}}
         </div>
+
         <button type="submit" class="ui fluid green labeled icon button saveOffice"><i class="check icon"></i>ENREGISTREZ VOTRE BUREAU</button>
       </div>
     </div>

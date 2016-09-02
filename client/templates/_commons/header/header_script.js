@@ -99,7 +99,11 @@ Template.header.events({
       },
     }).modal('show');
   },
+  'click .headerTitle' () {
+    $('body').animate({scrollTop: 0}, 'fast');
+  }
 });
 
 Template.header.onRendered(function () {
+  $('body').animate({scrollTop: 0}, 'fast');
 });

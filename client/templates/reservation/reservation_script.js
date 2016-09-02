@@ -27,4 +27,5 @@ Template.reservation.events({
 });
 
 Template.reservation.onRendered(function () {
+  $('body').animate({scrollTop: 0}, 'fast');
 });
