@@ -52,6 +52,15 @@ Template.header.helpers({
           routeName = 'mes bureaux';
         }
         break;
+      case 'office':
+        routeName = 'Bureau';
+        if (Router.current().route && Router.current().params.officeId) {
+          let office = Offices.findOne({_id: Router.current().params.officeId});
+          if (office) {
+            routeName += ' ' + office.number;
+          }
+        }
+        break;
       case 'createMyOffice':
         routeName = 'enregistrer un bureau';
         break;

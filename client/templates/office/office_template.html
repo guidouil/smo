@@ -2,16 +2,17 @@
   <div class="ui basic segment">
     {{#with office}}
     <div class="office">
-      <h3 class="ui header">BUREAU<label class="ui big horizontal label">{{number}}</label></h3>
       {{#if isOfficeOwner _id}}
-        <a href="{{pathFor 'editMyOffice' officeId=_id}}" class="editMyOfficeIcon">
-          <i class="large blue write icon"></i>
-        </a>
+      <h4 class="ui horizontal divider disabled header">
+        Vue publique de votre bureau
+      </h4>
       {{/if}}
+      <h4 class="ui header">
+        BUREAU<label class="ui large horizontal label">{{number}}</label>
+        <div class="sub header">Capacité de {{capacity}} personne{{plural capacity}}.</div>
+      </h4>
       <div class="ui sub header">Adresse</div>
       <p>{{{nl2br address}}}</p>
-
-      <div class="ui sub header">Capacité de {{capacity}} personne{{plural capacity}}</div>
       {{#unless isAllFalse furnitures}}
         <div class="ui sub header">Equipements</div>
         <div class="ui two column grid">
@@ -78,14 +79,10 @@
       <p>{{{nl2br comment}}}</p>
       {{/if}}
     </div>
-    <h3 class="ui dividing header">
-      <div class="content">
-        Reservez le bureau <div class="ui horizontal label">{{number}}</div>
-      </div>
-      <div class="sub header">
-        Par tranches de 30 minutes minimum
-      </div>
-    </h3>
+    <h4 class="ui horizontal divider header">
+      <i class="green add to calendar icon"></i>
+      Reservez ce bureau
+    </h4>
     <div class="ui form">
       <div class="field">
         <div class="ui three column grid">
@@ -109,7 +106,7 @@
           </div>
         </div>
       </div>
-      <div class="ui fluid compact green icon labeled button bookOffice"><i class="check icon"></i>Reserver le bureau : {{number}}</div>
+      <div class="ui fluid green icon labeled button bookOffice"><i class="check icon"></i>Reserver le bureau : {{number}}</div>
     </div>
     {{/with}}
     {{#if reservations}}
