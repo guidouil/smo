@@ -4,7 +4,7 @@ moment.locale('fr');
 Template.search.onRendered(function () {
   $('#searchOfficesInput').focus();
   $('.furnituresFilter').hide();
-  $('#dateFilter').pickadate();
+  $('#dateFilter').pickadate({disable: [6, 7]});
   $('body').animate({scrollTop: 0}, 'fast');
 });
 
