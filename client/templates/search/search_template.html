@@ -67,7 +67,7 @@
               <small>Capacité : {{capacity}} personne{{plural capacity}}</small>
             </a>
             <div class="description">
-              <p>{{{nl2br address}}}</p>
+              <a class="ui sub header" href="{{pathFor 'office' officeId=_id}}">{{{nl2br address}}}</a>
               <p>
                 {{#if furnitures.printer}}
                   <span data-tooltip="Imprimante" data-position="right center">

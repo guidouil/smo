@@ -91,9 +91,10 @@ Template.header.events({
   'click .deleteOffice' () {
     $('.deleteOfficeModal').modal({
       onApprove: function() {
-        Meteor.call('removeOfficeAndReservations', Router.current().params.officeId);
+        Meteor.call('removeOfficeAndReservations', Router.current().params.officeId, function(){
+          return true;
+        });
         Router.go('myOffice');
-        return true;
       },
     }).modal('show');
   },

@@ -9,24 +9,15 @@ escapeHtml = function (str) {
 };
 
 Template.main.onRendered(function () {
-  // let swipe = require('jquery-touchswipe');
-  // $('body').swipe({
-  //   //Generic swipe handler for all directions
-  //   swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-  //     if (direction === 'right') {
-  //       $('.mainSidebar').sidebar('show');
-  //     }
-  //     if (direction === 'left') {
-  //       $('.mainSidebar').sidebar('hide');
-  //     }
-  //     if (direction === 'up') {
-  //       window.scrollBy(0, distance);
-  //     }
-  //     if (direction === 'down') {
-  //       window.scrollBy(0, distance * -1);
-  //     }
-  //   },
-  // });
+  let Hammer = require('hammerjs');
+  let pusher = document.getElementById('pusher');
+  let hammertime = new Hammer(pusher);
+  hammertime.on('swipeleft', function() {
+    $('.mainSidebar').sidebar('hide');
+  });
+  hammertime.on('swiperight', function() {
+    $('.mainSidebar').sidebar('show');
+  });
 });
 
 Template.main.helpers({
