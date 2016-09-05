@@ -2,6 +2,8 @@ let moment = require('moment');
 require('twix');
 
 Template.myOfficeCalendar.onCreated(function(){
+  this.subscribe('Office', Router.current().params.officeId);
+  this.subscribe('Reservations', Router.current().params.officeId);
   this.closedDays = new ReactiveVar([]);
 });
 
@@ -11,9 +13,17 @@ Template.myOfficeCalendar.onRendered(function () {
   let office = Offices.findOne({_id: Router.current().params.officeId});
   if (office) {
     let closedDays = openDaysToClosedNumbers(office.openDays);
-    _.each( office.availabilities, function( availability ) {
-      closedDays.push(availability.date);
-    });
+    if (office.availabilities && office.availabilities.length > 0) {
+      _.each(office.availabilities, function (availability) {
+        closedDays.push(availability.date);
+      });
+    }
+    let reservations = Reservations.find({officeId: Router.current().params.officeId}).fetch();
+    if (reservations && reservations.length > 0) {
+      _.each(reservations, function (reservation) {
+        closedDays.push(reservation.day);
+      });
+    }
     if (closedDays) {
       template.closedDays.set(closedDays);
       let startAtInput = $('#startAt').pickadate({

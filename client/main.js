@@ -10,8 +10,8 @@ escapeHtml = function (str) {
 
 Template.main.onRendered(function () {
   let Hammer = require('hammerjs');
-  let pusher = document.getElementById('pusher');
-  let hammertime = new Hammer(pusher);
+  let body = document.body;
+  let hammertime = new Hammer(body);
   hammertime.on('swipeleft', function() {
     $('.mainSidebar').sidebar('hide');
   });
