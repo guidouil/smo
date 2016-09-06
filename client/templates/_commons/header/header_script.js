@@ -18,8 +18,20 @@ Template.header.helpers({
     return false;
   },
   isEditMyOffice () {
-    if (Router.current().route) {
+    if (Router.current().sroute) {
       return Router.current().route.getName() === 'editMyOffice';
+    }
+    return false;
+  },
+  isProfile () {
+    if (Router.current().route) {
+      return Router.current().route.getName() === 'profile';
+    }
+    return false;
+  },
+  isEditProfile () {
+    if (Router.current().route) {
+      return Router.current().route.getName() === 'editProfile';
     }
     return false;
   },
@@ -33,6 +45,9 @@ Template.header.helpers({
         break;
       case 'profile':
         routeName = 'profil';
+        break;
+      case 'editProfile':
+        routeName = 'éditer profil';
         break;
       case 'reservation':
         routeName = 'réservation';

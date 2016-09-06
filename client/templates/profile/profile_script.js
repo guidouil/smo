@@ -9,7 +9,7 @@ Template.profile.onRendered(function () {
     duration: 200,
     total: 200,
     text: {
-      active: '{value}/{total}',
+      active: '{value} Points',
     },
   });
   $('body').animate({scrollTop: 0}, 'fast');

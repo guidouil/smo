@@ -105,13 +105,13 @@ Template.registerHelper('isAllFalse', function (object) {
 });
 
 Template.registerHelper('profileImageUrl', function () {
-  let profileImage = '';
-  if (Meteor.user()) {
-    let email = contactEmail(Meteor.user());
-    if (email) {
-      profileImage = Gravatar.imageUrl(email);
-    }
-  }
+  let profileImage = '/male.png';
+  // if (Meteor.user()) {
+  //   let email = contactEmail(Meteor.user());
+  //   if (email) {
+  //     profileImage = Gravatar.imageUrl(email);
+  //   }
+  // }
   return profileImage;
 });
 

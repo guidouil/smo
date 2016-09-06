@@ -1,0 +1,24 @@
+<template name='editProfile'>
+  <div class="ui basic segment">
+    <div class="ui form">
+      <div class="field">
+        <label>Image de profil</label>
+        <div class="ui fluid action input">
+          <input type="text" readonly class="uploadImage imageText" placeholder="Cliquez ici pour envoyé votre image. Max 10Mo.">
+          <input type="file" id="imageInput">
+          <div class="ui icon button uploadImage">
+            <i class="cloud upload icon"></i>
+          </div>
+        </div>
+        {{#with currentUpload}}
+          <div class="ui indicating progress" data-value="{{progress.get}}" data-total="100" id="uploadProgress">
+            <div class="bar">
+              <div class="progress"></div>
+            </div>
+            <div class="label">Uploading {{file.name}}</div>
+          </div>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+</template>
