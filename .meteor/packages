@@ -37,3 +37,4 @@ shell-server@0.2.1
 softwarerero:accounts-t9n
 mbanting:cordova-accounts-resume
 ostrio:files
+cloudant:couchdb

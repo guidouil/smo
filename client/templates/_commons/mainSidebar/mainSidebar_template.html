@@ -4,10 +4,10 @@
       <i class="home icon"></i>
       Accueil
     </a>
-    <a class="item" href="{{pathFor 'search'}}">
+    <!-- <a class="item" href="{{pathFor 'search'}}">
       <i class="search icon"></i>
       Recherche<br>Bureau
-    </a>
+    </a> -->
     <a class="item" href="{{pathFor 'agenda'}}">
       <i class="calendar icon"></i>
       Calendrier
@@ -27,9 +27,15 @@
         Mes<br>Bureaux
       </a>
     {{/if}}
-    <a class="item" href="{{pathFor 'help'}}">
+    <!-- <a class="item" href="{{pathFor 'help'}}">
       <i class="help icon"></i>
       À propos
+    </a> -->
+    {{#if currentUser}}
+    <a class="item">
+      <i class="sign out icon signOutBtn"></i>
+      Quitter
     </a>
+    {{/if}}
   </div>
 </template>

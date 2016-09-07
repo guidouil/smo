@@ -18,7 +18,7 @@ Template.header.helpers({
     return false;
   },
   isEditMyOffice () {
-    if (Router.current().sroute) {
+    if (Router.current().route) {
       return Router.current().route.getName() === 'editMyOffice';
     }
     return false;
@@ -40,8 +40,10 @@ Template.header.helpers({
     if (routeName) {
       switch (routeName) {
       default:
-      case 'home':
         routeName = 'share my office';
+        break;
+      case 'home':
+        routeName = 'accueil';
         break;
       case 'profile':
         routeName = 'profil';
@@ -115,11 +117,6 @@ Template.header.events({
   },
   'click .headerTitle' () {
     $('body').animate({scrollTop: 0}, 'fast');
-  },
-  'click .signOutBtn' () {
-    Meteor.logout(function () {
-      Router.go('home');
-    });
   },
 });
 

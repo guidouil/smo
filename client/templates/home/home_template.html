@@ -9,19 +9,19 @@
     <div class="ui center aligned basic segment">
       <h2 class="ui header">Bonjour, {{capitalize userName}}.</h2>
       {{#if hasOffice}}
-      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
-      <br>
-      <a href="{{pathFor 'myOffice'}}" class="ui fluid green basic icon labeled button">
+      <a href="{{pathFor 'myOffice'}}" class="ui fluid green icon labeled button">
         {{#if onlyOneOffice}}
-        <i class="cube icon"></i>GÉRER MON BUREAU
+        <i class="send icon"></i>SHARE
         {{else}}
         <i class="cubes icon"></i>GÉRER MES BUREAUX
         {{/if}}
       </a>
-      {{else}}
-      <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green basic icon labeled button"><i class="send icon"></i>PARTAGEZ VOTRE BUREAU</a>
       <br>
-      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>RECHERCHER UN BUREAU</a>
+      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>SEARCH</a>
+      {{else}}
+      <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green icon labeled button"><i class="send icon"></i>SHARE</a>
+      <br>
+      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>SEARCH</a>
       {{/if}}
     </div>
     {{/unless}}
