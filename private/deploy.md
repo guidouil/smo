@@ -23,4 +23,12 @@ export ROOT_URL='http://92.222.92.44:3000'
 forever start --append --uid "smo" smo/main.js
 date
 
+
+# On Blue Mix
+cf push sharemyoffice -b https://github.com/cloudfoundry-community/cf-meteor-buildpack.git --no-start
+# cf create-service mongolab sandbox sharemyoffice-mongodb
+cf create-service mongodb 100 sharemyoffice-mongodb
+cf bind-service sharemyoffice sharemyoffice-mongodb
+cf start sharemyoffice
+
 ```

@@ -17,21 +17,6 @@
           </div>
         </a>
 
-        <a class="ui fluid green compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
-          <i class="add to calendar icon"></i>
-          Ajouter des disponibilités
-        </a>
-        <a class="ui fluid olive compact icon labeled button myOfficeBtn" data-href="{{pathFor 'agenda' officeId=_id}}">
-          <i class="calendar icon"></i>
-          Calendrier des réservations
-        </a>
-        {{#if isOfficeOwner _id}}
-          <a class="ui fluid purple compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeUsers' officeId=_id}}">
-            <i class="users icon"></i>
-            Partage des droits
-          </a>
-        {{/if}}
-
         <div class="ui sub header">Adresse</div>
         <p>{{{nl2br address}}}</p>
         {{#unless isAllFalse furnitures}}
@@ -98,6 +83,21 @@
         {{#if comment}}
         <div class="ui sub header">Commentaire</div>
         <p>{{{nl2br comment}}}</p>
+        {{/if}}
+
+        <a class="ui fluid green compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+          <i class="add to calendar icon"></i>
+          Ajouter des disponibilités
+        </a>
+        <a class="ui fluid olive compact icon labeled button myOfficeBtn" data-href="{{pathFor 'agenda' officeId=_id}}">
+          <i class="calendar icon"></i>
+          Calendrier des réservations
+        </a>
+        {{#if isOfficeOwner _id}}
+          <a class="ui fluid purple compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeUsers' officeId=_id}}">
+            <i class="users icon"></i>
+            Partage des droits
+          </a>
         {{/if}}
       </div>
       {{#unless onlyOneOffice}}
