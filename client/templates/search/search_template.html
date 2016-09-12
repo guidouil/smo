@@ -69,13 +69,13 @@
       </div>
     </div>
 
-    <div class="ui celled items">
+    <div class="ui relaxed divided list">
       {{#each offices}}
         <div class="item">
           <div class="content">
             <a class="header" href="{{pathFor 'office' officeId=_id}}">
               Office <div class="ui large horizontal label">{{number}}</div>
-              <small>Capacity: {{capacity}} people{{plural capacity}}</small>
+              <small>Capacity: {{capacity}} people</small>
             </a>
             <div class="description">
               <a class="ui sub header" href="{{pathFor 'office' officeId=_id}}">{{{nl2br address}}}</a>
