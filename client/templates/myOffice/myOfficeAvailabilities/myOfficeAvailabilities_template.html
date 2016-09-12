@@ -24,12 +24,6 @@
         <label for="duration">Durée :</label>
         <div class="field">
           <div class="ui radio checkbox">
-            <input type="radio" name="duration" checked="" value="day" class="hidden duration">
-            <label>Journée</label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
             <input type="radio" name="duration" value="am" class="hidden duration">
             <label>Matin</label>
           </div>
@@ -40,8 +34,14 @@
             <label>Après-midi</label>
           </div>
         </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="duration" checked="" value="day" class="hidden duration">
+            <label>Journée</label>
+          </div>
+        </div>
       </div>
-      <button class="ui green compact fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Ajouter cette disponibilité</button>
+      <button class="ui green fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Ajouter cette disponibilité</button>
     </div>
     {{#if office.availabilities}}
     <h4 class="ui horizontal divider header">

@@ -85,18 +85,18 @@
         <p>{{{nl2br comment}}}</p>
         {{/if}}
 
-        <a class="ui fluid green compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeAvailabilities' officeId=_id}}">
+        <a class="ui fluid green icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeAvailabilities' officeId=_id}}">
           <i class="add to calendar icon"></i>
-          Ajouter des disponibilités
+          Add availabilities
         </a>
-        <a class="ui fluid olive compact icon labeled button myOfficeBtn" data-href="{{pathFor 'agenda' officeId=_id}}">
+        <a class="ui fluid olive icon labeled button myOfficeBtn" data-href="{{pathFor 'agenda' officeId=_id}}">
           <i class="calendar icon"></i>
-          Calendrier des réservations
+          Reservations calendar
         </a>
         {{#if isOfficeOwner _id}}
-          <a class="ui fluid purple compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeUsers' officeId=_id}}">
+          <a class="ui fluid purple icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeUsers' officeId=_id}}">
             <i class="users icon"></i>
-            Partage des droits
+            Office owners & users
           </a>
         {{/if}}
       </div>
