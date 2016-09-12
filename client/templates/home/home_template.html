@@ -1,6 +1,6 @@
 <template name='home'>
   <div class="ui basic segment homeSegment">
-    <img class="ui small centered image myOffice" src="/sharemyoffice4-nobg.png">
+    <img class="ui small centered image" src="/sharemyoffice4-nobg.png">
     {{#unless currentUser}}
       <br>
       {{> atForm state='signIn'}}
@@ -9,7 +9,7 @@
     <div class="ui center aligned basic segment">
       <h2 class="ui header">Welcome, {{capitalize userName}}</h2>
       {{#if hasOffice}}
-      <a class="ui fluid green icon labeled button myOffice">
+      <a class="ui fluid green icon labeled button shareMyOffice">
         {{#if onlyOneOffice}}
         <i class="send icon"></i>SHARE MY OFFICE
         {{else}}

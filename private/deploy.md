@@ -1,6 +1,6 @@
+# Deploy on a private server
 ```sh
 # NOT AS ROOT
-# Deploy on a private server
 cd
 rm -rf smo-source
 rm -rf builds
@@ -24,8 +24,10 @@ export ROOT_URL='http://92.222.92.44:3000'
 forever start --append --uid "smo" smo/main.js
 date
 
+```
 
-# Deploy to public Bluemix - https://console.eu-gb.bluemix.net
+# Deploy to public Bluemix  https://console.eu-gb.bluemix.net
+```sh
 meteor build ../builds/. --server-only --architecture os.linux.x86_64
 cd ../builds
 rm -rf bundle

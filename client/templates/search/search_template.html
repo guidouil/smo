@@ -42,8 +42,16 @@
               <input type="checkbox" class="hidden furniture" id="multiphone">
               <label for="multiphone"><i class="call icon"></i>Conf. phone</label>
             </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="wifi">
+              <label for="wifi"><i class="wifi icon"></i>Wifi</label>
+            </div>
           </div>
           <div class="column">
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="copier">
+              <label for="copier"><i class="copy icon"></i>Copier</label>
+            </div>
             <div class="ui checkbox">
               <input type="checkbox" class="hidden furniture" id="plugs">
               <label for="plugs"><i class="plug icon"></i>Power strip</label>
@@ -73,32 +81,42 @@
               <a class="ui sub header" href="{{pathFor 'office' officeId=_id}}">{{{nl2br address}}}</a>
               <p>
                 {{#if furnitures.printer}}
-                  <span data-tooltip="Imprimante" data-position="right center">
+                  <span data-tooltip="Printer" data-position="right center">
                     <i class="print icon"></i>
                   </span>
                 {{/if}}
                 {{#if furnitures.whiteboard}}
-                  <span data-tooltip="Tableau blanc" data-position="right center">
+                  <span data-tooltip="Whiteboard" data-position="right center">
                     <i class="sticky note outline icon"></i>
                   </span>
                 {{/if}}
                 {{#if furnitures.multiphone}}
-                  <span data-tooltip="Pieuvre" data-position="right center">
+                  <span data-tooltip="Conference phone" data-position="right center">
                     <i class="call icon"></i>
                   </span>
                 {{/if}}
+                {{#if furnitures.wifi}}
+                  <span data-tooltip="Wifi" data-position="right center">
+                    <i class="wifi icon"></i>
+                  </span>
+                {{/if}}
+                {{#if furnitures.copier}}
+                  <span data-tooltip="Copier" data-position="right center">
+                    <i class="copy icon"></i>
+                  </span>
+                {{/if}}
                 {{#if furnitures.plugs}}
-                  <span data-tooltip="Multiprise" data-position="right center">
+                  <span data-tooltip="Power strip" data-position="right center">
                     <i class="plug icon"></i>
                   </span>
                 {{/if}}
                 {{#if furnitures.beamer}}
-                  <span data-tooltip="Projecteur" data-position="right center">
+                  <span data-tooltip="Beamer" data-position="right center">
                     <i class="record icon"></i>
                   </span>
                 {{/if}}
                 {{#if furnitures.coffee}}
-                  <span data-tooltip="Machine à café" data-position="right center">
+                  <span data-tooltip="Coffee" data-position="right center">
                     <i class="coffee icon"></i>
                   </span>
                 {{/if}}

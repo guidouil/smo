@@ -16,7 +16,7 @@ Template.home.helpers({
 });
 
 Template.home.events({
-  'click .myOffice' () {
+  'click .shareMyOffice' () {
     if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() > 1) {
       Router.go('myOffice');
       return true;
