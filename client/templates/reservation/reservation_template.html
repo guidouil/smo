@@ -3,62 +3,72 @@
     {{#with reservation}}
       <h3 class="ui header">
         <div class="content">
-          Reservation du bureau<label class="ui horizontal label">{{officeNumber}}</label>
+          Office <label class="ui horizontal label">{{officeNumber}}</label> reservation
         </div>
         <div class="sub header">
-           Le {{toDate day}} de {{startTime}} à {{endTime}}<br>
-           Par <a href="mailto:{{creatorEmail}}" class="ui link" target="_blanck">{{creatorEmail}}</a>
+           The {{toDate day}} from {{startTime}} to {{endTime}}<br>
+           By <a href="mailto:{{creatorEmail}}" class="ui link" target="_blanck">{{creatorEmail}}</a>
         </div>
       </h3>
-      <div class="ui sub header">Adresse</div>
+      <div class="ui sub header">Address</div>
       <p>{{{nl2br office.address}}}</p>
       <p>
         {{#if office.furnitures.printer}}
-          <span data-tooltip="Imprimante" data-position="right center">
+          <span data-tooltip="Printer" data-position="right center">
             <i class="print icon"></i>
           </span>
         {{/if}}
         {{#if office.furnitures.whiteboard}}
-          <span data-tooltip="Tableau blanc" data-position="right center">
+          <span data-tooltip="Whiteboard" data-position="right center">
             <i class="sticky note outline icon"></i>
           </span>
         {{/if}}
         {{#if office.furnitures.multiphone}}
-          <span data-tooltip="Pieuvre" data-position="right center">
+          <span data-tooltip="Conf. phone" data-position="right center">
             <i class="call icon"></i>
           </span>
         {{/if}}
+        {{#if office.furnitures.wifi}}
+          <span data-tooltip="Wifi" data-position="right center">
+            <i class="wifi icon"></i>
+          </span>
+        {{/if}}
+        {{#if office.furnitures.copier}}
+          <span data-tooltip="Copier" data-position="right center">
+            <i class="copy icon"></i>
+          </span>
+        {{/if}}
         {{#if office.furnitures.plugs}}
-          <span data-tooltip="Multiprise" data-position="right center">
+          <span data-tooltip="Power strip" data-position="right center">
             <i class="plug icon"></i>
           </span>
         {{/if}}
         {{#if office.furnitures.beamer}}
-          <span data-tooltip="Projecteur" data-position="right center">
+          <span data-tooltip="Beamer" data-position="right center">
             <i class="record icon"></i>
           </span>
         {{/if}}
         {{#if office.furnitures.coffee}}
-          <span data-tooltip="Machine à café" data-position="right center">
+          <span data-tooltip="Coffee" data-position="right center">
             <i class="coffee icon"></i>
           </span>
         {{/if}}
       </p>
       <a class="ui green fluid icon labeled button" href="{{pathFor 'office' officeId=officeId}}">
-        <i class="eye icon"></i>
-        Voir le bureau
+        <i class="add to calendar icon"></i>
+        Book office again
       </a>
       <br>
       {{#if isOfficeOwnerOrUser officeId}}
       <div class="ui red fluid icon labeled button cancelReservation">
         <i class="trash icon"></i>
-        Annuler la reservation
+        Cancel reservation
       </div>
       {{else}}
         {{#if equals creator currentUser._id}}
         <div class="ui red fluid icon labeled button cancelReservation">
           <i class="trash icon"></i>
-          Annuler la reservation
+          Cancel reservation
         </div>
         {{/if}}
       {{/if}}

@@ -97,41 +97,41 @@
     </div>
     <h4 class="ui horizontal divider header">
       <i class="green add to calendar icon"></i>
-      Reservez ce bureau
+      Book this office
     </h4>
     <div class="ui form">
       <div class="field">
         <div class="ui three column grid">
           <div class="eight wide column">
             <div class="field">
-              <label for="reservationDay">Date</label>
+              <label for="reservationDay">Reservation date</label>
               <input type="text" placeholder="Date réservation" id="reservationDay" name="reservationDay" data-value="{{availability.date}}">
             </div>
           </div>
           <div class="four wide column">
             <div class="field">
-              <label for="startTime">Début</label>
-              <input type="text" placeholder="Début réservation" id="startTime" name="startTime" data-value="{{availability.startTime}}">
+              <label for="startTime">Start time</label>
+              <input type="text" placeholder="Start time" id="startTime" name="startTime" data-value="{{availability.startTime}}">
             </div>
           </div>
           <div class="four wide column">
             <div class="field">
-              <label for="endTime">Fin</label>
-              <input type="text" placeholder="Fin réservation" id="endTime" name="endTime" data-value="{{availability.endTime}}">
+              <label for="endTime">End time</label>
+              <input type="text" placeholder="End time" id="endTime" name="endTime" data-value="{{availability.endTime}}">
             </div>
           </div>
         </div>
       </div>
-      <div class="ui fluid green icon labeled button bookOffice"><i class="check icon"></i>Reserver le bureau : {{number}}</div>
+      <div class="ui fluid green icon labeled button bookOffice"><i class="check icon"></i>Book office {{number}}</div>
     </div>
     {{/with}}
     {{#if reservations}}
-    <h4 class="ui header">Mes réservations</h4>
+    <h4 class="ui header">My reservations</h4>
     <table class="ui fluid compact striped unstackable table">
       <thead>
         <tr class="center aligned">
           <th>Date</th>
-          <th>Heures</th>
+          <th>Hours</th>
         </tr>
       </thead>
       <tbody>

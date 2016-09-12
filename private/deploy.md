@@ -29,6 +29,7 @@ date
 # Deploy to public Bluemix  https://console.eu-gb.bluemix.net
 ```sh
 meteor build ../builds/. --server-only --architecture os.linux.x86_64
+
 cd ../builds
 rm -rf bundle
 tar xzf smo.tar.gz
