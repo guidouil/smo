@@ -1,27 +1,27 @@
 <template name='home'>
   <div class="ui basic segment homeSegment">
-    <img class="ui small centered image" src="/sharemyoffice4-nobg.png">
+    <img class="ui small centered image myOffice" src="/sharemyoffice4-nobg.png">
     {{#unless currentUser}}
       <br>
       {{> atForm state='signIn'}}
       {{> requiredHelp}}
     {{else}}
     <div class="ui center aligned basic segment">
-      <h2 class="ui header">Bonjour, {{capitalize userName}}.</h2>
+      <h2 class="ui header">Welcome, {{capitalize userName}}</h2>
       {{#if hasOffice}}
-      <a href="{{pathFor 'myOffice'}}" class="ui fluid green icon labeled button">
+      <a class="ui fluid green icon labeled button myOffice">
         {{#if onlyOneOffice}}
-        <i class="send icon"></i>SHARE
+        <i class="send icon"></i>SHARE MY OFFICE
         {{else}}
-        <i class="cubes icon"></i>GÉRER MES BUREAUX
+        <i class="send icon"></i>SHARE MY OFFICES
         {{/if}}
       </a>
       <br>
-      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>BOOK A DESK</a>
+      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>BOOK AN OFFICE</a>
       {{else}}
-      <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green icon labeled button"><i class="send icon"></i>SHARE</a>
+      <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green icon labeled button"><i class="send icon"></i>SHARE MY OFFICE</a>
       <br>
-      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>BOOK A DESK</a>
+      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>BOOK AN OFFICE</a>
       {{/if}}
     </div>
     {{/unless}}

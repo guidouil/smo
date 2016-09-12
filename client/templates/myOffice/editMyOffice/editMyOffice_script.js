@@ -13,11 +13,6 @@ Template.editMyOffice.helpers({
 Template.editMyOffice.events({
   'click .saveOffice' () {
     $('.field').removeClass('error');
-    let address = escapeHtml($('#address').val());
-    if (!address) {
-      $('#address').parent('.field').addClass('error');
-      return false;
-    }
     let number = escapeHtml($('#number').val());
     if (!number || number < 1) {
       $('#number').parent('.field').addClass('error');
@@ -26,6 +21,11 @@ Template.editMyOffice.events({
     let capacity = $('#capacity').val();
     if (!capacity || capacity < 1) {
       $('#capacity').parent('.field').addClass('error');
+      return false;
+    }
+    let address = escapeHtml($('#address').val());
+    if (!address) {
+      $('#address').parent('.field').addClass('error');
       return false;
     }
     let furnitures = {};

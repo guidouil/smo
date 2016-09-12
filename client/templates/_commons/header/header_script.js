@@ -43,32 +43,32 @@ Template.header.helpers({
         routeName = 'share my office';
         break;
       case 'home':
-        routeName = 'accueil';
+        routeName = 'home';
         break;
       case 'profile':
-        routeName = 'profil';
+        routeName = 'profile';
         break;
       case 'editProfile':
-        routeName = 'éditer profil';
+        routeName = 'edit profile';
         break;
       case 'reservation':
-        routeName = 'réservation';
+        routeName = 'reservation';
         break;
       case 'search':
-        routeName = 'recherche bureau';
+        routeName = 'book an office';
         break;
       case 'help':
-        routeName = 'à propos';
+        routeName = 'about';
         break;
       case 'myOffice':
         if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() <= 1) {
-          routeName = 'mon bureau';
+          routeName = 'my office';
         } else {
-          routeName = 'mes bureaux';
+          routeName = 'my offices';
         }
         break;
       case 'office':
-        routeName = 'Bureau';
+        routeName = 'office';
         if (Router.current().route && Router.current().params.officeId) {
           let office = Offices.findOne({_id: Router.current().params.officeId});
           if (office) {
@@ -77,19 +77,19 @@ Template.header.helpers({
         }
         break;
       case 'createMyOffice':
-        routeName = 'enregistrer un bureau';
+        routeName = 'share my office';
         break;
       case 'editMyOffice':
-        routeName = 'éditer mon bureau';
+        routeName = 'edit my office';
         break;
-      case 'myOfficeCalendar':
-        routeName = 'disponibilités';
+      case 'myOfficeAvailabilities':
+        routeName = 'availabilities';
         break;
       case 'myOfficeUsers':
-        routeName = 'droits de mon bureau';
+        routeName = 'my office rights';
         break;
       case 'agenda':
-        routeName = 'calendrier';
+        routeName = 'calendar';
         break;
       }
     }

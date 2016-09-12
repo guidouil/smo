@@ -2,7 +2,7 @@
   <div class="ui left demo vertical green inverted sidebar labeled icon menu mainSidebar">
     <a class="item" href="{{pathFor 'home'}}">
       <i class="home icon"></i>
-      Accueil
+      Home
     </a>
     <!-- <a class="item" href="{{pathFor 'search'}}">
       <i class="search icon"></i>
@@ -10,31 +10,31 @@
     </a> -->
     <a class="item" href="{{pathFor 'agenda'}}">
       <i class="calendar icon"></i>
-      Calendrier
-    </a>
-    <a class="item" href="{{pathFor 'profile'}}">
-      <i class="user icon"></i>
-      Profil
+      Calendar
     </a>
     {{#if onlyOneOffice}}
       <a class="item" href="{{pathFor 'myOffice'}}">
-        <i class="cube icon"></i>
-        Mon<br>Bureau
+        <i class="building icon"></i>
+        My office
       </a>
     {{else}}
       <a class="item" href="{{pathFor 'myOffice'}}">
-        <i class="cubes icon"></i>
-        Mes<br>Bureaux
+        <i class="building icon"></i>
+        My offices
       </a>
     {{/if}}
+    <a class="item" href="{{pathFor 'profile'}}">
+      <i class="user icon"></i>
+      Profile
+    </a>
     <!-- <a class="item" href="{{pathFor 'help'}}">
       <i class="help icon"></i>
       À propos
     </a> -->
     {{#if currentUser}}
-    <a class="item">
-      <i class="sign out icon signOutBtn"></i>
-      Quitter
+    <a class="item signOutBtn">
+      <i class="sign out icon"></i>
+      Logout
     </a>
     {{/if}}
   </div>

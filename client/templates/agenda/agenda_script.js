@@ -50,14 +50,13 @@ Template.agenda.onRendered(function () {
             end: end,
             url: '/my-office-calendar/' + office._id,
             color: '#00965E',
-            description: 'blabla',
           });
         } else {
           calendarEvents.push({
             title: availability.user,
             start: start,
             end: end,
-            url: '/my-office-calendar/' + office._id,
+            url: '/my-office-availabilities/' + office._id,
             color: '#DB2828',
           });
         }
@@ -70,7 +69,8 @@ Template.agenda.onRendered(function () {
         right: 'agendaDay,agendaWeek,month',
       },
       theme: true,
-      monthNames: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
+      defaultView: 'agendaWeek',
+      // monthNames: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
       aspectRatio: 0.7,
       defaultDate: new Date(),
       weekends: false,

@@ -85,7 +85,7 @@
         <p>{{{nl2br comment}}}</p>
         {{/if}}
 
-        <a class="ui fluid green compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeCalendar' officeId=_id}}">
+        <a class="ui fluid green compact icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeAvailabilities' officeId=_id}}">
           <i class="add to calendar icon"></i>
           Ajouter des disponibilités
         </a>
@@ -105,7 +105,7 @@
       {{/unless}}
     {{else}}
       <div class="ui center aligned basic segment">
-        <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green basic icon labeled button"><i class="send icon"></i>PARTAGEZ VOTRE BUREAU</a>
+        <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green icon labeled button"><i class="send icon"></i>SHARE MY OFFICE</a>
       </div>
     {{/each}}
   </div>

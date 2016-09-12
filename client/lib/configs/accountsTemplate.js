@@ -26,13 +26,19 @@ AccountsTemplates.configure({
   // termsUrl: 'terms-of-use',
 });
 
-T9n.setLanguage('fr');
+// T9n.setLanguage('fr');
 
 //Routes
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('signIn');
-AccountsTemplates.configureRoute('signUp');
+AccountsTemplates.configureRoute('signIn', {
+  layoutTemplate: 'main',
+  redirect: '/',
+});
+AccountsTemplates.configureRoute('signUp', {
+  layoutTemplate: 'main',
+  redirect: '/',
+});
 AccountsTemplates.configureRoute('verifyEmail');

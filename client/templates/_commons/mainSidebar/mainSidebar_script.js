@@ -8,13 +8,12 @@ Template.mainSidebar.helpers({
 });
 
 Template.mainSidebar.events({
+  'click .signOutBtn' () {
+    Meteor.logout();
+    Router.go('/');
+  },
   'click .mainSidebar > .item' () {
     $('.mainSidebar').sidebar('hide');
-  },
-  'click .signOutBtn' () {
-    Meteor.logout(function () {
-      Router.go('home');
-    });
   },
 });
 

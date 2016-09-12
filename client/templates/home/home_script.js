@@ -1,7 +1,7 @@
 Template.home.helpers({
   hasOffice () {
     if (Meteor.userId()) {
-      if (Offices.find({ 'owners': Meteor.userId() }).count() >= 1) {
+      if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() > 0) {
         return true;
       }
     }
@@ -17,7 +17,15 @@ Template.home.helpers({
 
 Template.home.events({
   'click .myOffice' () {
-    Router.go('myOffice');
+    if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() > 1) {
+      Router.go('myOffice');
+      return true;
+    }
+    let myOffice = Offices.findOne({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]});
+    if (myOffice) {
+      Router.go('myOfficeAvailabilities', {officeId: myOffice._id});
+    }
+    return true;
   },
 });
 

@@ -1,13 +1,13 @@
 let moment = require('moment');
 require('twix');
 
-Template.myOfficeCalendar.onCreated(function(){
+Template.myOfficeAvailabilities.onCreated(function(){
   this.subscribe('Office', Router.current().params.officeId);
   this.subscribe('Reservations', Router.current().params.officeId);
   this.closedDays = new ReactiveVar([]);
 });
 
-Template.myOfficeCalendar.onRendered(function () {
+Template.myOfficeAvailabilities.onRendered(function () {
   let template = this;
   $('.checkbox').checkbox();
   let office = Offices.findOne({_id: Router.current().params.officeId});
@@ -38,7 +38,7 @@ Template.myOfficeCalendar.onRendered(function () {
   }
 });
 
-Template.myOfficeCalendar.helpers({
+Template.myOfficeAvailabilities.helpers({
   office () {
     return Offices.findOne({_id: Router.current().params.officeId});
   },
@@ -106,7 +106,7 @@ Template.myOfficeCalendar.helpers({
   },
 });
 
-Template.myOfficeCalendar.events({
+Template.myOfficeAvailabilities.events({
   'click .addAvailability' () {
     $('.field').removeClass('error');
     $('.fields').removeClass('error');
