@@ -12,8 +12,9 @@ Template.search.helpers({
   offices () {
     return Session.get('offices');
   },
-  now () {
-    return moment(new Date()).format('YYYY-MM-DD');
+  searchedDate () {
+    let date = Session.get('searchedDate') || new Date();
+    return moment(date).format('YYYY-MM-DD');
   },
 });
 

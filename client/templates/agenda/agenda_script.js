@@ -86,12 +86,13 @@ Template.agenda.onRendered(function () {
       editable: false,
       eventLimit: true, // allow "more" link when too many events
       events: calendarEvents,
-      dayClick: function(date, jsEvent, view) {
-        $(this).css('background-color', 'olive');
-        // alert('Clicked on: ' + date.format());
-        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        // alert('Current view: ' + view.name);
-        // change the day's background color just for fun
+      dayClick: function(date) {
+        if (office) {
+          Router.go('/myOfficeAvailabilities/' + office._id);
+        } else {
+          Session.set('searchedDate', date.toDate());
+          Router.go('search');
+        }
       },
     });
   }

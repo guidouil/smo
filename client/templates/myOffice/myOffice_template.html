@@ -103,16 +103,16 @@
 
         <a class="ui fluid green icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeAvailabilities' officeId=_id}}">
           <i class="add to calendar icon"></i>
-          Add availabilities
+          ADD AVAILABILITIES
         </a>
         <a class="ui fluid olive icon labeled button myOfficeBtn" data-href="{{pathFor 'agenda' officeId=_id}}">
           <i class="calendar icon"></i>
-          Reservations calendar
+          RESERVATIONS CALENDAR
         </a>
         {{#if isOfficeOwner _id}}
           <a class="ui fluid purple icon labeled button myOfficeBtn" data-href="{{pathFor 'myOfficeUsers' officeId=_id}}">
             <i class="users icon"></i>
-            Office owners & users
+            OFFICE OWNERS & USERS
           </a>
         {{/if}}
       </div>
