@@ -1,10 +1,10 @@
 Template.header.helpers({
   isLevelOnePage () {
     if (Router.current().route) {
-      if (Router.current().params.officeId) {
+      if (Router.current().params.officeId && Router.current().route.getName() === 'agenda') {
         return false; // trick for agenda
       }
-      let levelOnePages = ['home', 'search', 'profile', 'help', 'myOffice', 'agenda'];
+      let levelOnePages = ['home', 'search', 'profile', 'help', 'myOffice', 'agenda', 'myOfficeAvailabilities'];
       if (_.contains( levelOnePages, Router.current().route.getName())) {
         return true;
       }

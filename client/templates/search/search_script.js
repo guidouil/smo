@@ -15,44 +15,15 @@ Template.search.helpers({
   now () {
     return moment(new Date()).format('YYYY-MM-DD');
   },
-  wantedFurnitures () {
-    let wantedFurnitures = Session.get('wantedFurnitures');
-    if (wantedFurnitures && wantedFurnitures.length > 0) {
-      let wantedFurnituresIcons = [];
-      _.each( wantedFurnitures, function(furniture) {
-        switch (furniture) {
-        case 'printer':
-          wantedFurnituresIcons.push('<i class="print icon"></i>');
-          break;
-        case 'whiteboard':
-          wantedFurnituresIcons.push('<i class="sticky note outline icon"></i>');
-          break;
-        case 'multiphone':
-          wantedFurnituresIcons.push('<i class="call icon"></i>');
-          break;
-        case 'plugs':
-          wantedFurnituresIcons.push('<i class="plug icon"></i>');
-          break;
-        case 'beamer':
-          wantedFurnituresIcons.push('<i class="record icon"></i>');
-          break;
-        case 'coffee':
-          wantedFurnituresIcons.push('<i class="coffee icon"></i>');
-          break;
-        }
-      });
-      return wantedFurnituresIcons;
-    }
-    return false;
-  },
 });
 
 Template.search.events({
   'click .searchOfficesButton' () {
     let query = $('#searchOfficesInput').val();
     let date = moment($('#dateFilter_hidden').val() + ' 00:00').toDate();
+    let capacity = Number($('#capacityFilter').val()) || 1;
     Session.set('searchedDate', date);
-    Meteor.call('searchOffices', query, date, function (error, result) {
+    Meteor.call('searchOffices', query, date, capacity, function (error, result) {
       if (error) {
         console.error(error);
       }
@@ -100,7 +71,7 @@ Template.search.events({
       $('.searchOfficesButton').click();
     }
   },
-  'change #dateFilter' () {
+  'change #dateFilter, change #capacityFilter' () {
     $('.searchOfficesButton').click();
   },
   'click .furnituresLabel, click .furnituresFilterSelected' () {
