@@ -29,7 +29,7 @@ Template.agenda.onRendered(function () {
         let end = moment(reservation.day).add(endTimes[0], 'hours').add(endTimes[1], 'minutes').toDate();
         calendarEvents.push({
           id: reservation._id,
-          title: 'Réservé' + '\n' + reservation.startTime + '-' + reservation.endTime,
+          title: 'Reserved\n' + reservation.startTime + '-' + reservation.endTime,
           start: start,
           end: end,
           url: '/reservation/' + reservation._id,
@@ -45,10 +45,10 @@ Template.agenda.onRendered(function () {
         let end = moment(availability.date).add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
         if (availability.available === true) {
           calendarEvents.push({
-            title: 'Diponible\n' + availability.startTime + '-' + availability.endTime,
+            title: 'Available\n' + availability.startTime + '-' + availability.endTime,
             start: start,
             end: end,
-            url: '/my-office-calendar/' + office._id,
+            url: '/my-office-availabilities/' + office._id,
             color: '#00965E',
           });
         } else {

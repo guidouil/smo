@@ -1,58 +1,58 @@
 <template name='myOfficeAvailabilities'>
   <div class="ui basic segment">
     <h3 class="ui header">
-      Bureau<label class="ui large horizontal label">{{office.number}}</label>
+      Office<label class="ui large horizontal label">{{office.number}}</label>
     </h3>
     <div class="ui form">
       <div class="field">
         <div class="ui two column grid">
           <div class="column">
             <div class="field">
-              <label for="startAt">Date de début</label>
-              <input type="text" placeholder="Début disponibilité" id="startAt" name="startAt" readonly>
+              <label for="startAt">Start date</label>
+              <input type="text" placeholder="Availability start" id="startAt" name="startAt" readonly>
             </div>
           </div>
           <div class="column">
             <div class="field">
-              <label for="endAt">Date de fin</label>
-              <input type="text" placeholder="Fin disponibilité" id="endAt" name="endAt" data-value="" readonly>
+              <label for="endAt">End date</label>
+              <input type="text" placeholder="Availability end" id="endAt" name="endAt" data-value="" readonly>
             </div>
           </div>
         </div>
       </div>
       <div class="inline fields">
-        <label for="duration">Durée :</label>
+        <label for="duration">Period:</label>
         <div class="field">
           <div class="ui radio checkbox">
             <input type="radio" name="duration" value="am" class="hidden duration">
-            <label>Matin</label>
+            <label>Morning</label>
           </div>
         </div>
         <div class="field">
           <div class="ui radio checkbox">
             <input type="radio" name="duration" value="pm" class="hidden duration">
-            <label>Après-midi</label>
+            <label>Afternoon</label>
           </div>
         </div>
         <div class="field">
           <div class="ui radio checkbox">
             <input type="radio" name="duration" checked="" value="day" class="hidden duration">
-            <label>Journée</label>
+            <label>Day</label>
           </div>
         </div>
       </div>
-      <button class="ui green fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Ajouter cette disponibilité</button>
+      <button class="ui green fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Add availability</button>
     </div>
     {{#if office.availabilities}}
     <h4 class="ui horizontal divider header">
       <i class="green checked calendar icon"></i>
-      Disponibilités à venir
+      Upcoming availabilities
     </h4>
     <table class="ui fluid compact striped unstackable table">
       <thead>
         <tr class="center aligned">
           <th>Date</th>
-          <th>Horaires</th>
+          <th>Hours</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -66,7 +66,7 @@
               {{startTime}} - {{endTime}}
             </td>
             <td>
-              <div class="ui tiny compact basic purple labeled icon button deleteAvailability"><i class="delete icon"></i>Supprimer</div>
+              <div class="ui tiny compact basic purple labeled icon button deleteAvailability"><i class="delete icon"></i>Delete</div>
             </td>
           </tr>
         {{/each}}

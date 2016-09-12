@@ -38,5 +38,6 @@ npm install
 cd ../../
 chmod -R +w+x *
 cf push sharemyoffice
+cd ../../smo/
 
 ```

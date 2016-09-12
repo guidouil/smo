@@ -4,14 +4,14 @@
     <div class="office">
       {{#if isOfficeOwner _id}}
       <h4 class="ui horizontal divider disabled header">
-        Vue publique de votre bureau
+        Public view of your office
       </h4>
       {{/if}}
       <h4 class="ui header">
-        BUREAU<label class="ui large horizontal label">{{number}}</label>
-        <div class="sub header">Capacité de {{capacity}} personne{{plural capacity}}.</div>
+        OFFICE<label class="ui large horizontal label">{{number}}</label>
+        <div class="sub header">Capacity: {{capacity}} people{{plural capacity}}.</div>
       </h4>
-      <div class="ui sub header">Adresse</div>
+      <div class="ui sub header">Address</div>
       <p>{{{nl2br address}}}</p>
       {{#unless isAllFalse furnitures}}
         <div class="ui sub header">Equipements</div>
@@ -22,7 +22,7 @@
                 <div class="item">
                   <i class="print icon"></i>
                   <div class="content">
-                    Imprimante
+                    Printer
                   </div>
                 </div>
               {{/if}}
@@ -30,7 +30,7 @@
                 <div class="item">
                   <i class="sticky note outline icon"></i>
                   <div class="content">
-                    Tableau blanc
+                    Whiteboard
                   </div>
                 </div>
               {{/if}}
@@ -38,7 +38,15 @@
                 <div class="item">
                   <i class="call icon"></i>
                   <div class="content">
-                    Pieuvre
+                    Conf. phone
+                  </div>
+                </div>
+              {{/if}}
+              {{#if furnitures.wifi}}
+                <div class="item">
+                  <i class="wifi icon"></i>
+                  <div class="content">
+                    Wifi
                   </div>
                 </div>
               {{/if}}
@@ -46,11 +54,19 @@
           </div>
           <div class="column">
             <div class="ui list">
+              {{#if furnitures.copier}}
+                <div class="item">
+                  <i class="copy icon"></i>
+                  <div class="content">
+                    Copier
+                  </div>
+                </div>
+              {{/if}}
               {{#if furnitures.plugs}}
                 <div class="item">
                   <i class="plug icon"></i>
                   <div class="content">
-                    Multiprise
+                    Power strip
                   </div>
                 </div>
               {{/if}}
@@ -58,7 +74,7 @@
                 <div class="item">
                   <i class="record icon"></i>
                   <div class="content">
-                    Projecteur
+                    Beamer
                   </div>
                 </div>
               {{/if}}
@@ -66,7 +82,7 @@
                 <div class="item">
                   <i class="coffee icon"></i>
                   <div class="content">
-                    Machine à café
+                    Coffee
                   </div>
                 </div>
               {{/if}}
@@ -75,7 +91,7 @@
         </div>
       {{/unless}}
       {{#if comment}}
-      <div class="ui sub header">Commentaire</div>
+      <div class="ui sub header">Comments</div>
       <p>{{{nl2br comment}}}</p>
       {{/if}}
     </div>
