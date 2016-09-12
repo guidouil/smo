@@ -1,5 +1,6 @@
 ```sh
 # NOT AS ROOT
+# Deploy on a private server
 cd
 rm -rf smo-source
 rm -rf builds
@@ -24,11 +25,16 @@ forever start --append --uid "smo" smo/main.js
 date
 
 
-# On Blue Mix
-cf push sharemyoffice -b https://github.com/cloudfoundry-community/cf-meteor-buildpack.git --no-start
-# cf create-service mongolab sandbox sharemyoffice-mongodb
-cf create-service mongodb 100 sharemyoffice-mongodb
-cf bind-service sharemyoffice sharemyoffice-mongodb
-cf start sharemyoffice
+# Deploy to public Bluemix - https://console.eu-gb.bluemix.net
+meteor build ../builds/. --server-only --architecture os.linux.x86_64
+cd ../builds
+rm -rf bundle
+tar xzf smo.tar.gz
+cp ../smo/private/bluemix_package.json ./bundle/package.json
+cd bundle/programs/server/
+npm install
+cd ../../
+chmod -R +w+x *
+cf push sharemyoffice
 
 ```

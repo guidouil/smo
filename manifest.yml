@@ -10,4 +10,3 @@ applications:
   env:
     MONGO_URL: mongodb://956a6698-8bc6-4460-9a5f-927da6852b93:ea59b378-dee9-4e74-b9d5-c061aa400bea@159.8.128.190:10127/db
     ROOT_URL: http://sharemyoffice.localbnpp.mybluemix.net
-    PORT: 3000
