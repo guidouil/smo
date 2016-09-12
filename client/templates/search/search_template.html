@@ -11,7 +11,7 @@
       <div class="ui two column grid">
         <div class="column">
           <div class="field">
-            <label>Date</label>
+            <label>Date wanted</label>
             <div class="ui small input">
               <input type="text" name="dateFilter" id="dateFilter" data-value="{{now}}">
             </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="column">
           <div class="field">
-            <label>Capacity</label>
+            <label>Min. capacity</label>
             <div class="ui small input">
               <input type="number" name="capacityFilter" id="capacityFilter" value="1">
             </div>
@@ -67,18 +67,22 @@
           </div>
         </div>
       </div>
+      <button class="ui fluid green icon labeled button searchOfficesBigButton" type="submit">
+        <i class="search icon"></i>
+        Search an office
+      </button>
     </div>
 
-    <div class="ui relaxed divided list">
+    <div class="ui relaxed celled list">
       {{#each offices}}
         <div class="item">
           <div class="content">
-            <a class="header" href="{{pathFor 'office' officeId=_id}}">
+            <div class="header goToOffice">
               Office <div class="ui large horizontal label">{{number}}</div>
               <small>Capacity: {{capacity}} people</small>
-            </a>
+            </div>
             <div class="description">
-              <a class="ui sub header" href="{{pathFor 'office' officeId=_id}}">{{{nl2br address}}}</a>
+              <div class="ui sub header goToOffice">{{{nl2br address}}}</div>
               <p>
                 {{#if furnitures.printer}}
                   <span data-tooltip="Printer" data-position="right center">

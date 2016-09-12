@@ -18,6 +18,9 @@ Template.search.helpers({
 });
 
 Template.search.events({
+  'click .goToOffice' () {
+    Router.go('/office/' + this._id);
+  },
   'click .searchOfficesButton' () {
     let query = $('#searchOfficesInput').val();
     let date = moment($('#dateFilter_hidden').val() + ' 00:00').toDate();
@@ -71,7 +74,7 @@ Template.search.events({
       $('.searchOfficesButton').click();
     }
   },
-  'change #dateFilter, change #capacityFilter' () {
+  'change #dateFilter, change #capacityFilter, click .searchOfficesBigButton' () {
     $('.searchOfficesButton').click();
   },
   'click .furnituresLabel, click .furnituresFilterSelected' () {

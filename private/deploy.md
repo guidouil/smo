@@ -36,6 +36,7 @@ tar xzf smo.tar.gz
 cp ../smo/private/bluemix_package.json ./bundle/package.json
 cd bundle/programs/server/
 npm install
+
 cd ../../
 chmod -R +w+x *
 cf push sharemyoffice
