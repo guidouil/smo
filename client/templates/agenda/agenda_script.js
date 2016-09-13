@@ -88,10 +88,10 @@ Template.agenda.onRendered(function () {
       events: calendarEvents,
       dayClick: function(date) {
         if (office) {
-          Router.go('/myOfficeAvailabilities/' + office._id);
+          Router.go('/my-office-availabilities/' + office._id);
         } else {
           Session.set('searchedDate', date.toDate());
-          Router.go('search');
+          Router.go('/search');
         }
       },
     });

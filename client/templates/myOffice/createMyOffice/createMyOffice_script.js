@@ -55,6 +55,8 @@ Template.createMyOffice.events({
     if (!capacity || capacity < 1) {
       $('.ui.accordion').accordion('open', 1);
       $('#capacity').parent('.field').addClass('error');
+      $('.goStepOne').show();
+      $('.goStepTwo').hide();
       return false;
     }
     let furnitures = {};

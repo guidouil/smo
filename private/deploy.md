@@ -28,6 +28,7 @@ date
 
 # Deploy to public Bluemix  https://console.eu-gb.bluemix.net
 ```sh
+meteor reset
 meteor build ../builds/. --server-only --architecture os.linux.x86_64
 
 cd ../builds
@@ -42,4 +43,10 @@ chmod -R +w+x *
 cf push sharemyoffice
 cd ../../smo/
 
+```
+
+# Build iOS App (from a Mac with x code)
+```sh
+meteor reset
+meteor build ../builds/. --server http://sharemyoffice.eu-gb.mybluemix.net
 ```

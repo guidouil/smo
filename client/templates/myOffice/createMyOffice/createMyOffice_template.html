@@ -3,11 +3,11 @@
     <div class="ui fluid styled accordion">
       <div class="title active">
         <i class="dropdown icon"></i>
-        <span class="ui tiny header">Address & number</span>
+        <span class="ui header">Address & number</span>
         <span class="ui right floated tiny header">1/2</span>
       </div>
       <div class="content active">
-        <p class="ui tiny header">Corrigez si besoin ces informations</p>
+        <p class="ui tiny header">Correct if needed</p>
         <div class="ui form">
           <div class="required field">
             <label>Address</label>
@@ -22,14 +22,14 @@
       </div>
       <div class="title">
         <i class="dropdown icon"></i>
-        <span class="ui tiny header">Office features</span>
+        <span class="ui header">Features & coments</span>
         <span class="ui right floated tiny header">2/2</span>
       </div>
       <div class="content">
         <div class="ui form">
           <div class="four wide required field">
             <label>Capacity</label>
-            <input type="number" value="2" id="capacity" required>
+            <input type="number" value="" id="capacity" required>
           </div>
           <div class="field">
             <label>Equipements</label>
@@ -80,10 +80,15 @@
       </div>
     </div>
     {{> requiredHelp}}
-  </div>
-
-    <div class="ui green basic icon left floated button goStepTwo"><i class="chevron right icon"></i></div>
-    <div class="ui green basic icon left floated button goStepOne"><i class="chevron left icon"></i></div>
+    <br>
+    <br>
+    <div class="ui green basic icon left floated button goStepTwo">
+      <i class="arrow right icon"></i>
+    </div>
+    <div class="ui green basic icon left floated button goStepOne">
+      <i class="arrow left icon"></i>
+    </div>
     <button type="submit" class="ui green labeled icon right floated button shareOffice"><i class="save icon"></i>SAVE MY OFFICE</button>
+  </div>
 
 </template>
