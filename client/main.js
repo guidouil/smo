@@ -21,9 +21,13 @@ Template.main.onRendered(function () {
 });
 
 Template.main.helpers({
-  isHomeOrHelp () {
+  showFooter () {
+    if (! Meteor.userId()) {
+      return true;
+    }
     if (Router.current().route) {
-      return Router.current().route.getName() === 'home' || Router.current().route.getName() === 'help';
+      let showFooterRoutes = ['home', 'help', 'splash'];
+      return _.contains(showFooterRoutes, Router.current().route.getName());
     }
     return false;
   },

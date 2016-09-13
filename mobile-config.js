@@ -3,10 +3,10 @@
 App.info({
   id: 'com.bnpparibas.sharemyoffice',
   name: 'Share my office',
-  description: 'Le partage des bureaux en temps-réel chez BNP Paribas',
-  author: 'Guillaume Darbonne',
-  email: 'guillaume.darbonne@businessdecision.com',
-  website: 'http://92.222.92.44:3000/'
+  description: 'Realtime Desk Sharing @ BNP Paribas',
+  author: 'BNP Digital Lab',
+  email: 'franck.sarrazin@bnpparibas.com',
+  website: 'http://sharemyoffice.eu-gb.mybluemix.net/'
 });
 // Set up resources such as icons and launch screens.
 // App.icons({

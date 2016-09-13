@@ -36,64 +36,67 @@ Template.header.helpers({
     return false;
   },
   routeName () {
-    let routeName = Router.current().route.getName();
-    if (routeName) {
-      switch (routeName) {
-      default:
-        routeName = 'share my office';
-        break;
-      case 'home':
-        routeName = 'home';
-        break;
-      case 'profile':
-        routeName = 'profile';
-        break;
-      case 'editProfile':
-        routeName = 'edit profile';
-        break;
-      case 'reservation':
-        routeName = 'reservation';
-        break;
-      case 'search':
-        routeName = 'book an office';
-        break;
-      case 'help':
-        routeName = 'about';
-        break;
-      case 'myOffice':
-        if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() <= 1) {
-          routeName = 'my office';
-        } else {
-          routeName = 'my offices';
-        }
-        break;
-      case 'office':
-        routeName = 'office';
-        if (Router.current().route && Router.current().params.officeId) {
-          let office = Offices.findOne({_id: Router.current().params.officeId});
-          if (office) {
-            routeName += ' ' + office.number;
+    if (Router.current().route) {
+      let routeName = Router.current().route.getName();
+      if (routeName) {
+        switch (routeName) {
+        default:
+          routeName = 'share my office';
+          break;
+        case 'home':
+          routeName = 'home';
+          break;
+        case 'profile':
+          routeName = 'profile';
+          break;
+        case 'editProfile':
+          routeName = 'edit profile';
+          break;
+        case 'reservation':
+          routeName = 'reservation';
+          break;
+        case 'search':
+          routeName = 'book an office';
+          break;
+        case 'help':
+          routeName = 'about';
+          break;
+        case 'myOffice':
+          if (Offices.find({$or: [{owners: Meteor.userId()}, {users: Meteor.userId()}]}).count() <= 1) {
+            routeName = 'my office';
+          } else {
+            routeName = 'my offices';
           }
+          break;
+        case 'office':
+          routeName = 'office';
+          if (Router.current().route && Router.current().params.officeId) {
+            let office = Offices.findOne({_id: Router.current().params.officeId});
+            if (office) {
+              routeName += ' ' + office.number;
+            }
+          }
+          break;
+        case 'createMyOffice':
+          routeName = 'share my office';
+          break;
+        case 'editMyOffice':
+          routeName = 'edit my office';
+          break;
+        case 'myOfficeAvailabilities':
+          routeName = 'availabilities';
+          break;
+        case 'myOfficeUsers':
+          routeName = 'my office rights';
+          break;
+        case 'agenda':
+          routeName = 'calendar';
+          break;
         }
-        break;
-      case 'createMyOffice':
-        routeName = 'share my office';
-        break;
-      case 'editMyOffice':
-        routeName = 'edit my office';
-        break;
-      case 'myOfficeAvailabilities':
-        routeName = 'availabilities';
-        break;
-      case 'myOfficeUsers':
-        routeName = 'my office rights';
-        break;
-      case 'agenda':
-        routeName = 'calendar';
-        break;
       }
+      return routeName;
     }
-    return routeName;
+    return '404';
   },
 });
 
