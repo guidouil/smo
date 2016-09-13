@@ -1,7 +1,7 @@
 let moment = require('moment');
 require('twix');
 
-Template.myOfficeAvailabilities.onCreated(function(){
+Template.myOfficeAvailabilities.onCreated(function () {
   this.subscribe('Office', Router.current().params.officeId);
   this.subscribe('Reservations', Router.current().params.officeId);
   this.closedDays = new ReactiveVar([]);
@@ -41,6 +41,12 @@ Template.myOfficeAvailabilities.onRendered(function () {
 Template.myOfficeAvailabilities.helpers({
   office () {
     return Offices.findOne({_id: Router.current().params.officeId});
+  },
+  selectedDate () {
+    if (Session.get('searchedDate')) {
+      return moment(Session.get('searchedDate')).format('YYYY-MM-DD');
+    }
+    return '';
   },
   isOpen (day) {
     let office = Offices.findOne({_id: Router.current().params.officeId});

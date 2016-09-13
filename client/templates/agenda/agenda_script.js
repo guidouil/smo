@@ -93,10 +93,10 @@ Template.agenda.onRendered(function () {
       eventLimit: true, // allow "more" link when too many events
       events: calendarEvents,
       dayClick: function(date) {
+        Session.set('searchedDate', date.toDate());
         if (office) {
           Router.go('/my-office-availabilities/' + office._id);
         } else {
-          Session.set('searchedDate', date.toDate());
           Router.go('/search');
         }
       },
