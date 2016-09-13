@@ -28,8 +28,7 @@ date
 
 # Deploy to public Bluemix  https://console.eu-gb.bluemix.net
 ```sh
-meteor reset
-meteor build ../builds/. --server-only --architecture os.linux.x86_64
+meteor reset && meteor build ../builds/. --server-only --architecture os.linux.x86_64
 
 cd ../builds
 rm -rf bundle

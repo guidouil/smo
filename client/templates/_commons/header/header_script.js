@@ -1,4 +1,10 @@
 Template.header.helpers({
+  officeId () {
+    if (Router.current().params.officeId) {
+      return Router.current().params.officeId;
+    }
+    return false;
+  },
   isLevelOnePage () {
     if (Router.current().route) {
       if (Router.current().params.officeId && Router.current().route.getName() === 'agenda') {
@@ -14,6 +20,18 @@ Template.header.helpers({
   isMyOffice () {
     if (Router.current().route) {
       return Router.current().route.getName() === 'myOffice';
+    }
+    return false;
+  },
+  isMyOfficeCalendar () {
+    if (Router.current().route) {
+      return Router.current().route.getName() === 'agenda' && Router.current().params.officeId;
+    }
+    return false;
+  },
+  isMyOfficeReservations () {
+    if (Router.current().route) {
+      return Router.current().route.getName() === 'myOfficeReservations' && Router.current().params.officeId;
     }
     return false;
   },
@@ -54,6 +72,9 @@ Template.header.helpers({
           break;
         case 'reservation':
           routeName = 'reservation';
+          break;
+        case 'myOfficeReservations':
+          routeName = 'reservations';
           break;
         case 'search':
           routeName = 'book an office';

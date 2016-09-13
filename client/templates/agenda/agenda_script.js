@@ -6,6 +6,12 @@ Template.agenda.onCreated(function() {
 });
 
 Template.agenda.helpers({
+  officeId () {
+    if (Router.current().params.officeId) {
+      return Router.current().params.officeId;
+    }
+    return false;
+  },
 });
 
 Template.agenda.events({

@@ -1,0 +1,73 @@
+<template name='myOfficeReservations'>
+  <div class="ui basic segment">
+    <h4 class="ui horizontal divider header">
+      <i class="green checked calendar icon"></i>
+      Upcoming reservations
+    </h4>
+    {{#if commingReservations}}
+    <table class="ui fluid very compact striped unstackable table">
+      <thead>
+        <tr class="center aligned">
+          <th>Date</th>
+          <th>Hours</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each commingReservations}}
+          <tr class="center aligned reservation">
+            <td>
+              {{toDate day}}
+            </td>
+            <td>
+              {{startTime}} {{endTime}}
+            </td>
+            <td>
+              {{creatorEmail}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+      <p>
+        No upcomming reservation.
+      </p>
+    {{/if}}
+
+    <h4 class="ui horizontal divider header">
+      <i class="purple outline calendar icon"></i>
+      Previous reservations
+    </h4>
+    {{#if previousReservations}}
+    <table class="ui fluid very compact striped unstackable table">
+      <thead>
+        <tr class="center aligned">
+          <th>Date</th>
+          <th>Hours</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each previousReservations}}
+          <tr class="center aligned reservation">
+            <td>
+              {{toDate day}}
+            </td>
+            <td>
+              {{startTime}} {{endTime}}
+            </td>
+            <td>
+              {{creatorEmail}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+      <p>
+        No previous reservation.
+      </p>
+    {{/if}}
+  </div>
+</template>

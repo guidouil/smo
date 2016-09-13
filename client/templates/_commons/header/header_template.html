@@ -36,7 +36,13 @@
                   <i class="big save icon"></i>
                 </a>
               {{else}}
-                <span class="item"><i class="big green cube icon"></i></span>
+                {{#if isMyOfficeCalendar}}
+                <a class="middle aligned item" href="{{pathFor 'myOfficeReservations' officeId=officeId}}">
+                  <i class="big list icon"></i>
+                </a>
+                {{else}}
+                  <span class="item"><i class="big green cube icon"></i></span>
+                {{/if}}
               {{/if}}
             {{/if}}
           {{/if}}
