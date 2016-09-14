@@ -19,30 +19,32 @@ Template.office.onRendered(function () {
   });
   let office = Offices.findOne({ _id: Router.current().params.officeId });
   if (office) {
-    let availability = _.find( office.availabilities, function (availability) {
+    let availability = _.find( office.availabilities, function (availabilityItem) {
       if (Session.get('searchedDate')) {
-        return availability.available === true && moment(Session.get('searchedDate')).isSame(availability.date, 'day');
+        return availabilityItem.available === true && moment(Session.get('searchedDate')).isSame(availabilityItem.date, 'day');
       }
-      return availability.available === true;
+      return availabilityItem.available === true;
     });
     if (availability) {
-      let opens = availability.startTime.split(':');
-      let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
-      let closes = availability.endTime.split(':');
-      let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
-      let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
-      let startTimeInput = $('#startTime').pickatime({
-        formatLabel: 'Commence à H:i',
-        min: min,
-        max: startMax,
-      });
-      startTimePicker = startTimeInput.pickatime('picker');
-      let endTimeInput = $('#endTime').pickatime({
-        formatLabel: 'F!in!i à H:i',
-        min: min,
-        max: endMax,
-      });
-      endTimePicker = endTimeInput.pickatime('picker');
+      setTimeout(function () {
+        let opens = availability.startTime.split(':');
+        let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
+        let closes = availability.endTime.split(':');
+        let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
+        let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+        let startTimeInput = $('#startTime').pickatime({
+          formatLabel: 'H:i',
+          min: min,
+          max: startMax,
+        });
+        startTimePicker = startTimeInput.pickatime('picker');
+        let endTimeInput = $('#endTime').pickatime({
+          formatLabel: 'H:i',
+          min: min,
+          max: endMax,
+        });
+        endTimePicker = endTimeInput.pickatime('picker');
+      }, 400);
     }
   }
 });
