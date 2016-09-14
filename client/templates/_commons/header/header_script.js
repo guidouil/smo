@@ -108,7 +108,7 @@ Template.header.helpers({
           routeName = 'availabilities';
           break;
         case 'myOfficeUsers':
-          routeName = 'my office rights';
+          routeName = 'my office';
           break;
         case 'agenda':
           routeName = 'calendar';

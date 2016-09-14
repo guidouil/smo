@@ -175,6 +175,7 @@ Template.myOfficeAvailabilities.events({
     let nextAvailableDate = moment(lastAvailabilityDate).add(1, 'day').toDate();
     startAtPicker.set('min', nextAvailableDate).clear();
     endAtPicker.set('min', nextAvailableDate).clear();
+    Session.delete('searchedDate');
     return true;
   },
   'click .deleteAvailability' () {
