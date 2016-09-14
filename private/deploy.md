@@ -46,6 +46,5 @@ cd ../../smo/
 
 # Build iOS App (from a Mac with x code)
 ```sh
-meteor reset
-meteor build ../builds/. --server http://sharemyoffice.eu-gb.mybluemix.net
+meteor reset && meteor build ../builds/. --server http://sharemyoffice.eu-gb.mybluemix.net
 ```

@@ -9,16 +9,31 @@ App.info({
   website: 'http://sharemyoffice.eu-gb.mybluemix.net/'
 });
 // Set up resources such as icons and launch screens.
-// App.icons({
-//   'iphone': 'icons/icon-60.png',
-//   'iphone_2x': 'icons/icon-60@2x.png',
-//   // ... more screen sizes and platforms ...
-// });
-// App.launchScreens({
-//   'iphone': 'splash/Default~iphone.png',
-//   'iphone_2x': 'splash/Default@2x~iphone.png',
-//   // ... more screen sizes and platforms ...
-// });
+App.icons({
+  'ios_settings': 'resources/icons/icon-29x29.png', // 29x29
+  'ios_settings_2x': 'resources/icons/icon-58x58.png', // 58x58
+  'ios_settings_3x': 'resources/icons/icon-87x87.png', // 87x87
+  'ios_spotlight': 'resources/icons/icon-40x40.png', // 40x40
+  'ios_spotlight_2x': 'resources/icons/icon-80x80.png', // 80x80
+  'iphone_2x': 'resources/icons/icon-120x120.png', // 120x120
+  'iphone_3x': 'resources/icons/icon-180x180.png', // 180x180
+  // 'ipad': 'resources/icons/icon-76x76.png', // 76x76
+  // 'ipad_2x': 'resources/icons/icon-152x152.png', // 152x152
+  // 'ipad_pro': 'resources/icons/icon-167x167.png', //167x167
+});
+App.launchScreens({
+  'iphone_2x': 'resources/splash/Default@2x.png', // 640x960
+  'iphone5': 'resources/splash/Default-568h@2x.png', // 640x1136
+  'iphone6': 'resources/splash/Default-667h@2x.png', // 750x1334
+  'iphone6p_portrait': 'resources/splash/Default-Portrait-736h@3x.png', // 1242x2208
+  'iphone6p_landscape': 'resources/splash/Default-Landscape-736h@3x.png', // 2208x1242
+  // 'ipad_portrait': 'resources/splash/Default-Portrait.png', // 768x1024
+  // 'ipad_landscape': 'resources/splash/Default-Landscape.png', // 1024x768
+  // 'ipad_portrait_2x': 'resources/splash/Default-Portrait@2x.png', // 1536x2048
+  // 'ipad_landscape_2x': 'resources/splash/Default-Landscape@2x.png', // 2048x1536
+  // 'ipad_pro_portrait': 'resources/splash/Default-Portrait@3x.png', // 2048x2732
+  // 'ipad_pro_landscape': 'resources/splash/Default-Landscape@3x.png', // 2732x2048
+});
 // Set PhoneGap/Cordova preferences
 App.setPreference('BackgroundColor', '0xff0000ff');
 App.setPreference('HideKeyboardFormAccessoryBar', true);
