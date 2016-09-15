@@ -10,13 +10,13 @@ App.info({
 });
 // Set up resources such as icons and launch screens.
 App.icons({
-  'ios_settings': 'resources/icons/icon-29x29.png', // 29x29
-  'ios_settings_2x': 'resources/icons/icon-58x58.png', // 58x58
-  'ios_settings_3x': 'resources/icons/icon-87x87.png', // 87x87
-  'ios_spotlight': 'resources/icons/icon-40x40.png', // 40x40
-  'ios_spotlight_2x': 'resources/icons/icon-80x80.png', // 80x80
-  'iphone_2x': 'resources/icons/icon-120x120.png', // 120x120
-  'iphone_3x': 'resources/icons/icon-180x180.png', // 180x180
+  'ios_settings': 'resources/icons/Icon-Small.png', // 29x29
+  'ios_settings_2x': 'resources/icons/Icon-Small@2x.png', // 58x58
+  // 'ios_settings_3x': 'resources/icons/icon-87x87.png', // 87x87
+  // 'ios_spotlight': 'resources/icons/icon-40x40.png', // 40x40
+  'ios_spotlight_2x': 'resources/icons/Icon-Small-40@2x.png', // 80x80
+  'iphone_2x': 'resources/icons/Icon-60@2x.png', // 120x120
+  'iphone_3x': 'resources/icons/Icon-60@3x.png', // 180x180
   // 'ipad': 'resources/icons/icon-76x76.png', // 76x76
   // 'ipad_2x': 'resources/icons/icon-152x152.png', // 152x152
   // 'ipad_pro': 'resources/icons/icon-167x167.png', //167x167
