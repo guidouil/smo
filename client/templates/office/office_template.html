@@ -1,98 +1,97 @@
 <template name='office'>
   <div class="ui basic segment">
-    {{#with office}}
     <div class="office">
-      {{#if isOfficeOwner _id}}
+      {{#if isOfficeOwner office._id}}
       <h4 class="ui horizontal divider disabled header">
         Public view of your office
       </h4>
       {{/if}}
       <h4 class="ui header">
-        OFFICE<label class="ui large horizontal label">{{number}}</label>
-        <div class="sub header">Capacity: {{capacity}} people.</div>
+        OFFICE<label class="ui large horizontal label">{{office.number}}</label>
+        <div class="sub header">Capacity: {{office.capacity}} people.</div>
       </h4>
       <div class="ui sub header">Address</div>
-      <p>{{{nl2br address}}}</p>
-      {{#unless isAllFalse furnitures}}
-        <div class="ui sub header">Equipments</div>
-        <div class="ui two column grid">
-          <div class="column">
-            <div class="ui list">
-              {{#if furnitures.printer}}
-                <div class="item">
-                  <i class="print icon"></i>
-                  <div class="content">
-                    Printer
-                  </div>
-                </div>
-              {{/if}}
-              {{#if furnitures.whiteboard}}
-                <div class="item">
-                  <i class="sticky note outline icon"></i>
-                  <div class="content">
-                    Whiteboard
-                  </div>
-                </div>
-              {{/if}}
-              {{#if furnitures.multiphone}}
-                <div class="item">
-                  <i class="call icon"></i>
-                  <div class="content">
-                    Conf. phone
-                  </div>
-                </div>
-              {{/if}}
-              {{#if furnitures.wifi}}
-                <div class="item">
-                  <i class="wifi icon"></i>
-                  <div class="content">
-                    Wifi
-                  </div>
-                </div>
-              {{/if}}
+      <p>{{{nl2br office.address}}}</p>
+      {{#unless isAllFalse office.furnitures}}
+      <div class="ui sub header">Equipments</div>
+      <div class="ui two column grid">
+        <div class="column">
+          <div class="ui list">
+            {{#if office.furnitures.printer}}
+            <div class="item">
+              <i class="print icon"></i>
+              <div class="content">
+                Printer
+              </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="ui list">
-              {{#if furnitures.copier}}
-                <div class="item">
-                  <i class="copy icon"></i>
-                  <div class="content">
-                    Copier
-                  </div>
-                </div>
-              {{/if}}
-              {{#if furnitures.plugs}}
-                <div class="item">
-                  <i class="plug icon"></i>
-                  <div class="content">
-                    Power strip
-                  </div>
-                </div>
-              {{/if}}
-              {{#if furnitures.beamer}}
-                <div class="item">
-                  <i class="record icon"></i>
-                  <div class="content">
-                    Beamer
-                  </div>
-                </div>
-              {{/if}}
-              {{#if furnitures.coffee}}
-                <div class="item">
-                  <i class="coffee icon"></i>
-                  <div class="content">
-                    Coffee
-                  </div>
-                </div>
-              {{/if}}
+            {{/if}}
+            {{#if office.furnitures.whiteboard}}
+            <div class="item">
+              <i class="sticky note outline icon"></i>
+              <div class="content">
+                Whiteboard
+              </div>
             </div>
+            {{/if}}
+            {{#if office.furnitures.multiphone}}
+            <div class="item">
+              <i class="call icon"></i>
+              <div class="content">
+                Conf. phone
+              </div>
+            </div>
+            {{/if}}
+            {{#if office.furnitures.wifi}}
+            <div class="item">
+              <i class="wifi icon"></i>
+              <div class="content">
+                Wifi
+              </div>
+            </div>
+            {{/if}}
           </div>
         </div>
+        <div class="column">
+          <div class="ui list">
+            {{#if office.furnitures.copier}}
+            <div class="item">
+              <i class="copy icon"></i>
+              <div class="content">
+                Copier
+              </div>
+            </div>
+            {{/if}}
+            {{#if office.furnitures.plugs}}
+            <div class="item">
+              <i class="plug icon"></i>
+              <div class="content">
+                Power strip
+              </div>
+            </div>
+            {{/if}}
+            {{#if office.furnitures.beamer}}
+            <div class="item">
+              <i class="record icon"></i>
+              <div class="content">
+                Beamer
+              </div>
+            </div>
+            {{/if}}
+            {{#if office.furnitures.coffee}}
+            <div class="item">
+              <i class="coffee icon"></i>
+              <div class="content">
+                Coffee
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
       {{/unless}}
-      {{#if comment}}
+      {{#if office.comment}}
       <div class="ui sub header">Comments</div>
-      <p>{{{nl2br comment}}}</p>
+      <p>{{{nl2br office.comment}}}</p>
       {{/if}}
     </div>
     <h4 class="ui horizontal divider header">
@@ -124,7 +123,7 @@
       </div>
       <div class="ui fluid green icon labeled button bookOffice"><i class="check icon"></i>Book office {{number}}</div>
     </div>
-    {{/with}}
+
     {{#if reservations}}
     <h4 class="ui header">My reservations</h4>
     <table class="ui fluid compact striped unstackable table">

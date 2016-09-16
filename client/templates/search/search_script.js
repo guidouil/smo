@@ -4,7 +4,13 @@ moment.locale('fr');
 Template.search.onRendered(function () {
   $('#searchOfficesInput').focus();
   $('.furnituresFilter').hide();
-  $('#dateFilter').pickadate({disable: [6, 7]});
+  $('#dateFilter').pickadate({
+    firstDay: 2,
+    min: new Date(),
+    formatSubmit: 'yyyy-mm-dd',
+    format: 'dd/mm/yyyy',
+    disable: [1, 7]
+  });
   $('body').animate({scrollTop: 0}, 'fast');
 });
 
@@ -24,7 +30,8 @@ Template.search.events({
   },
   'click .searchOfficesButton' () {
     let query = $('#searchOfficesInput').val();
-    let date = moment($('#dateFilter_hidden').val() + ' 00:00').toDate();
+    let date = moment($('[name="dateFilter_submit"]').val()).startOf('day').toDate();
+
     let capacity = Number($('#capacityFilter').val()) || 1;
     Session.set('searchedDate', date);
     Meteor.call('searchOffices', query, date, capacity, function (error, result) {

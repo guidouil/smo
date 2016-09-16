@@ -27,10 +27,18 @@ Template.myOfficeAvailabilities.onRendered(function () {
     if (closedDays) {
       template.closedDays.set(closedDays);
       let startAtInput = $('#startAt').pickadate({
+        firstDay: 2,
+        min: new Date(),
+        formatSubmit: 'yyyy-mm-dd',
+        format: 'dd/mm/yyyy',
         disable: closedDays,
       });
       startAtPicker = startAtInput.pickadate('picker');
       let endAtInput = $('#endAt').pickadate({
+        firstDay: 2,
+        min: new Date(),
+        formatSubmit: 'yyyy-mm-dd',
+        format: 'dd/mm/yyyy',
         disable: closedDays,
       });
       endAtPicker = endAtInput.pickadate('picker');
@@ -116,8 +124,8 @@ Template.myOfficeAvailabilities.events({
   'click .addAvailability' () {
     $('.field').removeClass('error');
     $('.fields').removeClass('error');
-    let startAt = $('#startAt_hidden').val();
-    let endAt = $('#endAt_hidden').val();
+    let startAt = $('[name="startAt_submit"]').val();
+    let endAt = $('[name="endAt_submit"]').val();
     if (!startAt) {
       $('#startAt').parent('.field').addClass('error');
       return false;
@@ -184,18 +192,10 @@ Template.myOfficeAvailabilities.events({
     }});
   },
   'change #startAt' () {
-    let startAtDate = moment($('#startAt_hidden').val()).toDate();
+    let startAtDate = moment($('[name="startAt_submit"]').val()).toDate();
     endAtPicker.set({
       'min': startAtDate,
       'select': startAtDate,
     });
   },
-  // 'change #startTime' () {
-  //   let opens =  $('#startTime_hidden').val().split(':');
-  //   let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(4, 'hours').toDate();
-  //   endTimePicker.set({
-  //     'min': min,
-  //     'select': min,
-  //   });
-  // },
 });

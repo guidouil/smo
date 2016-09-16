@@ -29,7 +29,6 @@ useraccounts:iron-routing
 jparker:crypto-md5
 jparker:gravatar
 idorecall:email-normalize
-fermuch:pickadate
 fullcalendar:fullcalendar
 session@1.1.6
 random@1.0.10

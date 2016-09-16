@@ -9,44 +9,48 @@ Template.office.onCreated(function () {
 
 Template.office.onRendered(function () {
   let template = this;
-  Meteor.call('getDisabilities', Router.current().params.officeId, function (error, result) {
-    if (result) {
-      template.closedDays.set(result);
+  Tracker.autorun(function () {
+    let office = Offices.findOne({ _id: Router.current().params.officeId });
+    if (office) {
       $('#reservationDay').pickadate({
-        disable: result,
+        firstDay: 2,
+        min: new Date(),
+        formatSubmit: 'yyyy-mm-dd',
+        format: 'dd/mm/yyyy',
+        disable: [1,7],
       });
-    }
-  });
-  let office = Offices.findOne({ _id: Router.current().params.officeId });
-  if (office) {
-    let availability = _.find( office.availabilities, function (availabilityItem) {
-      if (Session.get('searchedDate')) {
-        return availabilityItem.available === true && moment(Session.get('searchedDate')).isSame(availabilityItem.date, 'day');
-      }
-      return availabilityItem.available === true;
-    });
-    if (availability) {
-      setTimeout(function () {
+      let availability = _.find( office.availabilities, function (availabilityItem) {
+        if (Session.get('searchedDate')) {
+          return availabilityItem.available === true && moment(Session.get('searchedDate')).isSame(availabilityItem.date, 'day');
+        }
+        return availabilityItem.available === true;
+      });
+      if (availability) {
         let opens = availability.startTime.split(':');
         let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
         let closes = availability.endTime.split(':');
         let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
         let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
         let startTimeInput = $('#startTime').pickatime({
+          format: 'HH:i',
+          formatSubmit: 'HH:i',
           formatLabel: 'H:i',
           min: min,
           max: startMax,
         });
         startTimePicker = startTimeInput.pickatime('picker');
         let endTimeInput = $('#endTime').pickatime({
+          format: 'HH:i',
+          formatSubmit: 'HH:i',
           formatLabel: 'H:i',
           min: min,
           max: endMax,
         });
         endTimePicker = endTimeInput.pickatime('picker');
-      }, 400);
+      }
     }
-  }
+    console.log('autorun');
+  });
 });
 
 Template.office.helpers({
@@ -80,13 +84,13 @@ Template.office.helpers({
 Template.office.events({
   'click .bookOffice' () {
     $('.field').removeClass('error');
-    let reservationDay = moment($('#reservationDay_hidden').val() + ' 00:00').toDate();
+    let reservationDay = $('[name="reservationDay_submit"]').val();
     if (!reservationDay) {
       $('#reservationDay').parent('.field').addClass('error');
       return false;
     }
-    let startTime = $('#startTime_hidden').val();
-    let endTime = $('#endTime_hidden').val();
+    let startTime = $('[name="startTime_submit"]').val();
+    let endTime = $('[name="endTime_submit"]').val();
     if (!startTime) {
       $('#startTime').parent('.field').addClass('error');
       return false;
@@ -102,6 +106,7 @@ Template.office.events({
         $('#endTime').parent('.field').addClass('error');
         return false;
       }
+      reservationDay = moment(reservationDay).startOf('day').toDate();
       let reservation = {
         officeId: office._id,
         officeNumber: office.number,
@@ -120,10 +125,10 @@ Template.office.events({
     return false;
   },
   'change #reservationDay' () {
-    let reservationDayDate = moment($('#reservationDay_hidden').val()).toDate();
+    let reservationDayDate = moment($('[name="reservationDay_submit"]').val()).toDate();
     let office = Offices.findOne({ _id: Router.current().params.officeId });
-    let availability = _.find( office.availabilities, function (availability) {
-      return availability.available === true && moment(reservationDayDate).isSame(availability.date, 'day');
+    let availability = _.find( office.availabilities, function (availabilityItem) {
+      return availabilityItem.available === true && moment(reservationDayDate).isSame(availabilityItem.date, 'day');
     });
     let opens = availability.startTime.split(':');
     let min = moment(reservationDayDate).startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();
@@ -145,7 +150,7 @@ Template.office.events({
     Router.go('reservation', {reservationId: this._id});
   },
   'change #startTime' () {
-    let opens =  $('#startTime_hidden').val().split(':');
+    let opens =  $('[name="startTime_submit"]').val().split(':');
     let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(30, 'minutes').toDate();
     endTimePicker.set({
       'min': min,

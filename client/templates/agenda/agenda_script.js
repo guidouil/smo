@@ -80,7 +80,7 @@ Template.agenda.onRendered(function () {
       aspectRatio: 0.7,
       defaultDate: new Date(),
       weekends: false,
-      scrollTime: '08:00:00',
+      scrollTime: '07:30:00',
       allDaySlot: false,
       businessHours: {
         dow: [1, 2, 3, 4, 5],
