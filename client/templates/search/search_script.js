@@ -5,11 +5,11 @@ Template.search.onRendered(function () {
   $('#searchOfficesInput').focus();
   $('.furnituresFilter').hide();
   $('#dateFilter').pickadate({
-    firstDay: 2,
+    firstDay: 1,
     min: new Date(),
     formatSubmit: 'yyyy-mm-dd',
     format: 'dd/mm/yyyy',
-    disable: [1, 7]
+    disable: [6, 7]
   });
   $('body').animate({scrollTop: 0}, 'fast');
 });

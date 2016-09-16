@@ -12,7 +12,7 @@ Template.myOfficeAvailabilities.onRendered(function () {
   $('.checkbox').checkbox();
   let office = Offices.findOne({_id: Router.current().params.officeId});
   if (office) {
-    let closedDays = openDaysToClosedNumbers(office.openDays);
+    let closedDays = [6, 7];
     if (office.availabilities && office.availabilities.length > 0) {
       _.each(office.availabilities, function (availability) {
         closedDays.push(availability.date);
@@ -27,7 +27,7 @@ Template.myOfficeAvailabilities.onRendered(function () {
     if (closedDays) {
       template.closedDays.set(closedDays);
       let startAtInput = $('#startAt').pickadate({
-        firstDay: 2,
+        firstDay: 1,
         min: new Date(),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',
@@ -35,7 +35,7 @@ Template.myOfficeAvailabilities.onRendered(function () {
       });
       startAtPicker = startAtInput.pickadate('picker');
       let endAtInput = $('#endAt').pickadate({
-        firstDay: 2,
+        firstDay: 1,
         min: new Date(),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',

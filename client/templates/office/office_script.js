@@ -9,16 +9,21 @@ Template.office.onCreated(function () {
 
 Template.office.onRendered(function () {
   let template = this;
-  Tracker.autorun(function () {
-    let office = Offices.findOne({ _id: Router.current().params.officeId });
-    if (office) {
+  Meteor.call('getDisabilities', Router.current().params.officeId, function (error, result) {
+    if (result) {
+      template.closedDays.set(result);
       $('#reservationDay').pickadate({
-        firstDay: 2,
+        firstDay: 1,
         min: new Date(),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',
-        disable: [1,7],
+        disable: result,
       });
+    }
+  });
+  Tracker.autorun(function () {
+    let office = Offices.findOne({ _id: Router.current().params.officeId });
+    if (office) {
       let availability = _.find( office.availabilities, function (availabilityItem) {
         if (Session.get('searchedDate')) {
           return availabilityItem.available === true && moment(Session.get('searchedDate')).isSame(availabilityItem.date, 'day');
@@ -31,22 +36,21 @@ Template.office.onRendered(function () {
         let closes = availability.endTime.split(':');
         let startMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
         let endMax = moment().startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
-        let startTimeInput = $('#startTime').pickatime({
+        $('#startTime').pickatime({
           format: 'HH:i',
           formatSubmit: 'HH:i',
           formatLabel: 'H:i',
           min: min,
           max: startMax,
         });
-        startTimePicker = startTimeInput.pickatime('picker');
-        let endTimeInput = $('#endTime').pickatime({
+
+        $('#endTime').pickatime({
           format: 'HH:i',
           formatSubmit: 'HH:i',
           formatLabel: 'H:i',
           min: min,
           max: endMax,
         });
-        endTimePicker = endTimeInput.pickatime('picker');
       }
     }
     console.log('autorun');
@@ -135,11 +139,13 @@ Template.office.events({
     let closes = availability.endTime.split(':');
     let startMax = moment(reservationDayDate).startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').subtract(30, 'minutes').toDate();
     let endMax = moment(reservationDayDate).startOf('day').add(closes[0], 'hours').add(closes[1], 'minutes').toDate();
+    let startTimePicker = $('#startTime').pickatime('picker');
     startTimePicker.set({
       'min': min,
       'max': startMax,
       'select': min,
     });
+    let endTimePicker = $('#endTime').pickatime('picker');
     endTimePicker.set({
       'min': min,
       'max': endMax,
@@ -152,6 +158,7 @@ Template.office.events({
   'change #startTime' () {
     let opens =  $('[name="startTime_submit"]').val().split(':');
     let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').add(30, 'minutes').toDate();
+    let endTimePicker = $('#endTime').pickatime('picker');
     endTimePicker.set({
       'min': min,
       'select': min,
