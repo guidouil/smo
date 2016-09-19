@@ -26,22 +26,20 @@ Template.myOfficeAvailabilities.onRendered(function () {
     }
     if (closedDays) {
       template.closedDays.set(closedDays);
-      let startAtInput = $('#startAt').pickadate({
+      $('#startAt').pickadate({
         firstDay: 1,
         min: new Date(),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',
         disable: closedDays,
       });
-      startAtPicker = startAtInput.pickadate('picker');
-      let endAtInput = $('#endAt').pickadate({
+      $('#endAt').pickadate({
         firstDay: 1,
         min: new Date(),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',
         disable: closedDays,
       });
-      endAtPicker = endAtInput.pickadate('picker');
     }
   }
 });
@@ -121,7 +119,7 @@ Template.myOfficeAvailabilities.helpers({
 });
 
 Template.myOfficeAvailabilities.events({
-  'click .addAvailability' () {
+  'click .addAvailability' (evt, tmpl) {
     $('.field').removeClass('error');
     $('.fields').removeClass('error');
     let startAt = $('[name="startAt_submit"]').val();
@@ -162,7 +160,7 @@ Template.myOfficeAvailabilities.events({
     }
     let disabledDays = openDaysToClosedNumbers(office.openDays);
     let groupId = Random.id();
-    let lastAvailabilityDate = false;
+    let closedDays = tmpl.closedDays.get();
     _.each(range, function(availabilityDate) {
       if (! _.contains( disabledDays, Number(moment(availabilityDate).format('d')))) {
         let availability = {
@@ -177,22 +175,37 @@ Template.myOfficeAvailabilities.events({
         Offices.update({_id: office._id}, {$push: {
           availabilities: availability,
         }});
-        lastAvailabilityDate = availabilityDate;
+        closedDays.push(availabilityDate);
       }
     });
-    let nextAvailableDate = moment(lastAvailabilityDate).add(1, 'day').toDate();
-    startAtPicker.set('min', nextAvailableDate).clear();
-    endAtPicker.set('min', nextAvailableDate).clear();
+    let startAtPicker = $('#startAt').pickadate('picker');
+    startAtPicker.set('disable', false).set('disable', closedDays).clear().render();
+    let endAtPicker = $('#endAt').pickadate('picker');
+    endAtPicker.set('disable', false).set('disable', closedDays).clear().render();
+    tmpl.closedDays.set(closedDays);
     Session.delete('searchedDate');
     return true;
   },
-  'click .deleteAvailability' () {
+  'click .deleteAvailability' (evt, tmpl) {
     Offices.update({_id: Router.current().params.officeId}, {$pull: {
       availabilities: this,
     }});
+    let closedDays = tmpl.closedDays.get();
+    let removedDay = new Date(this.date);
+    closedDays = _.reject(closedDays, function(disabledDay, index) {
+      return moment(disabledDay).isSame(removedDay, 'day');
+    });
+    let startAtPicker = $('#startAt').pickadate('picker');
+    startAtPicker.set('disable', false).set('disable', closedDays).clear().render();
+    let endAtPicker = $('#endAt').pickadate('picker');
+    endAtPicker.set('disable', false).set('disable', closedDays).clear().render();
+    tmpl.closedDays.set(closedDays);
+    Session.delete('searchedDate');
+    return true;
   },
   'change #startAt' () {
     let startAtDate = moment($('[name="startAt_submit"]').val()).toDate();
+    let endAtPicker = $('#endAt').pickadate('picker');
     endAtPicker.set({
       'min': startAtDate,
       'select': startAtDate,
