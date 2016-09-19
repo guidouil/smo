@@ -1,0 +1,20 @@
+.requiredHelp {
+  position: absolute;
+  top: 11rem;
+  right: 1.5rem;
+}
+
+.ui.form .required.fields:not(.grouped) > .field > label:after, .ui.form .required.fields.grouped > label:after, .ui.form .required.field > label:after {
+    display: none !important;
+}
+
+.ui.form .required.fields:not(.grouped) > .field > label:before, .ui.form .required.fields.grouped > label:before, .ui.form .required.field > label:before, .ui.form .required.fields:not(.grouped) > .field > .checkbox:before, .ui.form .required.field > .checkbox:before {
+    margin: -0.2em 0.2em 0em 0em;
+    content: '*';
+    color: #B8002E;
+}
+
+.ui.form .required.fields:not(.grouped) > .field > label:before, .ui.form .required.fields.grouped > label:before, .ui.form .required.field > label:before {
+    display: inline-block;
+    vertical-align: top;
+}

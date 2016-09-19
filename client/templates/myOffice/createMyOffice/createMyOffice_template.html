@@ -1,94 +1,68 @@
 <template name='createMyOffice'>
-  <div class="ui basic segment">
-    <div class="ui fluid styled accordion">
-      <div class="title active">
-        <i class="dropdown icon"></i>
-        <span class="ui header">Address & number</span>
-        <span class="ui right floated tiny header">1/2</span>
+  <div class="ui basic segment noMarginBottom createMyOffice">
+    <div class="createOfficeHelp" style="color:#B8002E;">* Required field</div>
+    <div class="ui form">
+      <div class="eight wide required field">
+        <label>Office number</label>
+        <input type="text" value="" id="number" required>
       </div>
-      <div class="content active">
-        <p class="ui tiny header">Correct if needed</p>
-        <div class="ui form">
-          <div class="required field">
-            <label>Address</label>
-            <textarea rows="2" id="address" required >59 rue de la République
-93048 Montreuil sous Bois</textarea>
-          </div>
-          <div class="eight wide required field">
-            <label>Office number</label>
-            <input type="text" value="0D059" id="number" required>
-          </div>
-        </div>
+      <div class="four wide required field">
+        <label>Capacity</label>
+        <input type="number" value="" id="capacity" required>
       </div>
-      <div class="title">
-        <i class="dropdown icon"></i>
-        <span class="ui header">Features & coments</span>
-        <span class="ui right floated tiny header">2/2</span>
+      <div class="required field">
+        <label>Address</label>
+        <textarea rows="2" id="address" required ></textarea>
       </div>
-      <div class="content">
-        <div class="ui form">
-          <div class="four wide required field">
-            <label>Capacity</label>
-            <input type="number" value="" id="capacity" required>
-          </div>
-          <div class="field">
-            <label>Equipments</label>
-            <div class="ui two column grid">
-              <div class="column">
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="printer">
-                  <label for="printer"><i class="print icon"></i>Printer</label>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="whiteboard">
-                  <label for="whiteboard"><i class="sticky note outline icon"></i>Whiteboard</label>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="multiphone">
-                  <label for="multiphone"><i class="call icon"></i>Conf. phone</label>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="wifi">
-                  <label for="wifi"><i class="wifi icon"></i>Wifi</label>
-                </div>
-              </div>
-              <div class="column">
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="copier">
-                  <label for="copier"><i class="copy icon"></i>Copier</label>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="plugs">
-                  <label for="plugs"><i class="plug icon"></i>Power strip</label>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="beamer">
-                  <label for="beamer"><i class="record icon"></i>Beamer</label>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" class="hidden furniture" id="coffee">
-                  <label for="coffee"><i class="coffee icon"></i>Coffee</label>
-                </div>
-              </div>
+      <div class="field">
+        <label>Equipments</label>
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="printer">
+              <label for="printer"><i class="print icon"></i>Printer</label>
+            </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="whiteboard">
+              <label for="whiteboard"><i class="sticky note outline icon"></i>Whiteboard</label>
+            </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="multiphone">
+              <label for="multiphone"><i class="call icon"></i>Conf. phone</label>
+            </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="wifi">
+              <label for="wifi"><i class="wifi icon"></i>Wifi</label>
             </div>
           </div>
-          <div class="field">
-            <label>Comments</label>
-            <textarea rows="4" id="comment"></textarea>
+          <div class="column">
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="copier">
+              <label for="copier"><i class="copy icon"></i>Copier</label>
+            </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="plugs">
+              <label for="plugs"><i class="plug icon"></i>Power strip</label>
+            </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="beamer">
+              <label for="beamer"><i class="record icon"></i>Beamer</label>
+            </div>
+            <div class="ui checkbox">
+              <input type="checkbox" class="hidden furniture" id="coffee">
+              <label for="coffee"><i class="coffee icon"></i>Coffee</label>
+            </div>
           </div>
         </div>
       </div>
+      <div class="field">
+        <label>Comments</label>
+        <textarea rows="4" id="comment"></textarea>
+      </div>
     </div>
-    {{> requiredHelp}}
-    <br>
-    <br>
-    <div class="ui green basic icon left floated button goStepTwo">
-      <i class="arrow right icon"></i>
-    </div>
-    <div class="ui green basic icon left floated button goStepOne">
-      <i class="arrow left icon"></i>
-    </div>
-    <button type="submit" class="ui green labeled icon right floated button shareOffice"><i class="save icon"></i>SAVE MY OFFICE</button>
+  </div>
+  <div class="ui basic center aligned segment noMarginTop">
+    <button type="submit" class="ui green labeled icon button shareOffice"><i class="save icon"></i>SAVE MY OFFICE</button>
   </div>
 
 </template>

@@ -9,19 +9,19 @@
     <div class="ui center aligned basic segment">
       <h2 class="ui header">Welcome, {{capitalize userName}}</h2>
       {{#if hasOffice}}
-      <a class="ui fluid green icon labeled button shareMyOffice">
-        {{#if onlyOneOffice}}
-        <i class="send icon"></i>SHARE MY OFFICE
-        {{else}}
-        <i class="send icon"></i>SHARE MY OFFICES
-        {{/if}}
-      </a>
-      <br>
-      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>BOOK AN OFFICE</a>
+        <a href="{{pathFor 'search'}}" class="ui fluid violet button"><i class="search icon"></i>BOOK AN OFFICE</a>
+        <br>
+        <a class="ui fluid purple button shareMyOffice">
+          {{#if onlyOneOffice}}
+          <i class="send icon"></i>SHARE MY OFFICE
+          {{else}}
+          <i class="send icon"></i>SHARE MY OFFICES
+          {{/if}}
+        </a>
       {{else}}
-      <a href="{{pathFor 'createMyOffice'}}" class="ui fluid green icon labeled button"><i class="send icon"></i>SHARE MY OFFICE</a>
-      <br>
-      <a href="{{pathFor 'search'}}" class="ui fluid green basic icon labeled button"><i class="search icon"></i>BOOK AN OFFICE</a>
+        <a href="{{pathFor 'createMyOffice'}}" class="ui fluid purple button"><i class="send icon"></i>SHARE MY OFFICE</a>
+        <br>
+        <a href="{{pathFor 'search'}}" class="ui fluid violet button"><i class="search icon"></i>BOOK AN OFFICE</a>
       {{/if}}
     </div>
     {{/unless}}

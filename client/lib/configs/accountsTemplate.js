@@ -29,16 +29,31 @@ AccountsTemplates.configure({
 // T9n.setLanguage('fr');
 
 //Routes
-AccountsTemplates.configureRoute('changePwd');
-AccountsTemplates.configureRoute('enrollAccount');
-AccountsTemplates.configureRoute('forgotPwd');
-AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('changePwd', {
+  layoutTemplate: 'accountsLayout',
+  redirect: '/',
+});
+AccountsTemplates.configureRoute('enrollAccount', {
+  layoutTemplate: 'accountsLayout',
+  redirect: '/',
+});
+AccountsTemplates.configureRoute('forgotPwd', {
+  layoutTemplate: 'accountsLayout',
+  redirect: '/',
+});
+AccountsTemplates.configureRoute('resetPwd', {
+  layoutTemplate: 'accountsLayout',
+  redirect: '/',
+});
 AccountsTemplates.configureRoute('signIn', {
-  layoutTemplate: 'main',
+  layoutTemplate: 'accountsLayout',
   redirect: '/',
 });
 AccountsTemplates.configureRoute('signUp', {
-  layoutTemplate: 'main',
+  layoutTemplate: 'accountsLayout',
   redirect: '/',
 });
-AccountsTemplates.configureRoute('verifyEmail');
+AccountsTemplates.configureRoute('verifyEmail', {
+  layoutTemplate: 'accountsLayout',
+  redirect: '/',
+});

@@ -9,8 +9,9 @@ Template.mainSidebar.helpers({
 
 Template.mainSidebar.events({
   'click .signOutBtn' () {
-    Meteor.logout();
-    Router.go('/');
+    Meteor.logout(function () {
+      Router.go('/sign-in');
+    });
   },
   'click .mainSidebar > .item' () {
     $('.mainSidebar').sidebar('hide');

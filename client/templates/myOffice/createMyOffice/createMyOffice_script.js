@@ -64,14 +64,14 @@ Template.createMyOffice.events({
       furnitures[el.id] = el.checked;
     });
     let comment = escapeHtml($('#comment').val());
-    let officeId = Offices.insert({
+    Offices.insert({
       number: number,
       address: address,
       capacity: capacity,
       furnitures: furnitures,
       comment: comment,
     });
-    Router.go('myOfficeAvailabilities', {officeId: officeId});
+    Router.go('myOffice');
     return true;
   },
 });

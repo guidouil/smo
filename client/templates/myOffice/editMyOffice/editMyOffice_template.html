@@ -2,6 +2,7 @@
   {{#if isOfficeOwner}}
   {{#with office}}
     <div class="ui basic segment editMyOffice">
+      <div class="createOfficeHelp" style="color:#B8002E;">* Required field</div>
       <div class="ui form">
         <div class="eight wide required field">
           <label>Office number</label>
@@ -59,7 +60,6 @@
         <div class="field">
           <label>Comments</label>
           <textarea rows="4" id="comment">{{comment}}</textarea>
-          {{> requiredHelp}}
         </div>
 
         <button type="submit" class="ui fluid green labeled icon button saveOffice"><i class="check icon"></i>SAVE MY OFFICE</button>

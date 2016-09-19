@@ -99,7 +99,7 @@ Template.header.helpers({
           }
           break;
         case 'createMyOffice':
-          routeName = 'share my office';
+          routeName = 'add my office';
           break;
         case 'editMyOffice':
           routeName = 'edit my office';

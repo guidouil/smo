@@ -23,9 +23,6 @@ i.green.icon, i.primary.icon {
   color: #00965E !important;
   background-color: transparent !important;
 }
-.at-grid {
-  margin-top: 3rem !important;
-}
 .olive {
   background-color: #93bd0e !important;
 }
@@ -40,6 +37,10 @@ i.purple.icon {
   color: #96275a !important;
   background-color: transparent !important;
 }
-.required.field>label:after {
-  color: #B8002E !important;
+.violet {
+  background-color: #6B4474 !important;
+}
+i.violet.icon {
+  color: #6B4474 !important;
+  background-color: transparent !important;
 }

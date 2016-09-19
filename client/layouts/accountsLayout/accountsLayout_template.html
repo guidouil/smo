@@ -1,0 +1,13 @@
+<template name='accountsLayout'>
+  <div class="pusher">
+    <div class="ui container fluid">
+      <div class="ui basic segment">
+        <img class="ui tiny centered image" src="/sharemyoffice4-nobg.png">
+      </div>
+      {{> yield}}
+      {{> requiredHelp}}
+      {{noCenterAtTable}}
+    </div>
+  </div>
+  {{> footer}}
+</template>
