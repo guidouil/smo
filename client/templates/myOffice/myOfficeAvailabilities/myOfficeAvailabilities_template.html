@@ -7,15 +7,21 @@
       <div class="field">
         <div class="ui two column grid">
           <div class="column">
-            <div class="field">
+            <div class="field required">
               <label for="startAt">Start date</label>
-              <input type="text" placeholder="Availability start" id="startAt" name="startAt" data-value="{{selectedDate}}" readonly>
+              <div class="ui icon input">
+                <i class="calendar icon"></i>
+                <input type="text" placeholder="{{todayPlaceholder}}" id="startAt" name="startAt" data-value="{{selectedDate}}" readonly>
+              </div>
             </div>
           </div>
           <div class="column">
-            <div class="field">
+            <div class="field required">
               <label for="endAt">End date</label>
-              <input type="text" placeholder="Availability end" id="endAt" name="endAt" data-value="{{selectedDate}}" readonly>
+              <div class="ui icon input">
+                <i class="calendar icon"></i>
+                <input type="text" placeholder="{{todayPlaceholder}}" id="endAt" name="endAt" data-value="{{selectedDate}}" readonly>
+              </div>
             </div>
           </div>
         </div>
@@ -41,14 +47,14 @@
           </div>
         </div>
       </div>
-      <button class="ui green fluid labeled icon button addAvailability"><i class="add to calendar icon"></i>Add availability</button>
+      <button class="ui green fluid button addAvailability"><i class="add to calendar icon"></i>Apply availability</button>
     </div>
     {{#if office.availabilities}}
-    <h4 class="ui horizontal divider header">
+    <h4 class="ui horizontal divider left aligned header">
       <i class="green checked calendar icon"></i>
       Upcoming availabilities
     </h4>
-    <table class="ui fluid compact striped unstackable table">
+    <table class="ui fluid striped unstackable table">
       <thead>
         <tr class="center aligned">
           <th>Date</th>
@@ -66,7 +72,7 @@
               {{startTime}} - {{endTime}}
             </td>
             <td>
-              <div class="ui tiny compact basic purple labeled icon button deleteAvailability"><i class="delete icon"></i>Delete</div>
+              <div class="ui tiny compact basic purple button deleteAvailability"><i class="delete icon"></i>Delete</div>
             </td>
           </tr>
         {{/each}}

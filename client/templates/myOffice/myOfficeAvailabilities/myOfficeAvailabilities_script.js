@@ -28,14 +28,14 @@ Template.myOfficeAvailabilities.onRendered(function () {
       template.closedDays.set(closedDays);
       $('#startAt').pickadate({
         firstDay: 1,
-        min: new Date(),
+        min: new Date(Session.get('searchedDate')),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',
         disable: closedDays,
       });
       $('#endAt').pickadate({
         firstDay: 1,
-        min: new Date(),
+        min: new Date(Session.get('searchedDate')),
         formatSubmit: 'yyyy-mm-dd',
         format: 'dd/mm/yyyy',
         disable: closedDays,
@@ -52,46 +52,10 @@ Template.myOfficeAvailabilities.helpers({
     if (Session.get('searchedDate')) {
       return moment(Session.get('searchedDate')).format('YYYY-MM-DD');
     }
-    return '';
+    return false;
   },
-  isOpen (day) {
-    let office = Offices.findOne({_id: Router.current().params.officeId});
-    if (office && office.openDays[day] === true) {
-      return 'checked';
-    }
-    return '';
-  },
-  days () {
-    return [
-      {
-        value: 'monday',
-        label: 'lundi',
-      },
-      {
-        value: 'tuesday',
-        label: 'mardi',
-      },
-      {
-        value: 'wednesday',
-        label: 'mercredi',
-      },
-      {
-        value: 'thursday',
-        label: 'jeudi',
-      },
-      {
-        value: 'friday',
-        label: 'vendredi',
-      },
-      {
-        value: 'saturday',
-        label: 'samedi',
-      },
-      {
-        value: 'sunday',
-        label: 'dimanche',
-      },
-    ];
+  todayPlaceholder() {
+    return moment(Session.get('searchedDate')).format('DD/MM/YYYY');
   },
   sortDate (availabilities) {
     check(availabilities, Array);
@@ -103,18 +67,6 @@ Template.myOfficeAvailabilities.helpers({
       }
     });
     return _.sortBy(availabilities, 'date').reverse();
-  },
-  toPeriod (duration) {
-    check(duration, String);
-    switch (duration) {
-    default:
-    case 'allDay':
-      return 'Journée';
-    case 'morning':
-      return 'Matin';
-    case 'afternoon':
-      return 'Après-midi';
-    }
   },
 });
 
@@ -183,25 +135,28 @@ Template.myOfficeAvailabilities.events({
     let endAtPicker = $('#endAt').pickadate('picker');
     endAtPicker.set('disable', false).set('disable', closedDays).clear().render();
     tmpl.closedDays.set(closedDays);
-    Session.delete('searchedDate');
     return true;
   },
   'click .deleteAvailability' (evt, tmpl) {
-    Offices.update({_id: Router.current().params.officeId}, {$pull: {
-      availabilities: this,
-    }});
-    let closedDays = tmpl.closedDays.get();
-    let removedDay = new Date(this.date);
-    closedDays = _.reject(closedDays, function(disabledDay, index) {
-      return moment(disabledDay).isSame(removedDay, 'day');
-    });
-    let startAtPicker = $('#startAt').pickadate('picker');
-    startAtPicker.set('disable', false).set('disable', closedDays).clear().render();
-    let endAtPicker = $('#endAt').pickadate('picker');
-    endAtPicker.set('disable', false).set('disable', closedDays).clear().render();
-    tmpl.closedDays.set(closedDays);
-    Session.delete('searchedDate');
-    return true;
+    $(evt.currentTarget).addClass('loading');
+    let availability = this;
+    setTimeout(function () {
+      Offices.update({_id: Router.current().params.officeId}, {$pull: {
+        availabilities: availability,
+      }});
+      let closedDays = tmpl.closedDays.get();
+      let removedDay = new Date(availability.date);
+      closedDays = _.reject(closedDays, function(disabledDay, index) {
+        return moment(disabledDay).isSame(removedDay, 'day');
+      });
+      let startAtPicker = $('#startAt').pickadate('picker');
+      startAtPicker.set('disable', false).set('disable', closedDays).clear().render();
+      let endAtPicker = $('#endAt').pickadate('picker');
+      endAtPicker.set('disable', false).set('disable', closedDays).clear().render();
+      tmpl.closedDays.set(closedDays);
+      $('.deleteAvailability').removeClass('loading');
+      return true;
+    }, 250);
   },
   'change #startAt' () {
     let startAtDate = moment($('[name="startAt_submit"]').val()).toDate();

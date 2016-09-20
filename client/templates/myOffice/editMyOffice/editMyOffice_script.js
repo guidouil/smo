@@ -47,6 +47,24 @@ Template.editMyOffice.events({
     Router.go('myOffice');
     return true;
   },
+  'input #number' (evt) {
+    if (evt.target.value) {
+      $('#number').parent('.field').removeClass('error');
+      $('.ui.form').removeClass('error');
+    }
+  },
+  'input #capacity' (evt) {
+    if (evt.target.value) {
+      $('#capacity').parent('.field').removeClass('error');
+      $('.ui.form').removeClass('error');
+    }
+  },
+  'input #address' (evt) {
+    if (evt.target.value) {
+      $('#address').parent('.field').removeClass('error');
+      $('.ui.form').removeClass('error');
+    }
+  },
 });
 
 Template.editMyOffice.onRendered(function () {
