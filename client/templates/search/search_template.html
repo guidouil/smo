@@ -13,8 +13,9 @@
           <div class="column">
             <div class="field">
               <label>Date wanted</label>
-              <div class="ui small input">
+              <div class="ui small icon input">
                 <input type="text" name="dateFilter" id="dateFilter" data-value="{{searchedDate}}">
+                <i class="calendar icon"></i>
               </div>
             </div>
           </div>
@@ -29,72 +30,82 @@
         </div>
       </div>
       <div class="field">
-        <label>Equipments</label>
-        <div class="ui two column grid">
-          <div class="column">
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="printer">
-                <label for="printer"><i class="print icon"></i>Printer</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="whiteboard">
-                <label for="whiteboard"><i class="sticky note outline icon"></i>Whiteboard</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="multiphone">
-                <label for="multiphone"><i class="call icon"></i>Conf. phone</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="wifi">
-                <label for="wifi"><i class="wifi icon"></i>Wifi</label>
-              </div>
-            </div>
+        <div class="ui accordion">
+          <div class="title">
+            <i class="green dropdown icon"></i>
+            Equipments
           </div>
-          <div class="column">
-            <!-- <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="copier">
-                <label for="copier"><i class="copy icon"></i>Copier</label>
+          <div class="content">
+            <div class="ui two column grid">
+              <div class="column">
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="printer">
+                    <label for="printer"><i class="print icon"></i>Printer</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="whiteboard">
+                    <label for="whiteboard"><i class="sticky note outline icon"></i>Whiteboard</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="multiphone">
+                    <label for="multiphone"><i class="call icon"></i>Conf. phone</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="wifi">
+                    <label for="wifi"><i class="wifi icon"></i>Wifi</label>
+                  </div>
+                </div>
               </div>
-            </div> -->
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="plugs">
-                <label for="plugs"><i class="plug icon"></i>Power strip</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="beamer">
-                <label for="beamer"><i class="record icon"></i>Beamer</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="coffee">
-                <label for="coffee"><i class="coffee icon"></i>Coffee</label>
+              <div class="column">
+                <!-- <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="copier">
+                    <label for="copier"><i class="copy icon"></i>Copier</label>
+                  </div>
+                </div> -->
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="plugs">
+                    <label for="plugs"><i class="plug icon"></i>Power strip</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="beamer">
+                    <label for="beamer"><i class="record icon"></i>Beamer</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" class="hidden furniture" id="coffee">
+                    <label for="coffee"><i class="coffee icon"></i>Coffee</label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button class="ui fluid green icon labeled button searchOfficesBigButton" type="submit">
+      <button class="ui fluid green button searchOfficesBigButton" type="submit">
         <i class="search icon"></i>
-        SEARCH AN OFFICE
+        DISPLAY OFFICES
       </button>
     </div>
 
-    <div class="ui relaxed celled list">
+    <div class="ui relaxed celled striped list">
       {{#each offices}}
         <div class="item">
-          <div class="content">
+          <div class="right floated middle aligned content goToOffice">
+            <i class="grey fitted huge angle right icon"></i>
+          </div>
+          <div class="middle aligned content">
             <div class="header goToOffice">
               Office <div class="ui large horizontal label">{{number}}</div>
               <small>Capacity: {{capacity}} people</small>

@@ -12,6 +12,7 @@ Template.search.onRendered(function () {
     disable: [6, 7]
   });
   $('body').animate({scrollTop: 0}, 'fast');
+  $('.ui.accordion').accordion();
 });
 
 Template.search.helpers({

@@ -1,6 +1,8 @@
 <template name='myOffice'>
   {{#if myOffices}}
   <div class="ui basic segment myOffices">
+    {{> miniProfile}}
+    <div class="ui inverted divider"></div>
     {{#each myOffices}}
       <div class="myOffice">
         {{#if isOfficeOwner _id}}

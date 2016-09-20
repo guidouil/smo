@@ -102,26 +102,28 @@
       <div class="field">
         <div class="ui three column grid">
           <div class="six wide column">
-            <div class="field">
+            <div class="required field">
               <label for="reservationDay">Date</label>
               <input type="text" placeholder="Reservation date" id="reservationDay" name="reservationDay" data-value="{{availability.date}}">
             </div>
           </div>
           <div class="five wide column">
-            <div class="field">
+            <div class="required field">
               <label for="startTime">Start time</label>
               <input type="text" placeholder="08:00" id="startTime" name="startTime" data-value="{{availability.startTime}}">
             </div>
           </div>
           <div class="five wide column">
-            <div class="field">
+            <div class="required field">
               <label for="endTime">End time</label>
               <input type="text" placeholder="18:00" id="endTime" name="endTime" data-value="{{availability.endTime}}">
             </div>
           </div>
         </div>
       </div>
-      <div class="ui fluid green icon labeled button bookOffice"><i class="check icon"></i>Book office {{number}}</div>
+      <div class="ui basic center aligned segment">
+        <div class="ui green button bookOffice"><i class="check icon"></i>Book office {{office.number}}</div>
+      </div>
     </div>
 
     {{#if reservations}}
