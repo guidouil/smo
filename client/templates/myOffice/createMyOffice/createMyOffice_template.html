@@ -12,7 +12,16 @@
       </div>
       <div class="required field">
         <label>Address</label>
-        <textarea rows="2" id="address" required ></textarea>
+        <textarea rows="2" id="address" required >59 rue de la République
+93100 Montreuil</textarea>
+      </div>
+      <div class="ui error icon message">
+        <i class="warning circle icon"></i>
+        <div class="content">
+          <div class="header">
+            Office number, capacity and address are required fields.
+          </div>
+        </div>
       </div>
       <div class="field">
         <label>Equipments</label>
@@ -38,7 +47,7 @@
             </div>
             <div class="field">
               <div class="ui checkbox">
-                <input type="checkbox" class="hidden furniture" id="wifi">
+                <input type="checkbox" class="hidden furniture" id="wifi" checked="checked">
                 <label for="wifi"><i class="wifi icon"></i>Wifi</label>
               </div>
             </div>
@@ -73,7 +82,7 @@
       </div>
       <div class="field">
         <label>Comments</label>
-        <textarea rows="4" id="comment"></textarea>
+        <textarea rows="2" id="comment"></textarea>
       </div>
     </div>
   </div>

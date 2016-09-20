@@ -1,5 +1,6 @@
 .noMarginTop {
   margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 .noMarginBottom {
   margin-bottom: 0 !important;
