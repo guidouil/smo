@@ -1,6 +1,6 @@
 Template.accountsLayout.helpers({
   noCenterAtTable () {
-    $('.at-grid').removeClass('centered');
+    $('.ui.stacked.segment').addClass('left aligned');
   },
 });
 
@@ -8,5 +8,5 @@ Template.accountsLayout.events({
 });
 
 Template.accountsLayout.onRendered(function () {
-  $('.at-grid').removeClass('centered');
+  $('.ui.stacked.segment').addClass('left aligned');
 });

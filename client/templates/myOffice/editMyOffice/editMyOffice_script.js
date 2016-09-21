@@ -68,4 +68,5 @@ Template.editMyOffice.events({
 });
 
 Template.editMyOffice.onRendered(function () {
+  $('body').animate({scrollTop: 0}, 'fast');
 });
