@@ -7,7 +7,7 @@
       <div class="field">
         <div class="ui two column grid">
           <div class="column">
-            <div class="field required">
+            <div class="field required startAt">
               <label for="startAt">Start date</label>
               <div class="ui icon input">
                 <i class="calendar icon"></i>
@@ -16,7 +16,7 @@
             </div>
           </div>
           <div class="column">
-            <div class="field required">
+            <div class="field required endAt">
               <label for="endAt">End date</label>
               <div class="ui icon input">
                 <i class="calendar icon"></i>
@@ -26,24 +26,38 @@
           </div>
         </div>
       </div>
-      <div class="inline fields">
-        <label for="duration">Period:</label>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" name="duration" value="am" class="hidden duration">
-            <label>Morning</label>
+      <div class="field">
+        <div class="ui selection dropdown">
+          <input type="hidden" name="duration">
+          <i class="dropdown icon"></i>
+          <div class="default text">Select hours (Default: All day)</div>
+          <div class="menu">
+            <div class="item selected duration" data-value="day">
+              <div class="right floated content">
+                8H00&nbsp;&nbsp;<i class="right arrow icon"></i>18H00
+              </div>
+              All day
+            </div>
+            <div class="item duration" data-value="am">
+              <div class="right floated content">
+                8H00&nbsp;&nbsp;<i class="right arrow icon"></i>12H00
+              </div>
+              Morning
+            </div>
+            <div class="item duration" data-value="pm">
+              <div class="right floated content">
+                13H00&nbsp;&nbsp;<i class="right arrow icon"></i>18H00
+              </div>
+              Afternoon
+            </div>
           </div>
         </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" name="duration" value="pm" class="hidden duration">
-            <label>Afternoon</label>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui radio checkbox">
-            <input type="radio" name="duration" checked="" value="day" class="hidden duration">
-            <label>Day</label>
+      </div>
+      <div class="ui error icon message">
+        <i class="warning circle icon"></i>
+        <div class="content">
+          <div class="header">
+            Please select a start date, an end date and hours.
           </div>
         </div>
       </div>
