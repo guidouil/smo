@@ -48,6 +48,12 @@ Template.registerHelper('capitalize', function (string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 });
 
+Template.registerHelper('truncate', function (string, length) {
+  check(string, String);
+  check(length, Number);
+  return string.slice(0, length) + '...';
+});
+
 Template.registerHelper('plural', function (number) {
   if (number > 1) {
     return 's';

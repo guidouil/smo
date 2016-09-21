@@ -53,7 +53,6 @@ Template.office.onRendered(function () {
         });
       }
     }
-    console.log('autorun');
   });
 });
 
