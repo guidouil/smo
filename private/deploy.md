@@ -21,6 +21,7 @@ cd
 export MONGO_URL='mongodb://127.0.0.1:27017/smo'
 export PORT=3000
 export ROOT_URL='http://92.222.92.44:3000'
+export MAIL_URL='smtp://vip-m-parpop.fr.net.intra:25/'
 forever start --append --uid "smo" smo/main.js
 date
 
@@ -47,5 +48,8 @@ cd ../../smo/
 
 # Build iOS App (from a Mac with Xcode)
 ```sh
-meteor build ../builds/. --server http://sharemyoffice.eu-gb.mybluemix.net
+meteor build ../builds/. --server http://sharemyoffice.ipsdw.bluemix.staging.echonet
 ```
+
+
+export MAIL_URL=smtp://vip-m-parpop.fr.net.intra:25/

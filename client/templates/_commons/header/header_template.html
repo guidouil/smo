@@ -1,53 +1,51 @@
 <template name='header'>
-  {{#if currentUser}}
-    <div class="ui top fixed inverted borderless green icon menu topHeader">
-      <div class="left menu">
-        {{#if isLevelOnePage}}
-          <a class="item showMainSidebar">
-            <i class="big content icon"></i>
-          </a>
-        {{else}}
-          <a class="ui middle aligned item">
-            <i class="big left chevron icon goBack"></i>
-          </a>
-        {{/if}}
-      </div>
-      <div class="center middle aligned header item">
-        <a class="ui inverted header headerTitle">{{toUpperCase routeName}}</a>
-      </div>
-      <div class="right menu">
-        {{#if isMyOffice}}
-        <a class="middle aligned item" href="{{pathFor 'createMyOffice'}}">
-          <i class="big plus icon"></i>
+  <div class="ui top fixed inverted borderless green icon menu topHeader">
+    <div class="left menu">
+      {{#if isLevelOnePage}}
+        <a class="item showMainSidebar">
+          <i class="big content icon"></i>
+        </a>
+      {{else}}
+        <a class="ui middle aligned item">
+          <i class="big left chevron icon goBack"></i>
+        </a>
+      {{/if}}
+    </div>
+    <div class="center middle aligned header item">
+      <a class="ui inverted header headerTitle">{{toUpperCase routeName}}</a>
+    </div>
+    <div class="right menu">
+      {{#if isMyOffice}}
+      <a class="middle aligned item" href="{{pathFor 'createMyOffice'}}">
+        <i class="big plus icon"></i>
+      </a>
+      {{else}}
+        {{#if isEditMyOffice}}
+        <a class="middle aligned item deleteOffice">
+          <i class="big trash icon"></i>
         </a>
         {{else}}
-          {{#if isEditMyOffice}}
-          <a class="middle aligned item deleteOffice">
-            <i class="big trash icon"></i>
-          </a>
+          {{#if isProfile}}
+            <a class="middle aligned item" href="{{pathFor 'editProfile'}}">
+              <i class="big write icon"></i>
+            </a>
           {{else}}
-            {{#if isProfile}}
-              <a class="middle aligned item" href="{{pathFor 'editProfile'}}">
-                <i class="big write icon"></i>
+            {{#if isEditProfile}}
+              <a class="middle aligned item" href="{{pathFor 'profile'}}">
+                <i class="big save icon"></i>
               </a>
             {{else}}
-              {{#if isEditProfile}}
-                <a class="middle aligned item" href="{{pathFor 'profile'}}">
-                  <i class="big save icon"></i>
-                </a>
+              {{#if isMyOfficeCalendar}}
+              <a class="middle aligned item" href="{{pathFor 'myOfficeReservations' officeId=officeId}}">
+                <i class="big list icon"></i>
+              </a>
               {{else}}
-                {{#if isMyOfficeCalendar}}
-                <a class="middle aligned item" href="{{pathFor 'myOfficeReservations' officeId=officeId}}">
-                  <i class="big list icon"></i>
-                </a>
-                {{else}}
-                  <span class="item"><i class="big green cube icon"></i></span>
-                {{/if}}
+                <span class="item"><i class="big green cube icon"></i></span>
               {{/if}}
             {{/if}}
           {{/if}}
         {{/if}}
-      </div>
+      {{/if}}
     </div>
-  {{/if}}
+  </div>
 </template>

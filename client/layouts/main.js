@@ -34,24 +34,36 @@ Template.main.helpers({
 });
 
 Template.registerHelper('toLowerCase', function (string) {
-  check(string, String);
-  return string.toLowerCase();
+  if (string) {
+    check(string, String);
+    return string.toLowerCase();
+  }
 });
 
 Template.registerHelper('toUpperCase', function (string) {
-  check(string, String);
-  return string.toUpperCase();
+  if (string) {
+    check(string, String);
+    return string.toUpperCase();
+  }
 });
 
 Template.registerHelper('capitalize', function (string) {
-  check(string, String);
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  if (string) {
+    check(string, String);
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 });
 
 Template.registerHelper('truncate', function (string, length) {
-  check(string, String);
-  check(length, Number);
-  return string.slice(0, length) + '...';
+  if (string) {
+    check(string, String);
+    check(length, Number);
+    let ending = '';
+    if (string.length > length) {
+      ending = '...';
+    }
+    return string.slice(0, length) + ending;
+  }
 });
 
 Template.registerHelper('plural', function (number) {

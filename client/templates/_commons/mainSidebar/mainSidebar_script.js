@@ -10,7 +10,7 @@ Template.mainSidebar.helpers({
 Template.mainSidebar.events({
   'click .signOutBtn' () {
     Meteor.logout(function () {
-      Router.go('/sign-in');
+      Router.go('uid');
     });
   },
   'click .mainSidebar > .item' () {

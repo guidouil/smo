@@ -1,13 +1,8 @@
 <template name='home'>
   <div class="ui basic segment homeSegment">
     <img class="ui small centered image" src="/sharemyoffice4-nobg.png">
-    {{#unless currentUser}}
-      <br>
-      {{> atForm state='signIn'}}
-      {{> requiredHelp}}
-    {{else}}
     <div class="ui center aligned basic segment">
-      <h2 class="ui header">Welcome, {{capitalize userName}}</h2>
+      <h2 class="ui header">Welcome, {{capitalize currentUser.profile.firstname}}</h2>
       {{#if hasOffice}}
         <a href="{{pathFor 'search'}}" class="ui fluid violet button"><i class="search icon"></i>BOOK AN OFFICE</a>
         <br>
@@ -24,6 +19,5 @@
         <a href="{{pathFor 'search'}}" class="ui fluid violet button"><i class="search icon"></i>BOOK AN OFFICE</a>
       {{/if}}
     </div>
-    {{/unless}}
   </div>
 </template>

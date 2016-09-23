@@ -10,7 +10,7 @@ Template.header.helpers({
       if (Router.current().params.officeId) {
         return false; // trick for agenda and availabilities
       }
-      let levelOnePages = ['home', 'search', 'profile', 'help', 'myOffice', 'agenda'];
+      let levelOnePages = ['home', 'search', 'profile', 'help', 'myOffice', 'agenda', 'uid'];
       if (_.contains( levelOnePages, Router.current().route.getName())) {
         return true;
       }

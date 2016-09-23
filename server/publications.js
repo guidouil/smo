@@ -32,3 +32,11 @@ Meteor.publish('MyReservations', function () {
   }
   return false;
 });
+
+Meteor.publish('LocalUids', function () {
+  return LocalUids.find({});
+});
+
+Meteor.publish('LocalUid', function (uid) {
+  return LocalUids.find({_id: uid});
+});

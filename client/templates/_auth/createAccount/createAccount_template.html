@@ -1,0 +1,41 @@
+<template name='createAccount'>
+  {{#if isValid}}
+    {{> tinyLogo}}
+    <div class="ui middle aligned centered grid">
+      <div class="column">
+        <h2 class="ui center aligned header">
+          Setup password
+        </h2>
+        <form action="#" method="POST" novalidate="" class="ui large form">
+          <div class="ui segment left aligned">
+            <div class="required field passwordField">
+              <label>
+                Password
+              </label>
+              <div class="ui fluid input icon">
+                <input type="password" id="passwordInput" placeholder="Password" autocapitalize="none" autocorrect="off">
+              </div>
+            </div>
+            <div class="required field passwordConfirmField">
+              <label>
+                Confirm password
+              </label>
+              <div class="ui fluid input icon">
+                <input type="password" id="passwordConfirmInput" placeholder="Confirm password" autocapitalize="none" autocorrect="off">
+              </div>
+            </div>
+            <div class="ui error icon message">
+              <i class="remove icon"></i>
+              <div class="content">
+                <div class="header">
+                  The password must be 8 characters long and must match with the confirmation.
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="ui fluid large primary button" value="Create account">
+        </form>
+      </div>
+    </div>
+  {{/if}}
+</template>

@@ -31,7 +31,7 @@ Template.home.events({
 
 Template.home.onRendered(function () {
   if (! Meteor.userId()) {
-    Router.go('/sign-in');
+    Router.go('/uid');
   }
   $('body').animate({scrollTop: 0}, 'fast');
 });

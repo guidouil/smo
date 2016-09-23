@@ -1,0 +1,36 @@
+<template name='uidInfo'>
+  <div class="ui center aligned basic segment">
+    {{#if Template.subscriptionsReady}}
+      {{#if localUid}}
+        <h3 class="ui header">You don't have an account yet, we need to set it up for you. Can you confirm it's this you so we can send your the identity validation link?</h3>
+        <h2 class="ui header">
+          {{localUid.firstname}} {{localUid.lastname}}
+          <div class="sub header">{{localUid.mail}}</div>
+        </h2>
+        <button class="ui green button sendMail">
+          <i class="mail icon"></i>
+          Yes, send me the mail
+        </button>
+        <div class="ui divider"></div>
+        <a href="{{pathFor 'uid'}}">It's not me.</a>
+        <div class="ui basic modal">
+          <div class="header">Please check your email</div>
+          <div class="content">
+            <p>Follow the link in the email to create your password for this app.</p>
+          </div>
+          <div class="actions">
+            <div class="ui approve button">OK</div>
+          </div>
+        </div>
+      {{else}}
+        <h3 class="ui header">No user found with UID {{uid}}</h3>
+        <a class="ui icon labeled button" href="{{pathFor 'uid'}}">
+          <i class="left chevron icon"></i>
+          Go back
+        </a>
+      {{/if}}
+    {{else}}
+      <div class="ui active centered inline loader"></div>
+    {{/if}}
+  </div>
+</template>
