@@ -31,6 +31,12 @@ Template.main.helpers({
     }
     return false;
   },
+  isFluid () {
+    if ($(document).width() < 1024) {
+      return 'fluid';
+    }
+    return '';
+  },
 });
 
 Template.registerHelper('toLowerCase', function (string) {

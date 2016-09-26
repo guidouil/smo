@@ -1,4 +1,4 @@
-Template.uidInfo.onCreated(function(){
+Template.uidInfo.onCreated(function () {
   const uid = Router.current().params.uid;
   const handle = this.subscribe('LocalUid', uid);
   Tracker.autorun(function () {
@@ -6,7 +6,7 @@ Template.uidInfo.onCreated(function(){
     if (isReady) {
       let localUid = LocalUids.findOne({_id: uid});
       if (! localUid) {
-        Meteor.call('searchByUid', uid, function(error, result){
+        Meteor.call('searchByUid', uid, function(error, result) {
           if (error) {
             console.error(error);
           }
@@ -39,19 +39,21 @@ Template.uidInfo.events({
     let localUid = LocalUids.findOne({_id: Router.current().params.uid});
     if (localUid) {
       LocalUids.update({_id: localUid._id}, {$set: {
-        token: token
+        token: token,
       }});
-      let text = 'Hello ' + localUid.firstname + ' ' + localUid.lastname + ',\nPlease click the following link to create your account on the Share my office app.\n' + Meteor.absoluteUrl('create-account/' + localUid._id + '/' + token);
+      let text = 'Hello ' + localUid.firstname + ' ' + localUid.lastname +
+        ',\nPlease click the following link to create your account on the Share my office app.\n' +
+        Meteor.absoluteUrl('create-account/' + localUid._id + '/' + token);
       Meteor.call('sendEmail',
         localUid.mail,
         'paris_itg_digital_working_lab@bnpparibas.com',
         'Share my office - Identity validation',
         text);
       $('.ui.basic.modal').modal({
-        closable  : false,
-        onApprove : function() {
+        closable: false,
+        onApprove: function() {
           Router.go('password', {uid: localUid._id});
-        }
+        },
       })
       .modal('show');
     }

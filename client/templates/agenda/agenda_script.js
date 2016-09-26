@@ -18,6 +18,9 @@ Template.agenda.events({
 });
 
 Template.agenda.onRendered(function () {
+  if (! Meteor.userId()) {
+    Router.go('/uid');
+  }
   if (Meteor.userId()) {
     let moment = require('moment');
     let reservations = Reservations.find({ creator: Meteor.userId() }).fetch();
