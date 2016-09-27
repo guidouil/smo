@@ -40,3 +40,15 @@ Meteor.publish('LocalUids', function () {
 Meteor.publish('LocalUid', function (uid) {
   return LocalUids.find({_id: uid});
 });
+
+Meteor.publish('ImportedOffices', function () {
+  return ImportedOffices.find({});
+});
+
+Meteor.publish('MyImportedOffices', function () {
+  if (this.userId) {
+    let user = Meteor.users.findOne({_id: this.userId});
+    return ImportedOffices.find({owner: user.username});
+  }
+  return false;
+});

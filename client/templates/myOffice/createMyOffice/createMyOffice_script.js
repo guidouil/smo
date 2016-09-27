@@ -1,4 +1,18 @@
+Template.createMyOffice.onCreated(function () {
+  this.subscribe('MyImportedOffices');
+});
+
+Template.createMyOffice.onRendered(function () {
+  $('.goStepOne').hide();
+  $('.ui.accordion').accordion();
+  $('.ui.checkbox').checkbox();
+  $('body').animate({scrollTop: 0}, 'fast');
+});
+
 Template.createMyOffice.helpers({
+  importedOffice () {
+    return ImportedOffices.findOne();
+  },
 });
 
 Template.createMyOffice.events({
@@ -59,11 +73,4 @@ Template.createMyOffice.events({
       $('.ui.form').removeClass('error');
     }
   },
-});
-
-Template.createMyOffice.onRendered(function () {
-  $('.goStepOne').hide();
-  $('.ui.accordion').accordion();
-  $('.ui.checkbox').checkbox();
-  $('body').animate({scrollTop: 0}, 'fast');
 });

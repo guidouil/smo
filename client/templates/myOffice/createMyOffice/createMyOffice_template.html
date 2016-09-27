@@ -4,16 +4,15 @@
     <div class="ui form">
       <div class="eight wide required field">
         <label>Office number</label>
-        <input type="text" value="" id="number" required>
+        <input type="text" value="{{importedOffice.number}}" id="number" required>
       </div>
       <div class="four wide required field">
         <label>Capacity</label>
-        <input type="number" value="" id="capacity" required>
+        <input type="number" value="{{importedOffice.capacity}}" id="capacity" required>
       </div>
       <div class="required field">
         <label>Address</label>
-        <textarea rows="2" id="address" required >59 rue de la République
-93100 Montreuil</textarea>
+        <textarea rows="2" id="address" required>{{{importedOffice.address}}}</textarea>
       </div>
       <div class="ui error icon message">
         <i class="warning circle icon"></i>
