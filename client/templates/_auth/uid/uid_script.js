@@ -1,9 +1,8 @@
-Template.uid.onCreated(function(){
-  this.subscribe('LocalUids');
+Template.uid.onCreated(function () {
 });
 
-Template.uid.onRendered(function ( ){
-})
+Template.uid.onRendered(function () {
+});
 
 Template.uid.helpers({
 });
@@ -11,15 +10,12 @@ Template.uid.helpers({
 Template.uid.events({
   'submit .ui.form' (evt) {
     evt.preventDefault();
+    $('.signInBtn').addClass('loading');
     let uid = $('#uidInput').val();
     if (! uid) {
       $('.uidField').addClass('error');
       $('.ui.form').addClass('error');
-      return false;
-    }
-    let localUid = LocalUids.findOne({_id: uid});
-    if (! localUid) {
-      Router.go('uidInfo', {uid: uid});
+      $('.signInBtn').removeClass('loading');
       return false;
     }
     // Does this user has a password ?

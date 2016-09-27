@@ -18,7 +18,7 @@ Template.password.events({
     });
   },
   'input #passwordInput' () {
-    $('.uidField').removeClass('error');
+    $('.passwordField').removeClass('error');
     $('.ui.form').removeClass('error');
   },
 });
