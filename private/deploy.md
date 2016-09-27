@@ -6,7 +6,7 @@ rm -rf smo-source
 rm -rf builds
 git clone https://github.com/guidouil/smo.git smo-source
 cd smo-source
-meteor npm install --save moment bcrypt twix jquery hammerjs
+meteor npm install --save moment bcrypt twix jquery hammerjs papaparse
 meteor build ../builds/. --server-only
 cd ../builds/
 tar xzf smo-source.tar.gz
@@ -27,7 +27,7 @@ date
 
 ```
 
-# Deploy to public Bluemix  https://console.eu-gb.bluemix.net
+# Deploy to Bluemix  https://console.eu-gb.bluemix.net
 ```sh
 meteor build ../builds/. --server-only --architecture os.linux.x86_64
 
@@ -48,5 +48,6 @@ cd ../../smo/
 
 # Build iOS App (from a Mac with Xcode)
 ```sh
+meteor npm install --save moment bcrypt twix jquery hammerjs papaparse
 meteor build ../builds/. --server http://sharemyoffice.ipsdw.bluemix.staging.echonet
 ```
