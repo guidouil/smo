@@ -16,7 +16,9 @@ Template.main.onRendered(function () {
     $('.mainSidebar').sidebar('hide');
   });
   hammertime.on('swiperight', function() {
-    $('.mainSidebar').sidebar('show');
+    if (Meteor.userId()) {
+      $('.mainSidebar').sidebar('show');
+    }
   });
 });
 
