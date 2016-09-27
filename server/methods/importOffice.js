@@ -1,5 +1,5 @@
 Meteor.methods({
-  'importeOffice': function (office) {
+  'importOffice': function (office) {
     let savedOffice = Offices.findOne({number: office.number});
     if (savedOffice) {
       return false;

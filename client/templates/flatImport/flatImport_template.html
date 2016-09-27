@@ -1,20 +1,25 @@
 <template name='flatImport'>
   <div class="ui basic segment">
-    <p>
+    <div class="ui info message">
+      <i class="close icon"></i>
+      <div class="header">
+        Imported Offices file info
+      </div>
       Please import a CSV file formated as the following template. If no users seted the office will be considered public. If you declare users, they will be the only one who can book the office.
-    </p>
-    <a href="/smo-offices.csv" download="smo-offices.csv" target="_blank">Imported offices CSV Template</a>
-    <div class="ui divider"></div>
+      <br>
+      <a href="/smo-offices.csv" download="smo-offices.csv" target="_blank">Imported offices CSV Template</a>
+    </div>
+
     <div class="ui form">
       <div class="field">
-        <label for="csvImportedOfficesText">Import offices</label>
+        <label for="csvImportedOfficesText">Upload offices CSV file</label>
         <div class="ui action input">
-          <input type="text" id="csvImportedOfficesText" placeholder="Upload offices CSV file" readonly="readonly">
-          <label for="csvImportedOffices" class="ui icon button btn-file" id="csvImportedOfficesIcon">
-            <i class="cloud upload icon"></i>
+          <input type="text" id="csvImportedOfficesText" placeholder="Please use template format" readonly="readonly">
+          <label for="csvImportedOffices" class="ui icon button btn-file">
+            <i class="cloud upload icon" id="csvImportedOfficesIcon"></i>
+            <input type="file" id="csvImportedOffices" name="csvImportedOffices" style="display: none">
           </label>
         </div>
-        <input type="file" id="csvImportedOffices" name="csvImportedOffices" style="display: none">
       </div>
     </div>
   </div>

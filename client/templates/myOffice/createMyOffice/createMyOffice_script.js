@@ -52,6 +52,7 @@ Template.createMyOffice.events({
       furnitures: furnitures,
       comment: comment,
     });
+    ImportedOffices.remove({_id: number});
     Router.go('myOffice');
     return true;
   },

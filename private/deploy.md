@@ -50,6 +50,3 @@ cd ../../smo/
 ```sh
 meteor build ../builds/. --server http://sharemyoffice.ipsdw.bluemix.staging.echonet
 ```
-
-
-export MAIL_URL=smtp://vip-m-parpop.fr.net.intra:25/
