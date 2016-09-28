@@ -1,0 +1,26 @@
+<template name='uidImport'>
+  <div class="ui basic segment">
+    <div class="ui info message">
+      <i class="close icon"></i>
+      <div class="header">
+        Imported UIDs file info
+      </div>
+      Please import a CSV file formated as the following template. "uid";"firstname";"lastname";"mail"
+      <br>
+      <a href="/new-uids.csv" download="new-uids.csv" target="_blank">Imported UIDs CSV Template</a>
+    </div>
+
+    <div class="ui form">
+      <div class="field">
+        <label for="csvImportedUidsText">Upload UIDs CSV file</label>
+        <div class="ui action input">
+          <input type="text" id="csvImportedUidsText" placeholder="Please use template format" readonly="readonly">
+          <label for="csvImportedUids" class="ui icon button btn-file">
+            <i class="cloud upload icon" id="csvImportedUidsIcon"></i>
+            <input type="file" id="csvImportedUids" name="csvImportedUids" style="display: none">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

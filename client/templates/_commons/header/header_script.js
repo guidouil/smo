@@ -116,6 +116,9 @@ Template.header.helpers({
         case 'flatImport':
           routeName = 'import offices';
           break;
+        case 'uidImport':
+          routeName = 'import uids';
+          break;
         }
       }
       return routeName;
