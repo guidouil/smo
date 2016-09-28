@@ -45,13 +45,19 @@ Template.createMyOffice.events({
       furnitures[el.id] = el.checked;
     });
     let comment = escapeHtml($('#comment').val());
-    Offices.insert({
+    let officeId = Offices.insert({
       number: number,
       address: address,
       capacity: capacity,
       furnitures: furnitures,
       comment: comment,
     });
+    let importedOffice = ImportedOffices.findOne({_id: number});
+    if (importedOffice && importedOffice.users && importedOffice.users.length > 0 ) {
+      Offices.update({_id: officeId}, {$set: {
+        users: importedOffice.users,
+      }});
+    }
     ImportedOffices.remove({_id: number});
     Router.go('myOffice');
     return true;

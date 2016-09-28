@@ -13,15 +13,28 @@ Meteor.publish('MyUsageOffices', function () {
 });
 
 Meteor.publish('Office', function (officeId) {
-  check(officeId, String);
-  return Offices.find({ _id: officeId });
+  if (this.userId) {
+    check(officeId, String);
+    let user = Meteor.users.findOne({_id: this.userId});
+    return Offices.find({ _id: officeId, $or: [
+      {owners: this.userId},
+      {users: user.username},
+      {users: {$exists: false}},
+      {users: {$size: 0}},
+      {users: null},
+    ]});
+  }
+  return false;
 });
 
 Meteor.publish('Reservations', function (officeId) {
-  check(officeId, String);
-  let yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1); // yesterday
-  return Reservations.find({ officeId: officeId, date: {$gt: yesterday} });
+  if (this.userId) {
+    check(officeId, String);
+    let yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1); // yesterday
+    return Reservations.find({ officeId: officeId, date: {$gt: yesterday} });
+  }
+  return false;
 });
 
 Meteor.publish('MyReservations', function () {
@@ -33,16 +46,15 @@ Meteor.publish('MyReservations', function () {
   return false;
 });
 
-Meteor.publish('LocalUids', function () {
-  return LocalUids.find({});
-});
-
 Meteor.publish('LocalUid', function (uid) {
   return LocalUids.find({_id: uid});
 });
 
 Meteor.publish('ImportedOffices', function () {
-  return ImportedOffices.find({});
+  if (this.userId) {
+    return ImportedOffices.find({});
+  }
+  return false;
 });
 
 Meteor.publish('MyImportedOffices', function () {

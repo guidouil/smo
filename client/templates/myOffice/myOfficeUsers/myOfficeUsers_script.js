@@ -108,7 +108,7 @@ Template.myOfficeUsers.events({
     }
   },
   'click .removeUser' (evt, template) {
-    Meteor.call('removeOfficeUsership', Router.current().params.officeId, this.userId, function(err, result) {
+    Meteor.call('removeOfficeUsership', Router.current().params.officeId, this.uid, function(err, result) {
       if (result === true) {
         Meteor.call('getOfficeOwnersAndUsers', Router.current().params.officeId, function (err, result) {
           if (result.users) {

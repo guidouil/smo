@@ -1,10 +1,10 @@
 Meteor.methods({
-  'removeOfficeUsership': function (officeId, userId) {
+  'removeOfficeUsership': function (officeId, userUid) {
     check(officeId, String);
-    check(userId, String);
+    check(userUid, String);
     if (isOfficeOwner(officeId, this.userId)) {
       Offices.update({ _id: officeId }, { $pull: {
-        users: userId,
+        users: userUid,
       }});
       return true;
     }
