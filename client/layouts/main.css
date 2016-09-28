@@ -8,7 +8,6 @@ html.ios, html.ios body {
   height: 100% !important;
   padding-top: 4rem;
   padding-bottom: 3rem;
-  overflow-y: auto !important;
   position: relative;
 }
 .green, .primary {
