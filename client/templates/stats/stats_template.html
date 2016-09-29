@@ -1,0 +1,31 @@
+<template name='stats'>
+  <div class="ui basic segment">
+    <h2 class="ui header">Global counts</h2>
+    <div class="ui statistics">
+      <div class="statistic">
+        <div class="value">
+          <i class="purple users icon"></i> {{stats.users}}
+        </div>
+        <div class="label">
+          User{{plural stats.users}}
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          <i class="violet building icon"></i> {{stats.offices}}
+        </div>
+        <div class="label">
+          Office{{plural stats.offices}}
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          <i class="green calendar check icon"></i> {{stats.reservations}}
+        </div>
+        <div class="label">
+          Reservation{{plural stats.reservations}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

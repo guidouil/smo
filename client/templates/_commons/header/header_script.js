@@ -113,6 +113,9 @@ Template.header.helpers({
         case 'agenda':
           routeName = 'calendar';
           break;
+        case 'stats':
+          routeName = 'statistics';
+          break;
         case 'flatImport':
           routeName = 'import offices';
           break;

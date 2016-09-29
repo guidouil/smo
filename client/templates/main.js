@@ -28,7 +28,7 @@ Template.main.helpers({
       return true;
     }
     if (Router.current().route) {
-      let showFooterRoutes = ['home', 'help', 'splash'];
+      let showFooterRoutes = ['home', 'help', 'splash', 'stats'];
       return _.contains(showFooterRoutes, Router.current().route.getName());
     }
     return false;
