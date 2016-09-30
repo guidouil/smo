@@ -37,6 +37,14 @@ Meteor.publish('Reservations', function (officeId) {
   return false;
 });
 
+Meteor.publish('Reservation', function (reservationId) {
+  if (this.userId) {
+    check(reservationId, String);
+    return Reservations.find({_id: reservationId});
+  }
+  return false;
+});
+
 Meteor.publish('MyReservations', function () {
   if (this.userId) {
     let yesterday = new Date();
@@ -61,6 +69,27 @@ Meteor.publish('MyImportedOffices', function () {
   if (this.userId) {
     let user = Meteor.users.findOne({_id: this.userId});
     return ImportedOffices.find({owner: user.username});
+  }
+  return false;
+});
+
+Meteor.publish('MyUnreadNotifications', function () {
+  if (this.userId) {
+    return Notifications.find({to: this.userId, isRead: false});
+  }
+  return false;
+});
+
+Meteor.publish('MyNotifications', function () {
+  if (this.userId) {
+    return Notifications.find({to: this.userId});
+  }
+  return false;
+});
+
+Meteor.publish('SentNotifications', function () {
+  if (this.userId) {
+    return Notifications.find({from: this.userId});
   }
   return false;
 });

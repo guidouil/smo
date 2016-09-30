@@ -1,4 +1,19 @@
+Template.header.onCreated(function () {
+  let template = this;
+  template.subscribe('MyUnreadNotifications');
+});
+
+Template.header.onRendered(function () {
+  $('body').animate({scrollTop: 0}, 'fast');
+});
+
 Template.header.helpers({
+  notificationsCount () {
+    if (Meteor.userId()) {
+      return Notifications.find({to: Meteor.userId(), isRead: false}).count();
+    }
+    return false;
+  },
   officeId () {
     if (Router.current().params.officeId) {
       return Router.current().params.officeId;
@@ -98,6 +113,15 @@ Template.header.helpers({
             }
           }
           break;
+        case 'rateOffice':
+          routeName = 'rate office';
+          if (Router.current().route && Router.current().params.officeId) {
+            let office = Offices.findOne({_id: Router.current().params.officeId});
+            if (office) {
+              routeName += ' ' + office.number;
+            }
+          }
+          break;
         case 'createMyOffice':
           routeName = 'add my office';
           break;
@@ -112,6 +136,9 @@ Template.header.helpers({
           break;
         case 'agenda':
           routeName = 'calendar';
+          break;
+        case 'notifications':
+          routeName = 'notifications';
           break;
         case 'stats':
           routeName = 'statistics';
@@ -151,8 +178,4 @@ Template.header.events({
   'click .headerTitle' () {
     $('body').animate({scrollTop: 0}, 'fast');
   },
-});
-
-Template.header.onRendered(function () {
-  $('body').animate({scrollTop: 0}, 'fast');
 });

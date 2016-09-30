@@ -1,0 +1,129 @@
+<template name='rateOffice'>
+  {{#if Template.subscriptionsReady}}
+    <div class="ui basic segment">
+      <div class="office">
+        <h4 class="ui header">
+          OFFICE<label class="ui large horizontal label">{{office.number}}</label>
+          <div class="sub header">Capacity: {{office.capacity}} people.</div>
+        </h4>
+        <div class="ui sub header">Address</div>
+        <p>{{{nl2br office.address}}}</p>
+        {{#unless isAllFalse office.furnitures}}
+        <div class="ui sub header">Equipments</div>
+        <div class="ui two column grid">
+          <div class="column">
+            <div class="ui list">
+              {{#if office.furnitures.printer}}
+              <div class="item">
+                <i class="print icon"></i>
+                <div class="content">
+                  Printer
+                </div>
+              </div>
+              {{/if}}
+              {{#if office.furnitures.whiteboard}}
+              <div class="item">
+                <i class="sticky note outline icon"></i>
+                <div class="content">
+                  Whiteboard
+                </div>
+              </div>
+              {{/if}}
+              {{#if office.furnitures.multiphone}}
+              <div class="item">
+                <i class="call icon"></i>
+                <div class="content">
+                  Conf. phone
+                </div>
+              </div>
+              {{/if}}
+              {{#if office.furnitures.wifi}}
+              <div class="item">
+                <i class="wifi icon"></i>
+                <div class="content">
+                  Wifi
+                </div>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui list">
+              {{#if office.furnitures.copier}}
+              <div class="item">
+                <i class="copy icon"></i>
+                <div class="content">
+                  Copier
+                </div>
+              </div>
+              {{/if}}
+              {{#if office.furnitures.plugs}}
+              <div class="item">
+                <i class="plug icon"></i>
+                <div class="content">
+                  Power strip
+                </div>
+              </div>
+              {{/if}}
+              {{#if office.furnitures.beamer}}
+              <div class="item">
+                <i class="record icon"></i>
+                <div class="content">
+                  Beamer
+                </div>
+              </div>
+              {{/if}}
+              {{#if office.furnitures.coffee}}
+              <div class="item">
+                <i class="coffee icon"></i>
+                <div class="content">
+                  Coffee
+                </div>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        {{/unless}}
+        {{#if office.comment}}
+        <div class="ui sub header">Comments</div>
+        <p>{{{nl2br office.comment}}}</p>
+        {{/if}}
+      </div>
+    </div>
+    {{#if isRated}}
+    <div class="ui center aligned raised segment">
+      <div class="ui form">
+        <div class="field">
+          <label>Rated</label>
+          <div class="ui massive star rating" data-rating="{{reservation.rating}}"></div>
+        </div>
+        {{initRatingReadOnly}}
+        {{#if reservation.comment}}
+          <div class="field">
+            <label>Comments</label>
+            <p>
+              {{reservation.comment}}
+            </p>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    {{else}}
+      <div class="ui center aligned segment">
+        <div class="ui form">
+          <div class="field required">
+            <label>Rating</label>
+            <div class="ui massive star rating"></div>
+          </div>
+          <div class="field">
+            <label>Comments (optional)</label>
+            <textarea rows="3" class="ratingComments"></textarea>
+          </div>
+          <button class="ui green button submitRating">Submit rating</button>
+        </div>
+      </div>
+      {{initRating}}
+    {{/if}}
+  {{/if}}
+</template>

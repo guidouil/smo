@@ -38,3 +38,4 @@ houston:admin
 http
 peerlibrary:xml2js
 email
+percolate:synced-cron

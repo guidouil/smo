@@ -1,3 +1,5 @@
+let moment = require('moment');
+
 Meteor.subscribe('MyOwnedOffices');
 Meteor.subscribe('MyUsageOffices');
 Meteor.subscribe('MyReservations');
@@ -168,9 +170,12 @@ Template.registerHelper('myEmail', function () {
 
 Template.registerHelper('toDate', function (date) {
   check(date, Date);
-  let moment = require('moment');
-  moment.locale('fr');
   return moment(date).format('DD/MM/YYYY');
+});
+
+Template.registerHelper('fromNow', function (date) {
+  check(date, Date);
+  return moment(date).fromNow();
 });
 
 Template.registerHelper('equals', function (a, b) {

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
+  SyncedCron.start();
   Offices._ensureIndex({'owners': 1});
   Offices._ensureIndex({'users': 1});
   Reservations._ensureIndex({'officeId': 1});

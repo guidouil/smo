@@ -1,5 +1,5 @@
 Meteor.methods({
-  'applyReservation': function (reservationId, userEmail) {
+  'applyReservation': function (reservationId) {
     check(reservationId, String);
     if (this.userId) {
       let moment = require('moment');

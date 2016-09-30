@@ -1,0 +1,45 @@
+<template name='notifications'>
+  <div class="ui stacked segment">
+    <div class="ui feed">
+      {{#each notifications}}
+        <div class="event notification">
+          <div class="label">
+            {{#if isRead}}
+              <i class="large mail outline icon"></i>
+            {{else}}
+              <i class="large green mail icon"></i>
+            {{/if}}
+          </div>
+          <div class="content">
+            <div class="summary">
+              {{#if url}}
+                <a href="{{url}}">{{title}}</a>
+              {{else}}
+                {{title}}
+              {{/if}}
+              <div class="date">
+                {{fromLabel}} {{fromNow createdAt}}
+              </div>
+            </div>
+            {{#if text}}
+              <div class="extra text">
+                {{text}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      {{else}}
+        <div class="event">
+          <div class="label">
+            <i class="large green mail outline icon"></i>
+          </div>
+          <div class="content">
+            <div class="summary">
+              No notifications for now.
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</template>

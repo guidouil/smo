@@ -44,7 +44,19 @@
                 <i class="big list icon"></i>
               </a>
               {{else}}
-                <span class="item"><i class="big green cube icon"></i></span>
+                {{#if notificationsCount}}
+                  <a class="item" href="{{pathFor 'notifications'}}">
+                    <div class="ui large basic circular green label">{{notificationsCount}}</div>
+                  </a>
+                {{else}}
+                  {{#if currentUser}}
+                  <a class="item" href="{{pathFor 'notifications'}}">
+                    <i class="large mail icon"></i>
+                  </a>
+                  {{else}}
+                    <span class="item"><i class="large green cube icon"></i></span>
+                  {{/if}}
+                {{/if}}
               {{/if}}
             {{/if}}
           {{/if}}
