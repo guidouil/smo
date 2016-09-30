@@ -54,22 +54,17 @@
           </span>
         {{/if}}
       </p>
-      {{#if isOfficeOwnerOrUser officeId}}
-      <div class="ui red fluid icon labeled button cancelReservation">
-        <i class="trash icon"></i>
-        Cancel reservation
-      </div>
-      {{else}}
-        {{#if equals creator currentUser._id}}
-        <a class="ui green fluid icon labeled button" href="{{pathFor 'office' officeId=officeId}}">
+      {{#if equals creator currentUser._id}}
+        <a class="ui green fluid icon labeled button" href="{{pathFor 'office' officeId=office._id}}">
           <i class="add to calendar icon"></i>
-          Book office again
+          Book office {{office.number}} again
         </a>
-        <br>
-        <div class="ui red fluid icon labeled button cancelReservation">
-          <i class="trash icon"></i>
-          Cancel reservation
-        </div>
+        {{#if cancelable}}
+          <br>
+          <div class="ui red fluid icon labeled button cancelReservation">
+            <i class="trash icon"></i>
+            Cancel reservation
+          </div>
         {{/if}}
       {{/if}}
     {{/with}}

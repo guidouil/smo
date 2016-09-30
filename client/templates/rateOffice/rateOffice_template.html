@@ -109,6 +109,10 @@
         {{/if}}
       </div>
     </div>
+    <a class="ui green fluid icon labeled button" href="{{pathFor 'office' officeId=office._id}}">
+      <i class="add to calendar icon"></i>
+      Book office {{office.number}} again
+    </a>
     {{else}}
       <div class="ui center aligned segment">
         <div class="ui form">
