@@ -6,7 +6,7 @@ Meteor.methods({
       check(comment, String);
     }
     let reservation = Reservations.findOne({_id: reservationId});
-    if (! reservation || reservation.rated === true) {
+    if (! reservation || reservation.rated === true || ! this.userId || reservation.creator !== this.userId) {
       return false;
     }
     Reservations.update({_id: reservationId}, {$set: {
