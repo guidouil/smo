@@ -4,9 +4,9 @@ Template.uidImport.onCreated(function () {
 });
 
 Template.uidImport.onRendered(function () {
-  if (! Meteor.userId()) {
-    Router.go('uid');
-  }
+  // if (! Meteor.userId()) {
+  //   Router.go('uid');
+  // }
 });
 
 Template.uidImport.helpers({

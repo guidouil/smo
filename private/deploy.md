@@ -29,6 +29,7 @@ date
 
 # Deploy to Bluemix  https://console.eu-gb.bluemix.net
 ```sh
+meteor npm install --save moment bcrypt twix jquery hammerjs papaparse
 meteor build ../builds/. --server-only --architecture os.linux.x86_64
 
 cd ../builds
