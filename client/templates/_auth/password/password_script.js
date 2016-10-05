@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 Template.password.helpers({
   uid () {
     return Router.current().params.uid;
@@ -13,8 +15,12 @@ Template.password.events({
       $('.ui.form').addClass('error');
       return false;
     }
-    Meteor.loginWithPassword(Router.current().params.uid, password, function () {
-      Router.go('home');
+    Meteor.loginWithPassword(Router.current().params.uid, password, function (error) {
+      if (error) {
+        alert('Wrong password or UID.\nPlease try again.');
+      } else {
+        Router.go('home');
+      }
     });
   },
   'input #passwordInput' () {
