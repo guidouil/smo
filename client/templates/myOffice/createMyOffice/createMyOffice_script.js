@@ -3,8 +3,9 @@ Template.createMyOffice.onCreated(function () {
 });
 
 Template.createMyOffice.onRendered(function () {
-  $('.goStepOne').hide();
-  $('.ui.accordion').accordion();
+  if (! Meteor.userId()) {
+    Router.go('/uid');
+  }
   $('.ui.checkbox').checkbox();
   $('body').animate({scrollTop: 0}, 'fast');
 });

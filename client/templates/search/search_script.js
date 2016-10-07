@@ -2,6 +2,9 @@ let moment = require('moment');
 moment.locale('fr');
 
 Template.search.onRendered(function () {
+  if (! Meteor.userId()) {
+    Router.go('/uid');
+  }
   $('#searchOfficesInput').focus();
   $('.furnituresFilter').hide();
   $('#dateFilter').pickadate({

@@ -27,5 +27,8 @@ Template.reservation.events({
 });
 
 Template.reservation.onRendered(function () {
+  if (! Meteor.userId()) {
+    Router.go('/uid');
+  }
   $('body').animate({scrollTop: 0}, 'fast');
 });

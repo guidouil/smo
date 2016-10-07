@@ -9,6 +9,9 @@ Template.office.onCreated(function () {
 
 Template.office.onRendered(function () {
   let template = this;
+  if (! Meteor.userId()) {
+    Router.go('/uid');
+  }
   Meteor.call('getDisabilities', Router.current().params.officeId, function (error, result) {
     if (result) {
       template.closedDays.set(result);
@@ -26,10 +29,11 @@ Template.office.onRendered(function () {
     if (office) {
       let availability = _.find( office.availabilities, function (availabilityItem) {
         if (Session.get('searchedDate')) {
-          return availabilityItem.available === true && moment(Session.get('searchedDate')).isSame(availabilityItem.date, 'day');
+          return availabilityItem.available === true && moment(Session.get('searchedDate')).isSame(availabilityItem.date, 'day') && availabilityItem.endTime >  moment().format('HH:mm');
         }
         return availabilityItem.available === true;
       });
+      console.log(availability);
       if (availability) {
         let opens = availability.startTime.split(':');
         let min = moment().startOf('day').add(opens[0], 'hours').add(opens[1], 'minutes').toDate();

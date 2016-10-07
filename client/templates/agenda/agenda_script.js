@@ -90,6 +90,8 @@ Template.agenda.onRendered(function () {
         start: '08:00',
         end: '18:00',
       },
+      minTime: '07:00:00',
+      maxTime: '19:00:00',
       buttonIcons: true, // show the prev/next text
       weekNumbers: true,
       editable: false,
