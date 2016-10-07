@@ -53,6 +53,11 @@ Template.search.events({
             });
           });
         }
+        if (result.length === 0) {
+          $('.noResult').removeClass('hidden');
+        } else {
+          $('.noResult').addClass('hidden');
+        }
         Session.set('offices', result);
       }
     });
